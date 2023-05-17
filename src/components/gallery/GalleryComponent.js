@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { FilterContextProvider } from '../../context/DataContext';
+import Filter from '../filter/Filter';
 
-const GalleryComponent = () => {
+
+const GalleryComponent = ({ apiBaseUrl }) => {
+  console.log(apiBaseUrl);
+
   return (
-    <div>GalleryComponent</div>
+    <>
+      <FilterContextProvider>
+        <Filter baseUrl={apiBaseUrl}/>
+      </FilterContextProvider>
+    </>
   )
 }
 

@@ -7,6 +7,7 @@
   "module": "dist/index.esm.js",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
+    "axios": "^1.4.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
