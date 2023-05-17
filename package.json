@@ -1,0 +1,61 @@
+{
+  "name": "gallery-component",
+  "version": "0.1.1",
+  "private": true,
+  "source": "src/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "dependencies": {
+    "@babel/runtime": "^7.21.5",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-image": "^2.0.6",
+    "@rollup/plugin-json": "^4.1.0",
+    "cssnano": "^5.0.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.5",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-nested": "^5.0.5",
+    "postcss-simple-vars": "^6.0.3",
+    "rollup": "^2.53.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "start-playground": "cd playground && yarn start",
+    "i-all": "yarn && cd playground && yarn",
+    "dev": "npm-run-all --parallel build-watch start-playground"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
