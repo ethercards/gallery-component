@@ -23,7 +23,10 @@ const Explorer = ({ baseUrl }) => {
 
   console.log(nfts)
   return (
-    <div>
+    <div style={{
+      width: '100%',
+      height: 'auto',
+    }}>
       {loading ? <p>....Loading</p> : null}
       <ScrollComponent nfts={nfts} />
     </div>

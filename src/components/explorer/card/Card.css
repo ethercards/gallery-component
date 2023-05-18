@@ -1,0 +1,54 @@
+.gallery-card-root-box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  /* background-color: #030000; */
+}
+
+.gallery-card-root-box p {
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+}
+
+.gallery-card-content {
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.gallery-card-content-name {
+  font-size: 26px;
+  line-height: 26px;
+  color: #FFF;
+  font-family: 'poppins-semibold';
+  text-align: left;
+}
+
+.gallery-card-content-id-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.gallery-card-content-id-box span {
+  font-family: 'poppins';
+  font-size: 14px;
+  color: #FFFFFF90;
+  text-align: left;
+}
+
+.gallery-card-content-id-box p {
+  font-family: 'poppins-medium';
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.gallery-social-items-box {
+  display: flex;
+  gap: 10px
+}
