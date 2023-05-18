@@ -7,7 +7,7 @@ import './GalleryComponent.css'
 const GalleryComponent = ({ apiBaseUrl }) => {
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%', position: 'relative'}}>
       <FilterContextProvider>
         <Filter baseUrl={apiBaseUrl} />
         <Explorer baseUrl={apiBaseUrl} />

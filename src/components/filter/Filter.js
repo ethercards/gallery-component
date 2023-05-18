@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getFilters } from '../../utils/api'
+import FilterContainer from './filter-container/FilterContainer'
 
 const Filter = ({ baseUrl }) => {
   const [filters, setFilters] = useState({})
@@ -14,9 +15,7 @@ const Filter = ({ baseUrl }) => {
     fetchFilters()
   }, [])
   return (
-    <div>
-      
-    </div>
+    <FilterContainer filters={filters} />
   )
 }
 
