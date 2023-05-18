@@ -4,11 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
 var axios = require('axios');
+var InfiniteScroll = require('react-infinite-scroll-component');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var axios__default = /*#__PURE__*/_interopDefaultLegacy(axios);
+var InfiniteScroll__default = /*#__PURE__*/_interopDefaultLegacy(InfiniteScroll);
 
 function _iterableToArrayLimit(arr, i) {
   var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
@@ -513,10 +515,70 @@ var Filter = function Filter(_ref) {
 };
 var Filter$1 = /*#__PURE__*/React__default["default"].memo(Filter);
 
+var loadNext = function loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards) {
+  var c = [];
+  var end = nfts.length < ITEMS_PER_PAGE ? nfts.length : ITEMS_PER_PAGE;
+  for (var i = 0; i < end; i++) {
+    if (currentPageRef.current * ITEMS_PER_PAGE + i < nfts.length) {
+      c.push(nfts[currentPageRef.current * ITEMS_PER_PAGE + i]);
+    }
+  }
+  setCards(function (cards) {
+    return cards.concat(c);
+  });
+  setCurrentPage(currentPageRef.current + 1);
+};
+
+var ScrollComponent = function ScrollComponent(_ref) {
+  var nfts = _ref.nfts;
+  var ITEMS_PER_PAGE = 29;
+  var _useState = React.useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    cards = _useState2[0],
+    setCards = _useState2[1];
+  var _useState3 = React.useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentPage = _useState4[0],
+    _setCurrentPage = _useState4[1];
+  var currentPageRef = React.useRef(currentPage);
+  var setCurrentPage = function setCurrentPage(val) {
+    currentPageRef.current = val;
+    _setCurrentPage(val);
+  };
+  React.useEffect(function () {
+    setCards([]);
+    setCurrentPage(0);
+    loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+  }, [nfts]);
+  return /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement(InfiniteScroll__default["default"], {
+    dataLength: cards.length,
+    next: function next() {
+      return loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    },
+    pullDownToRefreshThreshold: 500,
+    hasMore: currentPageRef.current * ITEMS_PER_PAGE < nfts.length
+    // scrollThreshold="200px"
+    // scrollableTarget="content-container"
+    // initialScrollY={1000}
+    ,
+    loader: /*#__PURE__*/React__default["default"].createElement("h4", null, "Loading...")
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
+    className: "row small-gutters px-0 mx-0"
+  }, "Szerusz")));
+};
+
+var Explorer = function Explorer(_ref) {
+  _ref.baseUrl;
+  return /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
+    nfts: [1, 2, 3, 4, 5, 6, 7, 8]
+  });
+};
+
 var GalleryComponent = function GalleryComponent(_ref) {
   var apiBaseUrl = _ref.apiBaseUrl;
-  console.log(apiBaseUrl);
   return /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement(FilterContextProvider, null, /*#__PURE__*/React__default["default"].createElement(Filter$1, {
+    baseUrl: apiBaseUrl
+  }), /*#__PURE__*/React__default["default"].createElement(Explorer, {
     baseUrl: apiBaseUrl
   })));
 };

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { FilterContextProvider } from '../../context/DataContext';
 import Filter from '../filter/Filter';
+import Explorer from '../explorer/Explorer';
 
 
 const GalleryComponent = ({ apiBaseUrl }) => {
-  console.log(apiBaseUrl);
 
   return (
     <>
       <FilterContextProvider>
-        <Filter baseUrl={apiBaseUrl}/>
+        <Filter baseUrl={apiBaseUrl} />
+        <Explorer baseUrl={apiBaseUrl} />
       </FilterContextProvider>
     </>
   )

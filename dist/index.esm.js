@@ -1,5 +1,6 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function _iterableToArrayLimit(arr, i) {
   var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
@@ -504,10 +505,70 @@ var Filter = function Filter(_ref) {
 };
 var Filter$1 = /*#__PURE__*/React.memo(Filter);
 
+var loadNext = function loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards) {
+  var c = [];
+  var end = nfts.length < ITEMS_PER_PAGE ? nfts.length : ITEMS_PER_PAGE;
+  for (var i = 0; i < end; i++) {
+    if (currentPageRef.current * ITEMS_PER_PAGE + i < nfts.length) {
+      c.push(nfts[currentPageRef.current * ITEMS_PER_PAGE + i]);
+    }
+  }
+  setCards(function (cards) {
+    return cards.concat(c);
+  });
+  setCurrentPage(currentPageRef.current + 1);
+};
+
+var ScrollComponent = function ScrollComponent(_ref) {
+  var nfts = _ref.nfts;
+  var ITEMS_PER_PAGE = 29;
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    cards = _useState2[0],
+    setCards = _useState2[1];
+  var _useState3 = useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentPage = _useState4[0],
+    _setCurrentPage = _useState4[1];
+  var currentPageRef = useRef(currentPage);
+  var setCurrentPage = function setCurrentPage(val) {
+    currentPageRef.current = val;
+    _setCurrentPage(val);
+  };
+  useEffect(function () {
+    setCards([]);
+    setCurrentPage(0);
+    loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+  }, [nfts]);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(InfiniteScroll, {
+    dataLength: cards.length,
+    next: function next() {
+      return loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    },
+    pullDownToRefreshThreshold: 500,
+    hasMore: currentPageRef.current * ITEMS_PER_PAGE < nfts.length
+    // scrollThreshold="200px"
+    // scrollableTarget="content-container"
+    // initialScrollY={1000}
+    ,
+    loader: /*#__PURE__*/React.createElement("h4", null, "Loading...")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row small-gutters px-0 mx-0"
+  }, "Szerusz")));
+};
+
+var Explorer = function Explorer(_ref) {
+  _ref.baseUrl;
+  return /*#__PURE__*/React.createElement(ScrollComponent, {
+    nfts: [1, 2, 3, 4, 5, 6, 7, 8]
+  });
+};
+
 var GalleryComponent = function GalleryComponent(_ref) {
   var apiBaseUrl = _ref.apiBaseUrl;
-  console.log(apiBaseUrl);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FilterContextProvider, null, /*#__PURE__*/React.createElement(Filter$1, {
+    baseUrl: apiBaseUrl
+  }), /*#__PURE__*/React.createElement(Explorer, {
     baseUrl: apiBaseUrl
   })));
 };
