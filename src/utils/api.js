@@ -8,6 +8,7 @@ export const getFilters = async (base_url) => {
   });
 };
 export const getFilteredCards = async (base_url, filters) => {
+  console.log(filters)
   return new Promise((resolve, reject) => {
     axios
       .post(`${base_url}/filter`, filters)

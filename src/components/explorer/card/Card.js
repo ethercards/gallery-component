@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { LazyImage } from './LazyImage'
 
-const Card = () => {
+const Card = ({ card }) => {
+  const [loading, setLoading] = useState(true)
   return (
-    <div>Card</div>
+    <div className='gallery-card-root-box'>
+      <LazyImage
+        src={card.image}
+        imageOnLoad={() => setLoading(false)}
+        alt="Card"
+      />
+    </div>
   )
 }
 

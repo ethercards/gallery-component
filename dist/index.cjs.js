@@ -5,12 +5,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var React = require('react');
 var axios = require('axios');
 var InfiniteScroll = require('react-infinite-scroll-component');
+var styled = require('styled-components');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var axios__default = /*#__PURE__*/_interopDefaultLegacy(axios);
 var InfiniteScroll__default = /*#__PURE__*/_interopDefaultLegacy(InfiniteScroll);
+var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 
 function _iterableToArrayLimit(arr, i) {
   var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
@@ -405,6 +407,16 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -442,10 +454,10 @@ function _toPropertyKey(arg) {
   return typeof key === "symbol" ? key : String(key);
 }
 
-var FilterContext = /*#__PURE__*/React.createContext({});
+var FilterContext = /*#__PURE__*/React.createContext([]);
 var FilterContextProvider = function FilterContextProvider(_ref) {
   var children = _ref.children;
-  var _useState = React.useState({}),
+  var _useState = React.useState([]),
     _useState2 = _slicedToArray(_useState, 2),
     filters = _useState2[0],
     setFilters = _useState2[1];
@@ -454,7 +466,6 @@ var FilterContextProvider = function FilterContextProvider(_ref) {
       return _objectSpread2(_objectSpread2({}, prevFilter), {}, _defineProperty({}, type, value));
     });
   };
-  console.log(filters);
   return /*#__PURE__*/React__default["default"].createElement(FilterContext.Provider, {
     value: {
       filters: filters,
@@ -481,6 +492,29 @@ var getFilters = /*#__PURE__*/function () {
   }));
   return function getFilters(_x) {
     return _ref.apply(this, arguments);
+  };
+}();
+var getFilteredCards = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(base_url, filters) {
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          console.log(filters);
+          return _context2.abrupt("return", new Promise(function (resolve, reject) {
+            axios__default["default"].post("".concat(base_url, "/filter"), filters).then(function (response) {
+              resolve(response.data);
+            }).catch(function (e) {
+              reject(e.message);
+            });
+          }));
+        case 2:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function getFilteredCards(_x2, _x3) {
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -529,6 +563,93 @@ var loadNext = function loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurren
   setCurrentPage(currentPageRef.current + 1);
 };
 
+var _templateObject;
+var placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
+var Image = styled__default["default"].img(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  //display: block;\n  //height: 100px;\n  //width: 100px;\n  // Add a smooth animation on loading\n  @keyframes loaded {\n    0% {\n      opacity: 0.1;\n    }\n    100% {\n      opacity: 1;\n    }\n  }\n  // I use utilitary classes instead of props to avoid style regenerating\n  &.loaded:not(.has-error) {\n    animation: loaded 300ms ease-in-out;\n  }\n  &.has-error {\n    // fallback to placeholder image on error\n    content: url(", ");\n  }\n"])), placeHolder);
+var LazyImage = function LazyImage(_ref) {
+  var src = _ref.src,
+    alt = _ref.alt,
+    idx = _ref.idx,
+    imageOnLoad = _ref.imageOnLoad;
+  var _useState = React.useState(placeHolder),
+    _useState2 = _slicedToArray(_useState, 2),
+    imageSrc = _useState2[0],
+    setImageSrc = _useState2[1];
+  var _useState3 = React.useState(),
+    _useState4 = _slicedToArray(_useState3, 2),
+    imageRef = _useState4[0],
+    setImageRef = _useState4[1];
+  var onLoad = function onLoad(event) {
+    event.target.classList.add('loaded');
+    imageOnLoad();
+  };
+  var onError = function onError(event) {
+    event.target.classList.add('has-error');
+  };
+  React.useEffect(function () {
+    var observer;
+    var didCancel = false;
+    if (imageRef && imageSrc !== src) {
+      if (IntersectionObserver) {
+        observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!didCancel && (entry.intersectionRatio > 0 || entry.isIntersecting)) {
+              //	console.log(idx)
+              setTimeout(function () {
+                setImageSrc(src);
+              }, idx * 100); //add 200 ms delay between image loads :/
+
+              observer.unobserve(imageRef);
+            }
+          });
+        }, {
+          threshold: 0.01,
+          rootMargin: '75%'
+        });
+        observer.observe(imageRef);
+      } else {
+        // Old browsers fallback
+        setImageSrc(src);
+      }
+    }
+    return function () {
+      didCancel = true;
+      // on component cleanup, we remove the listner
+      if (observer && observer.unobserve) {
+        observer.unobserve(imageRef);
+      }
+    };
+  }, [src, imageSrc, imageRef]);
+  return /*#__PURE__*/React__default["default"].createElement(Image, {
+    ref: setImageRef,
+    src: imageSrc,
+    alt: alt,
+    onLoad: onLoad,
+    onError: onError,
+    style: {
+      zIndex: '0',
+      borderRadius: '15px 15px 0px 0px'
+    }
+  });
+};
+
+var Card = function Card(_ref) {
+  var card = _ref.card;
+  var _useState = React.useState(true),
+    _useState2 = _slicedToArray(_useState, 2);
+    _useState2[0];
+    var setLoading = _useState2[1];
+  return /*#__PURE__*/React__default["default"].createElement("div", {
+    className: "gallery-card-root-box"
+  }, /*#__PURE__*/React__default["default"].createElement(LazyImage, {
+    src: card.image,
+    imageOnLoad: function imageOnLoad() {
+      return setLoading(false);
+    },
+    alt: "Card"
+  }));
+};
+
 var ScrollComponent = function ScrollComponent(_ref) {
   var nfts = _ref.nfts;
   var ITEMS_PER_PAGE = 29;
@@ -545,11 +666,28 @@ var ScrollComponent = function ScrollComponent(_ref) {
     currentPageRef.current = val;
     _setCurrentPage(val);
   };
+  var renderCards = function renderCards() {
+    return cards.map(function (card, i) {
+      return /*#__PURE__*/React__default["default"].createElement("div", {
+        key: i,
+        className: "col-lg-3 col-md-4 mb-4"
+      }, /*#__PURE__*/React__default["default"].createElement("div", {
+        className: "layer-image-preview"
+      }, /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement(Card, {
+        card: card
+      }))));
+    });
+  };
   React.useEffect(function () {
-    setCards([]);
-    setCurrentPage(0);
-    loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    if (nfts) {
+      setCards([]);
+      setCurrentPage(0);
+      loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    }
   }, [nfts]);
+  if (!nfts) {
+    return /*#__PURE__*/React__default["default"].createElement("div", null, "ERROR");
+  }
   return /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement(InfiniteScroll__default["default"], {
     dataLength: cards.length,
     next: function next() {
@@ -564,14 +702,48 @@ var ScrollComponent = function ScrollComponent(_ref) {
     loader: /*#__PURE__*/React__default["default"].createElement("h4", null, "Loading...")
   }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "row small-gutters px-0 mx-0"
-  }, "Szerusz")));
+  }, renderCards())));
 };
 
 var Explorer = function Explorer(_ref) {
-  _ref.baseUrl;
-  return /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
-    nfts: [1, 2, 3, 4, 5, 6, 7, 8]
-  });
+  var baseUrl = _ref.baseUrl;
+  var _useState = React.useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    nfts = _useState2[0],
+    setNfts = _useState2[1];
+  var _useState3 = React.useState(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useContext = React.useContext(FilterContext),
+    filters = _useContext.filters;
+  var fetchNfts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            getFilteredCards(baseUrl, filters).then(function (res) {
+              setNfts(res);
+              setLoading(false);
+            });
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function fetchNfts() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  React.useEffect(function () {
+    setLoading(true);
+    fetchNfts();
+  }, [baseUrl, filters]);
+  console.log(nfts);
+  return /*#__PURE__*/React__default["default"].createElement("div", null, loading ? /*#__PURE__*/React__default["default"].createElement("p", null, "....Loading") : null, /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
+    nfts: nfts
+  }));
 };
 
 var GalleryComponent = function GalleryComponent(_ref) {

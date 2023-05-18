@@ -1,11 +1,32 @@
-import React from 'react'
-
+import React, { useContext, useEffect, useState } from 'react'
 import ScrollComponent from './infinite-scroll/ScrollComponent'
 
-const Explorer = ({ baseUrl }) => {
+import { getFilteredCards } from '../../utils/api'
+import { FilterContext } from '../../context/DataContext'
 
+const Explorer = ({ baseUrl }) => {
+  const [nfts, setNfts] = useState([])
+  const [loading, setLoading] = useState(true);
+  const { filters } = useContext(FilterContext)
+
+
+  const fetchNfts = async () => {
+    getFilteredCards(baseUrl, filters).then((res) => {
+      setNfts(res);
+      setLoading(false)
+    })
+  }
+  useEffect(() => {
+    setLoading(true);
+    fetchNfts();
+  }, [baseUrl, filters])
+
+  console.log(nfts)
   return (
-    <ScrollComponent nfts={[1,2,3,4,5,6,7,8]}/>
+    <div>
+      {loading ? <p>....Loading</p> : null}
+      <ScrollComponent nfts={nfts} />
+    </div>
   )
 }
 

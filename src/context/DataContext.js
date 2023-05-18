@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
 
-const FilterContext = createContext({});
+const FilterContext = createContext([]);
 
 const FilterContextProvider = ({ children }) => {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState([]);
 
   const updateFilters = (type, value) => {
     setFilters((prevFilter) => ({
@@ -11,7 +11,7 @@ const FilterContextProvider = ({ children }) => {
       [type]: value
     }))
   }
-  console.log(filters)
+
   return (
     <FilterContext.Provider value={{ filters, updateFilters }}>
       {children}
