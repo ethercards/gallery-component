@@ -5,14 +5,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var React = require('react');
 var axios = require('axios');
 var InfiniteScroll = require('react-infinite-scroll-component');
-var styled = require('styled-components');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var axios__default = /*#__PURE__*/_interopDefaultLegacy(axios);
 var InfiniteScroll__default = /*#__PURE__*/_interopDefaultLegacy(InfiniteScroll);
-var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 
 const FilterContext = /*#__PURE__*/React.createContext([]);
 const FilterContextProvider = _ref => {
@@ -188,28 +186,6 @@ const loadNext = (nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards
 };
 
 const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
-const Image = styled__default["default"].img`
-  //display: block;
-  //height: 100px;
-  //width: 100px;
-  // Add a smooth animation on loading
-  @keyframes loaded {
-    0% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  // I use utilitary classes instead of props to avoid style regenerating
-  &.loaded:not(.has-error) {
-    animation: loaded 300ms ease-in-out;
-  }
-  &.has-error {
-    // fallback to placeholder image on error
-    content: url(${placeHolder});
-  }
-`;
 const LazyImage = _ref => {
   let {
     src,
@@ -260,7 +236,8 @@ const LazyImage = _ref => {
       }
     };
   }, [src, imageSrc, imageRef]);
-  return /*#__PURE__*/React__default["default"].createElement(Image, {
+  return /*#__PURE__*/React__default["default"].createElement("img", {
+    className: "gallery-lazy-image",
     ref: setImageRef,
     src: imageSrc,
     alt: alt,
