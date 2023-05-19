@@ -1,16 +1,15 @@
 {
   "name": "gallery-component",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": true,
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.5",
     "axios": "^1.4.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-scripts": "4.0.3",
-    "styled-components": "^6.0.0-rc.1",
+    "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -18,6 +17,7 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@babel/runtime": "^7.21.5",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-image": "^2.0.6",
     "@rollup/plugin-json": "^4.1.0",
