@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'bau';
+  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins';
+  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-semibold';
+  src: local('poppins-semibold'),
+    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-medium';
+  src: local('poppins-medium'),
+    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');
+  font-display: swap;
+}
+

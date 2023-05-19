@@ -1,13 +1,16 @@
 {
   "name": "gallery-component",
-  "version": "0.1.1",
+  "version": "0.1.11",
   "private": true,
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
-    "react-scripts": "5.0.1",
+    "axios": "^1.4.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-scripts": "4.0.3",
+    "styled-components": "^6.0.0-rc.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -30,8 +33,8 @@
     "rollup-plugin-postcss": "^4.0.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "scripts": {
     "build": "rollup -c",

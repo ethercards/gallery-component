@@ -1,0 +1,78 @@
+ .custom-filter-select {
+ 	cursor: pointer;
+ 	min-width: 100px;
+ }
+
+ .filter-container label {
+ 	color: #000;
+ 	font-size: 16px;
+ 	font-weight: 500;
+ 	cursor: pointer;
+ }
+
+ .gallery-filter-type-label span.gallery-filter-arrow {
+ 	font-size: 12px;
+ }
+
+ .gallery-filter-type-label.open span.gallery-filter-arrow {
+ 	color: #FE2C85;
+ }
+
+ .custom-filter-select {
+ 	position: relative;
+ }
+
+
+ .custom-filter-select .filter-dropdown {
+ 	min-width: 180px;
+ 	max-height: 300px;
+ 	overflow-y: auto;
+ 	color: #FFF;
+ 	font-size: 14px;
+ 	font-weight: 400;
+ 	text-align: left;
+ 	padding: 1rem;
+ 	position: absolute;
+ 	display: none;
+ 	top: 40px;
+ 	left: 0;
+ 	background-color: #151E2A;
+ 	border-radius: 8px;
+ 	/* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */
+ 	z-index: 5;
+
+ }
+
+ .custom-filter-select .filter-dropdown::-webkit-scrollbar {
+ 	width: 4px !important;
+ 	height: 8px;
+ }
+
+ .custom-filter-select .filter-dropdown::-webkit-scrollbar-track {
+ 	background: transparent;
+ }
+
+ /* Handle */
+ .custom-filter-select .filter-dropdown::-webkit-scrollbar-thumb {
+ 	background: #FE2C85;
+ 	border-radius: 10px;
+ }
+
+ .gallery-filter-type-label.open + .filter-dropdown {
+ 	display: block;
+ }
+
+ .filter-value {
+ 	color: #FE2C85;
+ 	font-size: 14px;
+ 	font-weight: 600;
+ }
+
+ .cust-filter-item.selected {
+ 	font-weight: 600;
+	font-family: 'poppins';
+ }
+
+ .gallery-filter-type-label {
+ 	color: #FFF
+ }
