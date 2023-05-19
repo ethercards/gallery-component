@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import styled from 'styled-components';
 
 const FilterContext = /*#__PURE__*/createContext([]);
 const FilterContextProvider = _ref => {
@@ -177,28 +176,6 @@ const loadNext = (nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards
 };
 
 const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
-const Image = styled.img`
-  //display: block;
-  //height: 100px;
-  //width: 100px;
-  // Add a smooth animation on loading
-  @keyframes loaded {
-    0% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  // I use utilitary classes instead of props to avoid style regenerating
-  &.loaded:not(.has-error) {
-    animation: loaded 300ms ease-in-out;
-  }
-  &.has-error {
-    // fallback to placeholder image on error
-    content: url(${placeHolder});
-  }
-`;
 const LazyImage = _ref => {
   let {
     src,
@@ -249,7 +226,8 @@ const LazyImage = _ref => {
       }
     };
   }, [src, imageSrc, imageRef]);
-  return /*#__PURE__*/React.createElement(Image, {
+  return /*#__PURE__*/React.createElement("img", {
+    className: "gallery-lazy-image",
     ref: setImageRef,
     src: imageSrc,
     alt: alt,
