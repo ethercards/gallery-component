@@ -40,7 +40,7 @@ const CustomFilterSelect = ({ keyname, filters, filterChanged }) => {
       onMouseLeave={() => setOpened(false)}
     >
       <label className={`gallery-filter-type-label ${opened ? 'open' : ''}`}>
-        {keyname} <span className='arrow'>&#9660;</span>
+        {keyname} <span className='gallery-filter-arrow'>&#9660;</span>
       </label>
       <div className={`filter-dropdown`}>
         <div

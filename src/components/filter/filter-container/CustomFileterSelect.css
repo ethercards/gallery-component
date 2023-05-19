@@ -10,11 +10,11 @@
  	cursor: pointer;
  }
 
- .gallery-filter-type-label span.arrow {
+ .gallery-filter-type-label span.gallery-filter-arrow {
  	font-size: 12px;
  }
 
- .gallery-filter-type-label.open span.arrow {
+ .gallery-filter-type-label.open span.gallery-filter-arrow {
  	color: #FE2C85;
  }
 

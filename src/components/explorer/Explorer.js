@@ -26,7 +26,7 @@ const Explorer = ({ baseUrl }) => {
     <div style={{
       width: '100%',
       height: 'auto',
-      paddingTop: '200px'
+      paddingTop: '50px'
     }}>
       {loading ? <p>....Loading</p> : null}
       <ScrollComponent nfts={nfts} />

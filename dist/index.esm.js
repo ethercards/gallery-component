@@ -71,7 +71,7 @@ function styleInject(css, ref) {
 var css_248z$4 = ".gallery-filter-container {\r\n  position: sticky;\r\n  top: 20px;\r\n  left: 0;\r\n  right: 0;\r\n  margin: 0 auto;\r\n  text-align: center;\r\n  z-index: 2;\r\n  width: 100%;\r\n  background-color: #151E2A;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 3;\r\n}\r\n.gallery-filter-inner-container{\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 24px;\r\n  padding: 20px;\r\n}";
 styleInject(css_248z$4);
 
-var css_248z$3 = " .custom-filter-select {\r\n \tcursor: pointer;\r\n \tmin-width: 100px;\r\n }\r\n\r\n .filter-container label {\r\n \tcolor: #000;\r\n \tfont-size: 16px;\r\n \tfont-weight: 500;\r\n \tcursor: pointer;\r\n }\r\n\r\n .gallery-filter-type-label span.arrow {\r\n \tfont-size: 12px;\r\n }\r\n\r\n .gallery-filter-type-label.open span.arrow {\r\n \tcolor: #FE2C85;\r\n }\r\n\r\n .custom-filter-select {\r\n \tposition: relative;\r\n }\r\n\r\n\r\n .custom-filter-select .filter-dropdown {\r\n \tmin-width: 180px;\r\n \tmax-height: 300px;\r\n \toverflow-y: auto;\r\n \tcolor: #FFF;\r\n \tfont-size: 14px;\r\n \tfont-weight: 400;\r\n \ttext-align: left;\r\n \tpadding: 1rem;\r\n \tposition: absolute;\r\n \tdisplay: none;\r\n \ttop: 40px;\r\n \tleft: 0;\r\n \tbackground-color: #151E2A;\r\n \tborder-radius: 8px;\r\n \t/* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */\r\n \tz-index: 5;\r\n\r\n }\r\n\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar {\r\n \twidth: 4px !important;\r\n \theight: 8px;\r\n }\r\n\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar-track {\r\n \tbackground: transparent;\r\n }\r\n\r\n /* Handle */\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar-thumb {\r\n \tbackground: #FE2C85;\r\n \tborder-radius: 10px;\r\n }\r\n\r\n .gallery-filter-type-label.open + .filter-dropdown {\r\n \tdisplay: block;\r\n }\r\n\r\n .filter-value {\r\n \tcolor: #FE2C85;\r\n \tfont-size: 14px;\r\n \tfont-weight: 600;\r\n }\r\n\r\n .cust-filter-item.selected {\r\n \tfont-weight: 600;\r\n\tfont-family: 'poppins';\r\n }\r\n\r\n .gallery-filter-type-label {\r\n \tcolor: #FFF\r\n }";
+var css_248z$3 = " .custom-filter-select {\r\n \tcursor: pointer;\r\n \tmin-width: 100px;\r\n }\r\n\r\n .filter-container label {\r\n \tcolor: #000;\r\n \tfont-size: 16px;\r\n \tfont-weight: 500;\r\n \tcursor: pointer;\r\n }\r\n\r\n .gallery-filter-type-label span.gallery-filter-arrow {\r\n \tfont-size: 12px;\r\n }\r\n\r\n .gallery-filter-type-label.open span.gallery-filter-arrow {\r\n \tcolor: #FE2C85;\r\n }\r\n\r\n .custom-filter-select {\r\n \tposition: relative;\r\n }\r\n\r\n\r\n .custom-filter-select .filter-dropdown {\r\n \tmin-width: 180px;\r\n \tmax-height: 300px;\r\n \toverflow-y: auto;\r\n \tcolor: #FFF;\r\n \tfont-size: 14px;\r\n \tfont-weight: 400;\r\n \ttext-align: left;\r\n \tpadding: 1rem;\r\n \tposition: absolute;\r\n \tdisplay: none;\r\n \ttop: 40px;\r\n \tleft: 0;\r\n \tbackground-color: #151E2A;\r\n \tborder-radius: 8px;\r\n \t/* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */\r\n \tz-index: 5;\r\n\r\n }\r\n\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar {\r\n \twidth: 4px !important;\r\n \theight: 8px;\r\n }\r\n\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar-track {\r\n \tbackground: transparent;\r\n }\r\n\r\n /* Handle */\r\n .custom-filter-select .filter-dropdown::-webkit-scrollbar-thumb {\r\n \tbackground: #FE2C85;\r\n \tborder-radius: 10px;\r\n }\r\n\r\n .gallery-filter-type-label.open + .filter-dropdown {\r\n \tdisplay: block;\r\n }\r\n\r\n .filter-value {\r\n \tcolor: #FE2C85;\r\n \tfont-size: 14px;\r\n \tfont-weight: 600;\r\n }\r\n\r\n .cust-filter-item.selected {\r\n \tfont-weight: 600;\r\n\tfont-family: 'poppins';\r\n }\r\n\r\n .gallery-filter-type-label {\r\n \tcolor: #FFF\r\n }";
 styleInject(css_248z$3);
 
 const CustomFilterSelect = _ref => {
@@ -107,7 +107,7 @@ const CustomFilterSelect = _ref => {
   }, /*#__PURE__*/React.createElement("label", {
     className: `gallery-filter-type-label ${opened ? 'open' : ''}`
   }, keyname, " ", /*#__PURE__*/React.createElement("span", {
-    className: "arrow"
+    className: "gallery-filter-arrow"
   }, "\u25BC")), /*#__PURE__*/React.createElement("div", {
     className: `filter-dropdown`
   }, /*#__PURE__*/React.createElement("div", {
@@ -372,7 +372,7 @@ const Explorer = _ref => {
     style: {
       width: '100%',
       height: 'auto',
-      paddingTop: '200px'
+      paddingTop: '50px'
     }
   }, loading ? /*#__PURE__*/React.createElement("p", null, "....Loading") : null, /*#__PURE__*/React.createElement(ScrollComponent, {
     nfts: nfts
