@@ -10,7 +10,7 @@ const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick }) => {
   const [loading, setLoading] = useState(true);
 
   const handleCardImageClick = (tokenId) => {
-    handleCardClick?.(tokenId);
+    handleCardClick && handleCardClick(tokenId);
   };
 
   const handleEtherscanClick = () => {

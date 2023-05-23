@@ -271,7 +271,7 @@ const Card = _ref => {
   } = _ref;
   const [loading, setLoading] = React.useState(true);
   const handleCardImageClick = tokenId => {
-    handleCardClick?.(tokenId);
+    handleCardClick && handleCardClick(tokenId);
   };
   const handleEtherscanClick = () => {
     etherscanUrl && window.open(`${etherscanUrl}`, '_blank');
