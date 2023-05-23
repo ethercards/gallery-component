@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
 
-export const LazyImage = ({ src, alt, idx, imageOnLoad }) => {
+export const LazyImage = ({ src, alt, idx, imageOnLoad, onClick, style }) => {
 	const [imageSrc, setImageSrc] = useState(placeHolder);
 	const [imageRef, setImageRef] = useState();
 
@@ -28,7 +28,6 @@ export const LazyImage = ({ src, alt, idx, imageOnLoad }) => {
 								!didCancel
 								&& (entry.intersectionRatio > 0 || entry.isIntersecting)
 							) {
-								//	console.log(idx)
 								setTimeout(() => { setImageSrc(src) }, idx * 100); //add 200 ms delay between image loads :/
 
 								observer.unobserve(imageRef);
@@ -56,13 +55,14 @@ export const LazyImage = ({ src, alt, idx, imageOnLoad }) => {
 	}, [src, imageSrc, imageRef]);
 	return (
 		<img
-		className='gallery-lazy-image'
+			className='gallery-lazy-image'
 			ref={setImageRef}
 			src={imageSrc}
 			alt={alt}
 			onLoad={onLoad}
 			onError={onError}
-			style={{ zIndex: '0', borderRadius: '15px 15px 0px 0px' }}
+			style={{ zIndex: '0', ...style }}
+			onClick={onClick}
 		/>
 	);
 };

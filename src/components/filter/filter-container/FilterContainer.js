@@ -4,7 +4,7 @@ import './FilterContainer.css'
 import CustomFilterSelect from './CustomFilterSelect';
 import { FilterContext } from '../../../context/DataContext';
 
-const FilterContainer = ({ filters }) => {
+const FilterContainer = ({ filters, headerStyle = null }) => {
 
   const { updateFilters } = useContext(FilterContext)
 
@@ -28,7 +28,7 @@ const FilterContainer = ({ filters }) => {
   };
 
   return (
-    <div className='gallery-filter-container'>
+    <div className='gallery-filter-container' style={headerStyle}>
       <div className="gallery-filter-inner-container">{GetFilters()}</div>
     </div>
   )

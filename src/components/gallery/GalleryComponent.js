@@ -4,16 +4,16 @@ import Filter from '../filter/Filter';
 import Explorer from '../explorer/Explorer';
 import './GalleryComponent.css'
 
-const GalleryComponent = ({ apiBaseUrl }) => {
-
+const GalleryComponent = ({ apiBaseUrl, openseaUrl, etherscanUrl, handleCardClick, headerStyle }) => {
+  
   return (
-    <div style={{width: '100%', position: 'relative'}}>
+    <div style={{ width: '100%', position: 'relative' }}>
       <FilterContextProvider>
-        <Filter baseUrl={apiBaseUrl} />
-        <Explorer baseUrl={apiBaseUrl} />
+        <Filter baseUrl={apiBaseUrl} headerStyle={headerStyle} />
+        <Explorer baseUrl={apiBaseUrl} openseaUrl={openseaUrl} etherscanUrl={etherscanUrl} handleCardClick={handleCardClick} />
       </FilterContextProvider>
     </div>
   )
 }
 
-export default GalleryComponent
+export default React.memo(GalleryComponent)

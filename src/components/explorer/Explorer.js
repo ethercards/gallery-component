@@ -4,11 +4,10 @@ import ScrollComponent from './infinite-scroll/ScrollComponent'
 import { getFilteredCards } from '../../utils/api'
 import { FilterContext } from '../../context/DataContext'
 
-const Explorer = ({ baseUrl }) => {
+const Explorer = ({ baseUrl, openseaUrl, etherscanUrl, handleCardClick}) => {
   const [nfts, setNfts] = useState([])
   const [loading, setLoading] = useState(true);
   const { filters } = useContext(FilterContext)
-
 
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters).then((res) => {
@@ -21,7 +20,6 @@ const Explorer = ({ baseUrl }) => {
     fetchNfts();
   }, [baseUrl, filters])
 
-  console.log(nfts)
   return (
     <div style={{
       width: '100%',
@@ -29,7 +27,7 @@ const Explorer = ({ baseUrl }) => {
       paddingTop: '50px'
     }}>
       {loading ? <p>....Loading</p> : null}
-      <ScrollComponent nfts={nfts} />
+      <ScrollComponent nfts={nfts} openseaUrl={openseaUrl} etherscanUrl={etherscanUrl} handleCardClick={handleCardClick}/>
     </div>
   )
 }
