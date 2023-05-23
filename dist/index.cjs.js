@@ -414,14 +414,12 @@ const Explorer = _ref => {
 var css_248z = "@font-face {\r\n  font-family: 'bau';\r\n  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins';\r\n  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-semibold';\r\n  src: local('poppins-semibold'),\r\n    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-medium';\r\n  src: local('poppins-medium'),\r\n    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n";
 styleInject(css_248z);
 
-const GalleryComponent = _ref => {
-  let {
-    apiBaseUrl,
-    openseaUrl,
-    etherscanUrl,
-    handleCardClick,
-    headerStyle
-  } = _ref;
+var GalleryComponent = function GalleryComponent(_ref) {
+  var apiBaseUrl = _ref.apiBaseUrl,
+    openseaUrl = _ref.openseaUrl,
+    etherscanUrl = _ref.etherscanUrl,
+    handleCardClick = _ref.handleCardClick,
+    headerStyle = _ref.headerStyle;
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
