@@ -4,7 +4,7 @@ import { loadNext } from '../../../utils/InfiniteScrollHelper';
 import Card from '../card/Card';
 import './ScrollComponent.css'
 
-const ScrollComponent = ({ nfts }) => {
+const ScrollComponent = ({ nfts, openseaUrl, etherscanUrl, handleCardClick }) => {
   const ITEMS_PER_PAGE = 29;
   const [cards, setCards] = useState([]);
   const [currentPage, _setCurrentPage] = useState(0);
@@ -19,7 +19,7 @@ const ScrollComponent = ({ nfts }) => {
     return cards.map((card, i) => {
       return (
         <div key={i} className="gallery-card-item">
-          <Card card={card} />
+          <Card card={card} openseaUrl={openseaUrl} etherscanUrl={etherscanUrl} handleCardClick={handleCardClick}/>
         </div>
       );
     });
