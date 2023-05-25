@@ -168,7 +168,7 @@ const Filter = _ref => {
   };
   React.useEffect(() => {
     fetchFilters();
-  }, []);
+  }, [baseUrl]);
   return /*#__PURE__*/React__default["default"].createElement(FilterContainer, {
     filters: filters,
     headerStyle: headerStyle
@@ -380,36 +380,50 @@ const Explorer = _ref => {
     baseUrl,
     openseaUrl,
     etherscanUrl,
-    handleCardClick
+    handleCardClick,
+    nftsCardList
   } = _ref;
   const [nfts, setNfts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [noItem, setNoItem] = React.useState(false);
   const {
     filters
   } = React.useContext(FilterContext);
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters).then(res => {
-      setNfts(res);
+      if (res.length > 0) {
+        setNfts(res);
+        setNoItem(false);
+      } else {
+        setNoItem(true);
+        setNfts(res);
+      }
       setLoading(false);
     });
   };
   React.useEffect(() => {
+    if (baseUrl) {
+      fetchNfts();
+    }
+    if (!baseUrl && ntfCardList.length > 0) {
+      setNfts(nftsCardList);
+    }
     setLoading(true);
-    fetchNfts();
-  }, [baseUrl, filters]);
+  }, [baseUrl, filters, nftsCardList]);
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
       height: 'auto',
       paddingTop: '50px'
     }
-  }, loading ? /*#__PURE__*/React__default["default"].createElement("p", null, "....Loading") : null, /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
+  }, noItem && /*#__PURE__*/React__default["default"].createElement("p", null, "No item to display"), loading ? /*#__PURE__*/React__default["default"].createElement("p", null, "....Loading") : /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
     nfts: nfts,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
     handleCardClick: handleCardClick
   }));
 };
+var Explorer$1 = /*#__PURE__*/React__default["default"].memo(Explorer);
 
 var css_248z = "@font-face {\r\n  font-family: 'bau';\r\n  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins';\r\n  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-semibold';\r\n  src: local('poppins-semibold'),\r\n    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-medium';\r\n  src: local('poppins-medium'),\r\n    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n";
 styleInject(css_248z);
@@ -419,20 +433,22 @@ var GalleryComponent = function GalleryComponent(_ref) {
     openseaUrl = _ref.openseaUrl,
     etherscanUrl = _ref.etherscanUrl,
     handleCardClick = _ref.handleCardClick,
-    headerStyle = _ref.headerStyle;
+    headerStyle = _ref.headerStyle,
+    cardArray = _ref.cardArray;
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
       position: 'relative'
     }
-  }, /*#__PURE__*/React__default["default"].createElement(FilterContextProvider, null, /*#__PURE__*/React__default["default"].createElement(Filter$1, {
+  }, /*#__PURE__*/React__default["default"].createElement(FilterContextProvider, null, apiBaseUrl ? /*#__PURE__*/React__default["default"].createElement(Filter$1, {
     baseUrl: apiBaseUrl,
     headerStyle: headerStyle
-  }), /*#__PURE__*/React__default["default"].createElement(Explorer, {
+  }) : null, /*#__PURE__*/React__default["default"].createElement(Explorer$1, {
     baseUrl: apiBaseUrl,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
-    handleCardClick: handleCardClick
+    handleCardClick: handleCardClick,
+    nftsCardList: cardArray
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React__default["default"].memo(GalleryComponent);
