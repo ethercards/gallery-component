@@ -29,34 +29,50 @@ const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick }) => {
         imageOnLoad={() => setLoading(false)}
         alt='Card'
         onClick={() => {
-          handleCardImageClick(card.tokenId)
+          handleCardImageClick(card.tokenId);
         }}
       />
       <div className='gallery-card-content'>
         <p className='gallery-card-content-name '>{card.name}</p>
-        <div className='gallery-card-content-id-box '>
+        {/* <div className='gallery-card-content-id-box '>
           <span>ID</span>
           <p>#{card.tokenId}</p>
-        </div>
-        <div className='gallery-social-items-box'>
-          <img
-            src={opensea}
-            alt='opensea'
-            style={{
-              maxWidth: '30px',
-              cursor: openseaUrl ? 'pointer' : 'unset',
-            }}
-            onClick={() => handleOpenseaClick(card.tokenId)}
-          />
-          <img
-            src={etherscan}
-            alt='etherscan'
-            style={{
-              maxWidth: '30px',
-              cursor: etherscanUrl ? 'pointer' : 'unset',
-            }}
-            onClick={() => handleEtherscanClick()}
-          />
+        </div> */}
+        <div className='gallery-social-trait-box'>
+          <div className='gallery-social-items-box'>
+            <img
+              src={opensea}
+              alt='opensea'
+              style={{
+                maxWidth: '30px',
+                cursor: openseaUrl ? 'pointer' : 'unset',
+              }}
+              onClick={() => handleOpenseaClick(card.tokenId)}
+            />
+            <img
+              src={etherscan}
+              alt='etherscan'
+              style={{
+                maxWidth: '30px',
+                cursor: etherscanUrl ? 'pointer' : 'unset',
+              }}
+              onClick={() => handleEtherscanClick()}
+            />
+          </div>
+          {card.traits && (
+            <div className='gallery-trait-container'>
+              {card.traits.map((item, index) => {
+                return (
+                  <div className='gallery-trait-holder-box' key={index}>
+                    <img
+                      src={item.icon_url}
+                      alt='trait'
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

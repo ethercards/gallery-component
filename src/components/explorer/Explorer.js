@@ -49,6 +49,7 @@ const Explorer = ({
         height: 'auto',
         paddingTop: '50px',
       }}
+      className='gallery-scroll-component-holder'
     >
       <ScrollComponent
         nfts={nfts}
