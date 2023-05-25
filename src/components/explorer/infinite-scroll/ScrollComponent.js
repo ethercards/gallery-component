@@ -1,57 +1,70 @@
-import React, { useEffect, useRef, useState } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { loadNext } from '../../../utils/InfiniteScrollHelper';
-import Card from '../card/Card';
-import './ScrollComponent.css'
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-const ScrollComponent = ({ nfts, openseaUrl, etherscanUrl, handleCardClick }) => {
-  const ITEMS_PER_PAGE = 29;
+import Card from '../card/Card';
+import './ScrollComponent.css';
+import { FilterContext } from '../../../context/DataContext';
+
+const ScrollComponent = ({
+  nfts,
+  openseaUrl,
+  etherscanUrl,
+  handleCardClick,
+}) => {
+  const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
-  const [currentPage, _setCurrentPage] = useState(0);
-  const currentPageRef = useRef(currentPage);
+  const { currentPage, updateCurrentPage } = useContext(FilterContext);
+  const currentPageRef = useRef(1);
 
   const setCurrentPage = (val) => {
+    //update the context, and the ref to store the actual data
+    updateCurrentPage(val);
     currentPageRef.current = val;
-    _setCurrentPage(val);
   };
 
   const renderCards = () => {
     return cards.map((card, i) => {
       return (
-        <div key={i} className="gallery-card-item">
-          <Card card={card} openseaUrl={openseaUrl} etherscanUrl={etherscanUrl} handleCardClick={handleCardClick}/>
+        <div key={i} className='gallery-card-item'>
+          <Card
+            card={card}
+            openseaUrl={openseaUrl}
+            etherscanUrl={etherscanUrl}
+            handleCardClick={handleCardClick}
+          />
         </div>
       );
     });
   };
 
   useEffect(() => {
-    if (nfts) {
-      setCards([]);
-      setCurrentPage(0);
-      loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    if (nfts.length > 0) {
+      setCards(nfts);
     }
   }, [nfts]);
 
+  useEffect(() => {
+    //need to set currentPageRef.current 1 when we select a filter
+    if(currentPage === 1) {
+      currentPageRef.current = 1;
+    }
+  }, [currentPage])
+  
+
   if (!nfts) {
-    return <div>ERROR</div>
+    return <div>ERROR</div>;
   }
 
   return (
     <InfiniteScroll
       className='gallery-infinite-scroll'
       dataLength={cards.length}
-      next={() =>
-        loadNext(
-          nfts,
-          ITEMS_PER_PAGE,
-          currentPageRef,
-          setCurrentPage,
-          setCards
-        )
-      }
+      next={() => {
+        setCurrentPage(currentPageRef.current + 1);
+        console.log('toltes');
+      }}
       pullDownToRefreshThreshold={500}
-      hasMore={currentPageRef.current * ITEMS_PER_PAGE < nfts.length}
+      hasMore={currentPageRef.current * ITEMS_PER_PAGE < cards.length}
       // scrollThreshold="200px"
       // scrollableTarget="content-container"
       // initialScrollY={1000}
@@ -59,7 +72,7 @@ const ScrollComponent = ({ nfts, openseaUrl, etherscanUrl, handleCardClick }) =>
     >
       <div className='gallery-grid-container'>{renderCards()}</div>
     </InfiniteScroll>
-  )
-}
+  );
+};
 
-export default ScrollComponent
+export default ScrollComponent;

@@ -6,10 +6,12 @@ import { FilterContext } from '../../../context/DataContext';
 
 const FilterContainer = ({ filters, headerStyle = null }) => {
 
-  const { updateFilters } = useContext(FilterContext)
+  const { updateFilters, resetCurrentPage } = useContext(FilterContext)
 
   const filterChanged = (type, value) => {
+    //set the filters, and reset the currentPage context value to 1
     updateFilters(type, value)
+    resetCurrentPage();
   }
 
   const GetFilters = () => {

@@ -1,31 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ScrollComponent from './infinite-scroll/ScrollComponent';
 
 import { getFilteredCards } from '../../utils/api';
 import { FilterContext } from '../../context/DataContext';
 
 const Explorer = ({
-  baseUrl,
+  baseUrl = undefined,
   openseaUrl,
   etherscanUrl,
   handleCardClick,
-  nftsCardList,
+  nftsCardList = [],
 }) => {
   const [nfts, setNfts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [noItem, setNoItem] = useState(false);
-  const { filters } = useContext(FilterContext);
+  const { filters, currentPage } = useContext(FilterContext);
+  const explorerRef = useRef(null);
 
   const fetchNfts = async () => {
-    getFilteredCards(baseUrl, filters).then((res) => {
-      if (res.length > 0) {
-        setNfts(res);
-        setNoItem(false);
-      } else {
-        setNoItem(true);
+    getFilteredCards(baseUrl, filters, currentPage).then((res) => {
+      if (res.length > 0 && currentPage > 1) {
+        //load elements into array when currentPage is increasing
+        setNfts(prevState => [...prevState, ...res]);
+      }
+      if (currentPage === 1) {
+        //this happens when select a filter 
+        explorerRef.current.scrollIntoView();
         setNfts(res);
       }
-      setLoading(false);
     });
   };
 
@@ -33,31 +33,30 @@ const Explorer = ({
     if (baseUrl) {
       fetchNfts();
     }
-    if (!baseUrl && ntfCardList.length > 0) {
+  }, [baseUrl, currentPage, filters]);
+
+  useEffect(() => {
+    if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
     }
-    setLoading(true);
-  }, [baseUrl, filters, nftsCardList]);
+  }, []);
 
   return (
     <div
+      ref={explorerRef}
       style={{
         width: '100%',
         height: 'auto',
         paddingTop: '50px',
       }}
+      className='gallery-scroll-component-holder'
     >
-      {noItem && <p>No item to display</p>}
-      {loading ? (
-        <p>....Loading</p>
-      ) : (
-        <ScrollComponent
-          nfts={nfts}
-          openseaUrl={openseaUrl}
-          etherscanUrl={etherscanUrl}
-          handleCardClick={handleCardClick}
-        />
-      )}
+      <ScrollComponent
+        nfts={nfts}
+        openseaUrl={openseaUrl}
+        etherscanUrl={etherscanUrl}
+        handleCardClick={handleCardClick}
+      />
     </div>
   );
 };

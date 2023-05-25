@@ -13,7 +13,7 @@ const GalleryComponent = ({
   cardArray,
 }) => {
   return (
-    <div style={{ width: '100%', position: 'relative' }}>
+    <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
       <FilterContextProvider>
         {apiBaseUrl ? (
           <Filter baseUrl={apiBaseUrl} headerStyle={headerStyle} />
