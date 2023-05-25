@@ -18,30 +18,41 @@ const FilterContextProvider = _ref => {
     children
   } = _ref;
   const [filters, setFilters] = React.useState([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const updateFilters = (type, value) => {
     setFilters(prevFilter => ({
       ...prevFilter,
       [type]: value
     }));
   };
+  const updateCurrentPage = value => {
+    setCurrentPage(value);
+  };
+  const resetCurrentPage = () => {
+    setCurrentPage(1);
+  };
+  console.log(filters);
   return /*#__PURE__*/React__default["default"].createElement(FilterContext.Provider, {
     value: {
       filters,
-      updateFilters
+      updateFilters,
+      updateCurrentPage,
+      currentPage,
+      resetCurrentPage
     }
   }, children);
 };
 
 const getFilters = async base_url => {
   return new Promise((resolve, reject) => {
-    axios__default["default"].get(`${base_url}/filters`).then(response => {
+    axios__default["default"].get(`${base_url}filters`).then(response => {
       resolve(response.data);
     });
   });
 };
-const getFilteredCards = async (base_url, filters) => {
+const getFilteredCards = async (base_url, filters, currentPage) => {
   return new Promise((resolve, reject) => {
-    axios__default["default"].post(`${base_url}/filter`, filters).then(response => {
+    axios__default["default"].post(`${base_url}filter?page=${currentPage}`, filters).then(response => {
       resolve(response.data);
     }).catch(e => {
       reject(e.message);
@@ -132,10 +143,13 @@ const FilterContainer = _ref => {
     headerStyle = null
   } = _ref;
   const {
-    updateFilters
+    updateFilters,
+    resetCurrentPage
   } = React.useContext(FilterContext);
   const filterChanged = (type, value) => {
+    //set the filters, and reset the currentPage context value to 1
     updateFilters(type, value);
+    resetCurrentPage();
   };
   const GetFilters = () => {
     return filters ? Object.keys(filters).map(keyname => {
@@ -175,18 +189,6 @@ const Filter = _ref => {
   });
 };
 var Filter$1 = /*#__PURE__*/React__default["default"].memo(Filter);
-
-const loadNext = (nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards) => {
-  let c = [];
-  let end = nfts.length < ITEMS_PER_PAGE ? nfts.length : ITEMS_PER_PAGE;
-  for (let i = 0; i < end; i++) {
-    if (currentPageRef.current * ITEMS_PER_PAGE + i < nfts.length) {
-      c.push(nfts[currentPageRef.current * ITEMS_PER_PAGE + i]);
-    }
-  }
-  setCards(cards => cards.concat(c));
-  setCurrentPage(currentPageRef.current + 1);
-};
 
 const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
 const LazyImage = _ref => {
@@ -328,13 +330,17 @@ const ScrollComponent = _ref => {
     etherscanUrl,
     handleCardClick
   } = _ref;
-  const ITEMS_PER_PAGE = 29;
+  const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = React.useState([]);
-  const [currentPage, _setCurrentPage] = React.useState(0);
-  const currentPageRef = React.useRef(currentPage);
+  const {
+    currentPage,
+    updateCurrentPage
+  } = React.useContext(FilterContext);
+  const currentPageRef = React.useRef(1);
   const setCurrentPage = val => {
+    //update the context, and the ref to store the actual data
+    updateCurrentPage(val);
     currentPageRef.current = val;
-    _setCurrentPage(val);
   };
   const renderCards = () => {
     return cards.map((card, i) => {
@@ -350,21 +356,28 @@ const ScrollComponent = _ref => {
     });
   };
   React.useEffect(() => {
-    if (nfts) {
-      setCards([]);
-      setCurrentPage(0);
-      loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards);
+    if (nfts.length > 0) {
+      setCards(nfts);
     }
   }, [nfts]);
+  React.useEffect(() => {
+    //need to set currentPageRef.current 1 when we select a filter
+    if (currentPage === 1) {
+      currentPageRef.current = 1;
+    }
+  }, [currentPage]);
   if (!nfts) {
     return /*#__PURE__*/React__default["default"].createElement("div", null, "ERROR");
   }
   return /*#__PURE__*/React__default["default"].createElement(InfiniteScroll__default["default"], {
     className: "gallery-infinite-scroll",
     dataLength: cards.length,
-    next: () => loadNext(nfts, ITEMS_PER_PAGE, currentPageRef, setCurrentPage, setCards),
+    next: () => {
+      setCurrentPage(currentPageRef.current + 1);
+      console.log('toltes');
+    },
     pullDownToRefreshThreshold: 500,
-    hasMore: currentPageRef.current * ITEMS_PER_PAGE < nfts.length
+    hasMore: currentPageRef.current * ITEMS_PER_PAGE < cards.length
     // scrollThreshold="200px"
     // scrollableTarget="content-container"
     // initialScrollY={1000}
@@ -377,46 +390,49 @@ const ScrollComponent = _ref => {
 
 const Explorer = _ref => {
   let {
-    baseUrl,
+    baseUrl = undefined,
     openseaUrl,
     etherscanUrl,
     handleCardClick,
-    nftsCardList
+    nftsCardList = []
   } = _ref;
   const [nfts, setNfts] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [noItem, setNoItem] = React.useState(false);
   const {
-    filters
+    filters,
+    currentPage
   } = React.useContext(FilterContext);
+  const explorerRef = React.useRef(null);
   const fetchNfts = async () => {
-    getFilteredCards(baseUrl, filters).then(res => {
-      if (res.length > 0) {
-        setNfts(res);
-        setNoItem(false);
-      } else {
-        setNoItem(true);
+    getFilteredCards(baseUrl, filters, currentPage).then(res => {
+      if (res.length > 0 && currentPage > 1) {
+        //load elements into array when currentPage is increasing
+        setNfts(prevState => [...prevState, ...res]);
+      }
+      if (currentPage === 1) {
+        //this happens when select a filter 
+        explorerRef.current.scrollIntoView();
         setNfts(res);
       }
-      setLoading(false);
     });
   };
   React.useEffect(() => {
     if (baseUrl) {
       fetchNfts();
     }
-    if (!baseUrl && ntfCardList.length > 0) {
+  }, [baseUrl, currentPage, filters]);
+  React.useEffect(() => {
+    if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
     }
-    setLoading(true);
-  }, [baseUrl, filters, nftsCardList]);
+  }, []);
   return /*#__PURE__*/React__default["default"].createElement("div", {
+    ref: explorerRef,
     style: {
       width: '100%',
       height: 'auto',
       paddingTop: '50px'
     }
-  }, noItem && /*#__PURE__*/React__default["default"].createElement("p", null, "No item to display"), loading ? /*#__PURE__*/React__default["default"].createElement("p", null, "....Loading") : /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
+  }, /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
     nfts: nfts,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
