@@ -6,7 +6,7 @@ import './Card.css';
 import opensea from '../../../assets/images/opensea.svg';
 import etherscan from '../../../assets/images/etherscan.svg';
 
-const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick }) => {
+const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick, displayTraits }) => {
   const [loading, setLoading] = useState(true);
 
   const handleCardImageClick = (tokenId) => {
@@ -59,7 +59,7 @@ const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick }) => {
               onClick={() => handleEtherscanClick()}
             />
           </div>
-          {card.traits && (
+          {card.traits && displayTraits && (
             <div className='gallery-trait-container'>
               {card.traits.map((item, index) => {
                 return (

@@ -10,6 +10,7 @@ const ScrollComponent = ({
   openseaUrl,
   etherscanUrl,
   handleCardClick,
+  displayTraits
 }) => {
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -31,6 +32,7 @@ const ScrollComponent = ({
             openseaUrl={openseaUrl}
             etherscanUrl={etherscanUrl}
             handleCardClick={handleCardClick}
+            displayTraits={displayTraits}
           />
         </div>
       );
