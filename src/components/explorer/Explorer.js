@@ -10,6 +10,7 @@ const Explorer = ({
   etherscanUrl,
   handleCardClick,
   nftsCardList = [],
+  displayTraits,
 }) => {
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
@@ -56,6 +57,7 @@ const Explorer = ({
         openseaUrl={openseaUrl}
         etherscanUrl={etherscanUrl}
         handleCardClick={handleCardClick}
+        displayTraits={displayTraits}
       />
     </div>
   );

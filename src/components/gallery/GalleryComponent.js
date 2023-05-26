@@ -11,6 +11,7 @@ const GalleryComponent = ({
   handleCardClick,
   headerStyle,
   cardArray,
+  displayTraits = false
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
@@ -24,6 +25,7 @@ const GalleryComponent = ({
           etherscanUrl={etherscanUrl}
           handleCardClick={handleCardClick}
           nftsCardList={cardArray}
+          displayTraits={displayTraits}
         />
       </FilterContextProvider>
     </div>

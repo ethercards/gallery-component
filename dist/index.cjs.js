@@ -269,7 +269,8 @@ const Card = _ref => {
     card,
     openseaUrl,
     etherscanUrl,
-    handleCardClick
+    handleCardClick,
+    displayTraits
   } = _ref;
   const [loading, setLoading] = React.useState(true);
   const handleCardImageClick = tokenId => {
@@ -317,7 +318,7 @@ const Card = _ref => {
       cursor: etherscanUrl ? 'pointer' : 'unset'
     },
     onClick: () => handleEtherscanClick()
-  })), card.traits && /*#__PURE__*/React__default["default"].createElement("div", {
+  })), card.traits && displayTraits && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-trait-container"
   }, card.traits.map((item, index) => {
     return /*#__PURE__*/React__default["default"].createElement("div", {
@@ -338,7 +339,8 @@ const ScrollComponent = _ref => {
     nfts,
     openseaUrl,
     etherscanUrl,
-    handleCardClick
+    handleCardClick,
+    displayTraits
   } = _ref;
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = React.useState([]);
@@ -361,7 +363,8 @@ const ScrollComponent = _ref => {
         card: card,
         openseaUrl: openseaUrl,
         etherscanUrl: etherscanUrl,
-        handleCardClick: handleCardClick
+        handleCardClick: handleCardClick,
+        displayTraits: displayTraits
       }));
     });
   };
@@ -404,7 +407,8 @@ const Explorer = _ref => {
     openseaUrl,
     etherscanUrl,
     handleCardClick,
-    nftsCardList = []
+    nftsCardList = [],
+    displayTraits
   } = _ref;
   const [nfts, setNfts] = React.useState([]);
   const {
@@ -447,7 +451,8 @@ const Explorer = _ref => {
     nfts: nfts,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
-    handleCardClick: handleCardClick
+    handleCardClick: handleCardClick,
+    displayTraits: displayTraits
   }));
 };
 var Explorer$1 = /*#__PURE__*/React__default["default"].memo(Explorer);
@@ -461,7 +466,9 @@ var GalleryComponent = function GalleryComponent(_ref) {
     etherscanUrl = _ref.etherscanUrl,
     handleCardClick = _ref.handleCardClick,
     headerStyle = _ref.headerStyle,
-    cardArray = _ref.cardArray;
+    cardArray = _ref.cardArray,
+    _ref$displayTraits = _ref.displayTraits,
+    displayTraits = _ref$displayTraits === void 0 ? false : _ref$displayTraits;
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
@@ -476,7 +483,8 @@ var GalleryComponent = function GalleryComponent(_ref) {
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
     handleCardClick: handleCardClick,
-    nftsCardList: cardArray
+    nftsCardList: cardArray,
+    displayTraits: displayTraits
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React__default["default"].memo(GalleryComponent);
