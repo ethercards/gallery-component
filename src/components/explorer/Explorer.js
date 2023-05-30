@@ -29,7 +29,7 @@ const Explorer = ({
       }
     });
   };
-
+  console.log(nfts)
   useEffect(() => {
     if (baseUrl) {
       fetchNfts();

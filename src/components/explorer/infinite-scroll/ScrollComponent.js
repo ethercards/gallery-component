@@ -42,6 +42,8 @@ const ScrollComponent = ({
   useEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
+    } else {
+      setCards([])
     }
   }, [nfts]);
 
@@ -56,7 +58,9 @@ const ScrollComponent = ({
   if (!nfts) {
     return <div>ERROR</div>;
   }
-
+  if(cards.length === 0 ) {
+    return <p>No item to display</p>
+  }
   return (
     <InfiniteScroll
       className='gallery-infinite-scroll'
