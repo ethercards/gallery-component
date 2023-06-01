@@ -36,8 +36,8 @@ const ScrollComponent = ({
             displayTraits={displayTraits}
             owner={card.owner || null}
             ownerLabel={card.ownerLabel || null}
-            etherOffer={card.marketplaceData.ethOffer || null}
-            dustOffer={card.marketplaceData.dustOffer || null}
+            etherOffer={card.marketplaceData ? card.marketplaceData.ethOffer : null}
+            dustOffer={card.marketplaceData ? card.marketplaceData.dustOffer : null}
             handleOwnerClick={handleOwnerClick}
           />
         </div>
@@ -63,7 +63,7 @@ const ScrollComponent = ({
   if (!nfts) {
     return <div className='gallery-error-message'>ERROR</div>;
   }
-  if(cards.length === 0 ) {
+  if (cards.length === 0) {
     return <p className='gallery-no-item-message'>No item to display</p>
   }
   return (

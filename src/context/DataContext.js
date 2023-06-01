@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import _ from "lodash";
 
 const FilterContext = createContext([]);
 
