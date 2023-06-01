@@ -6,7 +6,18 @@ import './Card.css';
 import opensea from '../../../assets/images/opensea.svg';
 import etherscan from '../../../assets/images/etherscan.svg';
 
-const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick, displayTraits }) => {
+const Card = ({
+  card,
+  openseaUrl,
+  etherscanUrl,
+  handleCardClick,
+  displayTraits,
+  owner,
+  ownerLabel,
+  etherOffer,
+  dustOffer,
+  handleOwnerClick,
+}) => {
   const [loading, setLoading] = useState(true);
 
   const handleCardImageClick = (tokenId) => {
@@ -21,6 +32,10 @@ const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick, displayTraits }
     openseaUrl && window.open(`${openseaUrl}/${tokenId}`, '_blank');
   };
 
+  const handleOwnerBoxClick = (owner) => {
+    handleOwnerClick(owner);
+  };
+
   return (
     <div className='gallery-card-root-box'>
       <LazyImage
@@ -33,41 +48,72 @@ const Card = ({ card, openseaUrl, etherscanUrl, handleCardClick, displayTraits }
         }}
       />
       <div className='gallery-card-content'>
-        <p className='gallery-card-content-name '>{card.name}</p>
-        {/* <div className='gallery-card-content-id-box '>
-          <span>ID</span>
-          <p>#{card.tokenId}</p>
-        </div> */}
-        <div className='gallery-social-trait-box'>
-          <div className='gallery-social-items-box'>
-            <img
-              src={opensea}
-              alt='opensea'
-              style={{
-                maxWidth: '30px',
-                cursor: openseaUrl ? 'pointer' : 'unset',
-              }}
-              onClick={() => handleOpenseaClick(card.tokenId)}
-            />
-            <img
-              src={etherscan}
-              alt='etherscan'
-              style={{
-                maxWidth: '30px',
-                cursor: etherscanUrl ? 'pointer' : 'unset',
-              }}
-              onClick={() => handleEtherscanClick()}
-            />
+        <div className='gallery-card-content-general'>
+          <div className='gallery-card-general-informations'>
+            <p className='gallery-card-content-name '>{card.name}</p>
+            {owner || ownerLabel ? (
+              <div className='gallery-card-content-id-box gallery-owner-box'>
+                <span>Owner</span>
+                <p
+                  onClick={() => handleOwnerBoxClick(owner)}
+                  style={{ cursor: handleOwnerBoxClick ? 'pointer' : 'unset' }}
+                >
+                  {ownerLabel || owner.slice(0, 6) + '...'}
+                </p>
+              </div>
+            ) : (
+              ''
+            )}
+            <div className='gallery-card-content-id-box '>
+              <span>Token ID</span>
+              <p>#{card.tokenId}</p>
+            </div>
           </div>
+          {(etherOffer || dustOffer) && (
+            <div>
+              <div className='gallery-card-content-id-box gallery-price-box'>
+                <span>Price</span>
+                <p>{etherOffer}</p>
+              </div>
+              <div className='gallery-card-content-id-box gallery-price-box'>
+                <p>{dustOffer}</p>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className='gallery-social-trait-box'>
+          {etherscanUrl || openseaUrl ? (
+            <div className='gallery-social-items-box'>
+              {openseaUrl && (
+                <img
+                  src={opensea}
+                  alt='opensea'
+                  style={{
+                    maxWidth: '30px',
+                    cursor: openseaUrl ? 'pointer' : 'unset',
+                  }}
+                  onClick={() => handleOpenseaClick(card.tokenId)}
+                />
+              )}
+              {etherscanUrl && (
+                <img
+                  src={etherscan}
+                  alt='etherscan'
+                  style={{
+                    maxWidth: '30px',
+                    cursor: etherscanUrl ? 'pointer' : 'unset',
+                  }}
+                  onClick={() => handleEtherscanClick()}
+                />
+              )}
+            </div>
+          ) : null}
           {card.traits && displayTraits && (
             <div className='gallery-trait-container'>
               {card.traits.map((item, index) => {
                 return (
                   <div className='gallery-trait-holder-box' key={index}>
-                    <img
-                      src={item.icon_url}
-                      alt='trait'
-                    />
+                    <img src={item.icon_url} alt='trait' />
                   </div>
                 );
               })}

@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
+  padding: 10px;
 }
 .gallery-card-item{
   flex-basis: 23%;
