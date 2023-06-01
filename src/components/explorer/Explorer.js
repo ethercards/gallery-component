@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import ScrollComponent from './infinite-scroll/ScrollComponent';
 
 import { getFilteredCards } from '../../utils/api';
 import { FilterContext } from '../../context/DataContext';
+import { useDeepEffect } from '../../hooks/useDeepEffect';
+import { isEqual } from 'lodash';
 
 const Explorer = ({
   baseUrl = undefined,
@@ -15,7 +17,7 @@ const Explorer = ({
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
   const explorerRef = useRef(null);
-
+  const [loading, setLoading] = useState(false)
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters, currentPage).then((res) => {
       if (res.length > 0 && currentPage > 1) {
@@ -24,18 +26,18 @@ const Explorer = ({
       }
       if (currentPage === 1) {
         //this happens when select a filter 
-        explorerRef.current.scrollIntoView();
         setNfts(res);
       }
     });
-  };
-  console.log(nfts)
-  useEffect(() => {
+    setLoading(false);
+  }
+
+  useDeepEffect(() => {
     if (baseUrl) {
+      setLoading(true)
       fetchNfts();
     }
-  }, [baseUrl, currentPage, filters]);
-
+  }, [filters, baseUrl, currentPage])
   useEffect(() => {
     if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
@@ -52,15 +54,17 @@ const Explorer = ({
       }}
       className='gallery-scroll-component-holder'
     >
-      <ScrollComponent
-        nfts={nfts}
-        openseaUrl={openseaUrl}
-        etherscanUrl={etherscanUrl}
-        handleCardClick={handleCardClick}
-        displayTraits={displayTraits}
-      />
+      {loading ? <p>Fetching data ....</p> :
+        <ScrollComponent
+          nfts={nfts}
+          openseaUrl={openseaUrl}
+          etherscanUrl={etherscanUrl}
+          handleCardClick={handleCardClick}
+          displayTraits={displayTraits}
+        />
+      }
     </div>
   );
 };
 
-export default React.memo(Explorer);
+export default Explorer;

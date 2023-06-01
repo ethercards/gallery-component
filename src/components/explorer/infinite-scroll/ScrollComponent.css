@@ -1,25 +1,42 @@
-.gallery-grid-container{
+.gallery-grid-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
 }
-.gallery-card-item{
+
+.gallery-card-item {
   flex-basis: 23%;
   -webkit-box-flex: 0;
   flex-grow: 0;
   max-width: 23%;
 }
 
+.dark .gallery-error-message {
+  color: #FFF;
+}
+
+.gallery-error-message {
+  color: #000
+}
+
+.dark .gallery-no-item-message {
+  color: #FFF;
+}
+
+.gallery-no-item-message {
+  color: #000
+}
+
 @media screen and (max-width: 900px) {
-  .gallery-card-item{
+  .gallery-card-item {
     flex-basis: 45%;
     max-width: 45%;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .gallery-card-item{
+  .gallery-card-item {
     flex-basis: 100%;
     max-width: 100%;
   }

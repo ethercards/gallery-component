@@ -7,6 +7,7 @@
   "module": "dist/index.esm.js",
   "dependencies": {
     "axios": "^1.4.0",
+    "lodash": "^4.17.21",
     "react-infinite-scroll-component": "^6.1.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.4"

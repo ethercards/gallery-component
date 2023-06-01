@@ -11,12 +11,13 @@ const GalleryComponent = ({
   handleCardClick,
   headerStyle,
   cardArray,
-  displayTraits = false
+  displayTraits = false, 
+  displayFilters = true,
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
       <FilterContextProvider>
-        {apiBaseUrl ? (
+        {apiBaseUrl && displayFilters ? (
           <Filter baseUrl={apiBaseUrl} headerStyle={headerStyle} />
         ) : null}
         <Explorer
