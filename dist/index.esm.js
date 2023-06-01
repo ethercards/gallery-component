@@ -258,7 +258,12 @@ const Card = _ref => {
     openseaUrl,
     etherscanUrl,
     handleCardClick,
-    displayTraits
+    displayTraits,
+    owner,
+    ownerLabel,
+    etherOffer,
+    dustOffer,
+    handleOwnerClick
   } = _ref;
   const [loading, setLoading] = useState(true);
   const handleCardImageClick = tokenId => {
@@ -269,6 +274,9 @@ const Card = _ref => {
   };
   const handleOpenseaClick = tokenId => {
     openseaUrl && window.open(`${openseaUrl}/${tokenId}`, '_blank');
+  };
+  const handleOwnerBoxClick = owner => {
+    handleOwnerClick(owner);
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-root-box"
@@ -284,11 +292,28 @@ const Card = _ref => {
     }
   }), /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-content-general"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-general-informations"
   }, /*#__PURE__*/React.createElement("p", {
     className: "gallery-card-content-name "
-  }, card.name), /*#__PURE__*/React.createElement("div", {
+  }, card.name), owner || ownerLabel ? /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-content-id-box gallery-owner-box"
+  }, /*#__PURE__*/React.createElement("span", null, "Owner"), /*#__PURE__*/React.createElement("p", {
+    onClick: () => handleOwnerBoxClick(owner),
+    style: {
+      cursor: handleOwnerBoxClick ? 'pointer' : 'unset'
+    }
+  }, ownerLabel || owner.slice(0, 6) + '...')) : '', /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-content-id-box "
+  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), (etherOffer || dustOffer) && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-content-id-box gallery-price-box"
+  }, /*#__PURE__*/React.createElement("span", null, "Price"), /*#__PURE__*/React.createElement("p", null, etherOffer)), /*#__PURE__*/React.createElement("div", {
+    className: "gallery-card-content-id-box gallery-price-box"
+  }, /*#__PURE__*/React.createElement("p", null, dustOffer)))), /*#__PURE__*/React.createElement("div", {
     className: "gallery-social-trait-box"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, etherscanUrl || openseaUrl ? /*#__PURE__*/React.createElement("div", {
     className: "gallery-social-items-box"
   }, /*#__PURE__*/React.createElement("img", {
     src: img$2,
@@ -306,7 +331,7 @@ const Card = _ref => {
       cursor: etherscanUrl ? 'pointer' : 'unset'
     },
     onClick: () => handleEtherscanClick()
-  })), card.traits && displayTraits && /*#__PURE__*/React.createElement("div", {
+  })) : null, card.traits && displayTraits && /*#__PURE__*/React.createElement("div", {
     className: "gallery-trait-container"
   }, card.traits.map((item, index) => {
     return /*#__PURE__*/React.createElement("div", {
@@ -328,7 +353,8 @@ const ScrollComponent = _ref => {
     openseaUrl,
     etherscanUrl,
     handleCardClick,
-    displayTraits
+    displayTraits,
+    handleOwnerClick
   } = _ref;
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -348,11 +374,16 @@ const ScrollComponent = _ref => {
         key: i,
         className: "gallery-card-item"
       }, /*#__PURE__*/React.createElement(Card, {
-        card: card,
+        card: card.metadata ? card.metadata : card,
         openseaUrl: openseaUrl,
         etherscanUrl: etherscanUrl,
         handleCardClick: handleCardClick,
-        displayTraits: displayTraits
+        displayTraits: displayTraits,
+        owner: card.owner || null,
+        ownerLabel: card.ownerLabel || null,
+        etherOffer: card.marketplaceData.ethOffer || null,
+        dustOffer: card.marketplaceData.dustOffer || null,
+        handleOwnerClick: handleOwnerClick
       }));
     });
   };
@@ -415,7 +446,8 @@ const Explorer = _ref => {
     etherscanUrl,
     handleCardClick,
     nftsCardList = [],
-    displayTraits
+    displayTraits,
+    handleOwnerClick
   } = _ref;
   const [nfts, setNfts] = useState([]);
   const {
@@ -461,7 +493,8 @@ const Explorer = _ref => {
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,
     handleCardClick: handleCardClick,
-    displayTraits: displayTraits
+    displayTraits: displayTraits,
+    handleOwnerClick: handleOwnerClick
   }));
 };
 
@@ -559,7 +592,8 @@ const GalleryComponent = _ref => {
     etherscanUrl: etherscanUrl,
     handleCardClick: handleCardClick,
     nftsCardList: cardArray,
-    displayTraits: displayTraits
+    displayTraits: displayTraits,
+    handleOwnerClick: handleOwnerClick
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React.memo(GalleryComponent);

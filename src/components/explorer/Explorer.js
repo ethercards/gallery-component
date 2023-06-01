@@ -13,6 +13,7 @@ const Explorer = ({
   handleCardClick,
   nftsCardList = [],
   displayTraits,
+  handleOwnerClick
 }) => {
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
@@ -38,7 +39,7 @@ const Explorer = ({
       fetchNfts();
     }
   }, [filters, baseUrl, currentPage])
-  
+
   useEffect(() => {
     if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
@@ -62,6 +63,7 @@ const Explorer = ({
           etherscanUrl={etherscanUrl}
           handleCardClick={handleCardClick}
           displayTraits={displayTraits}
+          handleOwnerClick={handleOwnerClick}
         />
       }
     </div>
