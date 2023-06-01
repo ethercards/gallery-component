@@ -1,0 +1,42 @@
+.gallery-selected-filters-box {
+  width: 100%;
+  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-selected-filters-content-box {
+  width: auto;
+  display: flex;
+  background-color: #faf9f5;
+  border-radius: 20px;
+  padding: 14px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 9px 5px;
+}
+
+.dark .gallery-selected-filters-content-box {
+  background-color: #151a2d;
+}
+
+.gallery-selected-filters-content-box span {
+  font-family: 'poppins';
+  color: #000;
+  font-size: 14px;
+}
+
+.dark .gallery-selected-filters-content-box span {
+  color: #FFF
+}
+
+.gallery-selected-filters-category-name{
+  margin-right: 5px;
+}
+.gallery-selected-filters-filter-name {
+  margin-right: 15px;
+}
+.gallery-selected-filters-clear-button{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

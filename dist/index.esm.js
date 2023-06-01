@@ -112,8 +112,8 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$3 = ".gallery-filter-container-root {\r\n  margin: 20px auto;\r\n  text-align: center;\r\n  width: 100%;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 1;\r\n\r\n}\r\n.gallery-filter-inner-container{\r\n  padding: 16px 20px;\r\n  display: flex;\r\n  column-gap: 32px;\r\n  width: auto;\r\n}\r\n\r\n.dark .gallery-filter-container-root {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.dropdown-label{\r\n  font-family: 'poppins-semibold';\r\n  font-size: 16px;\r\n  cursor: pointer;\r\n  color: #000;\r\n}\r\n.dark .dropdown-label{\r\n  color: #FFF\r\n}\r\n\r\n.gallery-filter-dropdown-container {\r\n  display: inline-block;\r\n}\r\n\r\n.gallery-filter-dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f9f9f9;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  padding: 12px 16px;\r\n  z-index: 3;\r\n  max-height: 160px;\r\n  overflow-y: auto;\r\n}\r\n\r\n.gallery-filter-dropdown-content.open {\r\n  display: block;\r\n}\r\n.gallery-filter-dropdown-backdrop{\r\n  display: none;\r\n  position: absolute;\r\n  width: 90vw;\r\n  height: 100vh;\r\n  z-index: 2;\r\n  top:0;\r\n  left: 0;\r\n}\r\n.gallery-filter-dropdown-backdrop.open {\r\n  display: block;\r\n}\r\n\r\n.gallery-filter-dropdown-content label {\r\n  display: block;\r\n  margin-bottom: 8px;\r\n}";
-styleInject(css_248z$3);
+var css_248z$4 = ".gallery-filter-container-root {\r\n  margin: 20px auto;\r\n  text-align: center;\r\n  width: 100%;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 1;\r\n\r\n}\r\n.gallery-filter-inner-container{\r\n  padding: 16px 20px;\r\n  display: flex;\r\n  column-gap: 32px;\r\n  width: auto;\r\n}\r\n\r\n.dark .gallery-filter-container-root {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.dropdown-label{\r\n  font-family: 'poppins-semibold';\r\n  font-size: 16px;\r\n  cursor: pointer;\r\n  color: #000;\r\n}\r\n.dark .dropdown-label{\r\n  color: #FFF\r\n}\r\n\r\n.gallery-filter-dropdown-container {\r\n  display: inline-block;\r\n}\r\n\r\n.gallery-filter-dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f9f9f9;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  padding: 12px 16px;\r\n  z-index: 3;\r\n  max-height: 160px;\r\n  overflow-y: auto;\r\n}\r\n\r\n.gallery-filter-dropdown-content.open {\r\n  display: block;\r\n}\r\n.gallery-filter-dropdown-backdrop{\r\n  display: none;\r\n  position: absolute;\r\n  width: 90vw;\r\n  height: 100vh;\r\n  z-index: 2;\r\n  top:0;\r\n  left: 0;\r\n}\r\n.gallery-filter-dropdown-backdrop.open {\r\n  display: block;\r\n}\r\n\r\n.gallery-filter-dropdown-content label {\r\n  display: block;\r\n  margin-bottom: 8px;\r\n}";
+styleInject(css_248z$4);
 
 const FilterContainer = _ref => {
   let {
@@ -245,12 +245,12 @@ const LazyImage = _ref => {
   });
 };
 
-var css_248z$2 = ".gallery-card-root-box {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  border-radius: 20px;\r\n  overflow: hidden;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%)\r\n}\r\n\r\n.dark .gallery-card-root-box {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-card-root-box p {\r\n  margin-block-start: 0em !important;\r\n  margin-block-end: 0em !important;\r\n}\r\n\r\n.gallery-card-content {\r\n  padding: 15px 22px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  gap: 10px;\r\n  height: 100%;\r\n}\r\n\r\n.gallery-card-content-name {\r\n  font-size: 18px;\r\n  line-height: 22px;\r\n  color: #000;\r\n  font-family: 'poppins-medium';\r\n  text-align: left;\r\n  max-width: 60%;\r\n}\r\n\r\n.dark .gallery-card-content-name {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-card-content-id-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: start;\r\n}\r\n\r\n.gallery-card-content-id-box span {\r\n  font-family: 'poppins';\r\n  font-size: 14px;\r\n  color: #00000090;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box span {\r\n  color: #FFFFFF90;\r\n}\r\n\r\n.gallery-card-content-id-box p {\r\n  font-family: 'poppins-medium';\r\n  font-size: 16px;\r\n  color: #000;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box p {\r\n  color: #FFFFFF;\r\n}\r\n\r\n.gallery-social-trait-box{\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 10px;\r\n\r\n}\r\n\r\n.gallery-social-items-box {\r\n  display: flex;\r\n  gap: 10px\r\n}\r\n\r\n.gallery-trait-container {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 10px;\r\n  justify-content: flex-start;\r\n\r\n}\r\n\r\n.gallery-trait-holder-box {\r\n  border-radius: 20px;\r\n  width: 26px;\r\n  height: 26px;\r\n  background-color: #FE2C85;\r\n  padding: 2px;\r\n}\r\n\r\n.gallery-trait-holder-box img {\r\n  height: 100%;\r\n  width: auto;\r\n}";
-styleInject(css_248z$2);
+var css_248z$3 = ".gallery-card-root-box {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  border-radius: 20px;\r\n  overflow: hidden;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%)\r\n}\r\n\r\n.dark .gallery-card-root-box {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-card-root-box p {\r\n  margin-block-start: 0em !important;\r\n  margin-block-end: 0em !important;\r\n}\r\n\r\n.gallery-card-content {\r\n  padding: 15px 22px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  gap: 10px;\r\n  height: 100%;\r\n}\r\n\r\n.gallery-card-content-name {\r\n  font-size: 18px;\r\n  line-height: 22px;\r\n  color: #000;\r\n  font-family: 'poppins-medium';\r\n  text-align: left;\r\n  max-width: 60%;\r\n}\r\n\r\n.dark .gallery-card-content-name {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-card-content-id-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: start;\r\n}\r\n\r\n.gallery-card-content-id-box span {\r\n  font-family: 'poppins';\r\n  font-size: 14px;\r\n  color: #00000090;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box span {\r\n  color: #FFFFFF90;\r\n}\r\n\r\n.gallery-card-content-id-box p {\r\n  font-family: 'poppins-medium';\r\n  font-size: 16px;\r\n  color: #000;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box p {\r\n  color: #FFFFFF;\r\n}\r\n\r\n.gallery-social-trait-box{\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 10px;\r\n\r\n}\r\n\r\n.gallery-social-items-box {\r\n  display: flex;\r\n  gap: 10px\r\n}\r\n\r\n.gallery-trait-container {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 10px;\r\n  justify-content: flex-start;\r\n\r\n}\r\n\r\n.gallery-trait-holder-box {\r\n  border-radius: 20px;\r\n  width: 26px;\r\n  height: 26px;\r\n  background-color: #FE2C85;\r\n  padding: 2px;\r\n}\r\n\r\n.gallery-trait-holder-box img {\r\n  height: 100%;\r\n  width: auto;\r\n}";
+styleInject(css_248z$3);
 
-var img$1 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.248' height='41.177' viewBox='0 0 41.248 41.177'%3e %3cg id='opensea' transform='translate(-4.953 -6)'%3e %3cg id='Group_1481' data-name='Group 1481' transform='translate(4.953 6)'%3e %3cpath id='Path_140' data-name='Path 140' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.457%2c1.457%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_141' data-name='Path 141' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3cpath id='Path_142' data-name='Path 142' d='M46.677%2c26.589A20.589%2c20.589%2c0%2c1%2c1%2c26.089%2c6%2c20.592%2c20.592%2c0%2c0%2c1%2c46.677%2c26.589Z' transform='translate(-0.501)' fill='%232081e2'/%3e %3cpath id='Path_143' data-name='Path 143' d='M125.931%2c165.509l.084-.126%2c5.356-8.362c.084-.126.244-.126.328.042.909%2c2.021%2c1.65%2c4.488%2c1.314%2c6.054a8.8%2c8.8%2c0%2c0%2c1-1.069%2c2.307.985.985%2c0%2c0%2c1-.2.328.219.219%2c0%2c0%2c1-.168.084h-5.516A.225.225%2c0%2c0%2c1%2c125.931%2c165.509Z' transform='translate(-110.76 -138.221)' fill='white'/%3e %3cpath id='Path_144' data-name='Path 144' d='M133.105%2c118.418v1.314c0%2c.084-.042.126-.126.168a6.4%2c6.4%2c0%2c0%2c0-2.434%2c1.65c-1.524%2c2.1-2.678%2c5.1-5.229%2c5.1H114.58a6.9%2c6.9%2c0%2c0%2c1-6.88-6.922v-.126a.181.181%2c0%2c0%2c1%2c.168-.168h6.054a.216.216%2c0%2c0%2c1%2c.2.2%2c2.333%2c2.333%2c0%2c0%2c0%2c.2%2c1.154%2c2.094%2c2.094%2c0%2c0%2c0%2c1.895%2c1.154h2.964v-2.307h-2.922a.187.187%2c0%2c0%2c1-.168-.286.581.581%2c0%2c0%2c0%2c.126-.168c.286-.413.657-.985%2c1.069-1.684a9.738%2c9.738%2c0%2c0%2c0%2c.741-1.482%2c2.39%2c2.39%2c0%2c0%2c0%2c.126-.286c.042-.168.126-.328.168-.455s.084-.244.126-.371a6.808%2c6.808%2c0%2c0%2c0%2c.126-1.356%2c2.782%2c2.782%2c0%2c0%2c0-.042-.573c0-.2-.042-.413-.042-.615a2.392%2c2.392%2c0%2c0%2c0-.084-.539%2c5.738%2c5.738%2c0%2c0%2c0-.168-.825l-.042-.084a2.65%2c2.65%2c0%2c0%2c0-.168-.539c-.168-.573-.37-1.154-.573-1.65-.084-.2-.168-.413-.244-.615-.126-.286-.244-.573-.37-.825-.042-.126-.126-.2-.168-.328s-.126-.244-.168-.371c-.042-.084-.084-.168-.126-.244l-.37-.657c-.042-.084.042-.2.126-.168l2.265.615h0l.286.084.328.084.126.042V105a1.192%2c1.192%2c0%2c0%2c1%2c1.154-1.2%2c1.179%2c1.179%2c0%2c0%2c1%2c.825.328%2c1.164%2c1.164%2c0%2c0%2c1%2c.328.825v1.979l.244.084a.041.041%2c0%2c0%2c1%2c.042.042%2c1.448%2c1.448%2c0%2c0%2c0%2c.244.2%2c1.672%2c1.672%2c0%2c0%2c0%2c.286.244c.2.168.5.413.783.657.084.084.168.126.2.2a15.975%2c15.975%2c0%2c0%2c1%2c1.2%2c1.2c.126.126.2.244.328.371s.2.286.328.413c.126.168.286.371.413.539a2.149%2c2.149%2c0%2c0%2c1%2c.168.286c.168.244.286.5.455.741.042.126.126.244.168.371a2.937%2c2.937%2c0%2c0%2c1%2c.328%2c1.027.445.445%2c0%2c0%2c1%2c.042.2h0a.779.779%2c0%2c0%2c1%2c.042.328%2c4.553%2c4.553%2c0%2c0%2c1-.042%2c1.069c-.042.168-.084.286-.126.455a3.135%2c3.135%2c0%2c0%2c1-.168.455%2c9.574%2c9.574%2c0%2c0%2c1-.455.867c-.042.084-.126.2-.2.328a1.157%2c1.157%2c0%2c0%2c0-.2.328c-.084.126-.2.244-.286.371a2.745%2c2.745%2c0%2c0%2c1-.286.371c-.126.168-.286.328-.413.5a2039668559500.258%2c2039668559500.258%2c0%2c0%2c1-.573.573%2c2.593%2c2.593%2c0%2c0%2c1-.371.328l-.244.2a.155.155%2c0%2c0%2c1-.126.042h-1.81v2.307h2.265a2.041%2c2.041%2c0%2c0%2c0%2c1.356-.5c.126-.126.7-.615%2c1.4-1.356.042-.042.042-.042.084-.042l6.257-1.81C133.021%2c118.216%2c133.105%2c118.292%2c133.105%2c118.418Z' transform='translate(-94.095 -89.565)' fill='white'/%3e %3c/g%3e%3c/svg%3e";
+var img$2 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.248' height='41.177' viewBox='0 0 41.248 41.177'%3e %3cg id='opensea' transform='translate(-4.953 -6)'%3e %3cg id='Group_1481' data-name='Group 1481' transform='translate(4.953 6)'%3e %3cpath id='Path_140' data-name='Path 140' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.457%2c1.457%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_141' data-name='Path 141' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3cpath id='Path_142' data-name='Path 142' d='M46.677%2c26.589A20.589%2c20.589%2c0%2c1%2c1%2c26.089%2c6%2c20.592%2c20.592%2c0%2c0%2c1%2c46.677%2c26.589Z' transform='translate(-0.501)' fill='%232081e2'/%3e %3cpath id='Path_143' data-name='Path 143' d='M125.931%2c165.509l.084-.126%2c5.356-8.362c.084-.126.244-.126.328.042.909%2c2.021%2c1.65%2c4.488%2c1.314%2c6.054a8.8%2c8.8%2c0%2c0%2c1-1.069%2c2.307.985.985%2c0%2c0%2c1-.2.328.219.219%2c0%2c0%2c1-.168.084h-5.516A.225.225%2c0%2c0%2c1%2c125.931%2c165.509Z' transform='translate(-110.76 -138.221)' fill='white'/%3e %3cpath id='Path_144' data-name='Path 144' d='M133.105%2c118.418v1.314c0%2c.084-.042.126-.126.168a6.4%2c6.4%2c0%2c0%2c0-2.434%2c1.65c-1.524%2c2.1-2.678%2c5.1-5.229%2c5.1H114.58a6.9%2c6.9%2c0%2c0%2c1-6.88-6.922v-.126a.181.181%2c0%2c0%2c1%2c.168-.168h6.054a.216.216%2c0%2c0%2c1%2c.2.2%2c2.333%2c2.333%2c0%2c0%2c0%2c.2%2c1.154%2c2.094%2c2.094%2c0%2c0%2c0%2c1.895%2c1.154h2.964v-2.307h-2.922a.187.187%2c0%2c0%2c1-.168-.286.581.581%2c0%2c0%2c0%2c.126-.168c.286-.413.657-.985%2c1.069-1.684a9.738%2c9.738%2c0%2c0%2c0%2c.741-1.482%2c2.39%2c2.39%2c0%2c0%2c0%2c.126-.286c.042-.168.126-.328.168-.455s.084-.244.126-.371a6.808%2c6.808%2c0%2c0%2c0%2c.126-1.356%2c2.782%2c2.782%2c0%2c0%2c0-.042-.573c0-.2-.042-.413-.042-.615a2.392%2c2.392%2c0%2c0%2c0-.084-.539%2c5.738%2c5.738%2c0%2c0%2c0-.168-.825l-.042-.084a2.65%2c2.65%2c0%2c0%2c0-.168-.539c-.168-.573-.37-1.154-.573-1.65-.084-.2-.168-.413-.244-.615-.126-.286-.244-.573-.37-.825-.042-.126-.126-.2-.168-.328s-.126-.244-.168-.371c-.042-.084-.084-.168-.126-.244l-.37-.657c-.042-.084.042-.2.126-.168l2.265.615h0l.286.084.328.084.126.042V105a1.192%2c1.192%2c0%2c0%2c1%2c1.154-1.2%2c1.179%2c1.179%2c0%2c0%2c1%2c.825.328%2c1.164%2c1.164%2c0%2c0%2c1%2c.328.825v1.979l.244.084a.041.041%2c0%2c0%2c1%2c.042.042%2c1.448%2c1.448%2c0%2c0%2c0%2c.244.2%2c1.672%2c1.672%2c0%2c0%2c0%2c.286.244c.2.168.5.413.783.657.084.084.168.126.2.2a15.975%2c15.975%2c0%2c0%2c1%2c1.2%2c1.2c.126.126.2.244.328.371s.2.286.328.413c.126.168.286.371.413.539a2.149%2c2.149%2c0%2c0%2c1%2c.168.286c.168.244.286.5.455.741.042.126.126.244.168.371a2.937%2c2.937%2c0%2c0%2c1%2c.328%2c1.027.445.445%2c0%2c0%2c1%2c.042.2h0a.779.779%2c0%2c0%2c1%2c.042.328%2c4.553%2c4.553%2c0%2c0%2c1-.042%2c1.069c-.042.168-.084.286-.126.455a3.135%2c3.135%2c0%2c0%2c1-.168.455%2c9.574%2c9.574%2c0%2c0%2c1-.455.867c-.042.084-.126.2-.2.328a1.157%2c1.157%2c0%2c0%2c0-.2.328c-.084.126-.2.244-.286.371a2.745%2c2.745%2c0%2c0%2c1-.286.371c-.126.168-.286.328-.413.5a2039668559500.258%2c2039668559500.258%2c0%2c0%2c1-.573.573%2c2.593%2c2.593%2c0%2c0%2c1-.371.328l-.244.2a.155.155%2c0%2c0%2c1-.126.042h-1.81v2.307h2.265a2.041%2c2.041%2c0%2c0%2c0%2c1.356-.5c.126-.126.7-.615%2c1.4-1.356.042-.042.042-.042.084-.042l6.257-1.81C133.021%2c118.216%2c133.105%2c118.292%2c133.105%2c118.418Z' transform='translate(-94.095 -89.565)' fill='white'/%3e %3c/g%3e%3c/svg%3e";
 
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.756' height='41.177' viewBox='0 0 41.756 41.177'%3e %3cg id='Group_1482' data-name='Group 1482' transform='translate(-288 -1871)'%3e %3cellipse id='Ellipse_1' data-name='Ellipse 1' cx='20.878' cy='20.469' rx='20.878' ry='20.469' transform='translate(288 1871.24)' fill='white'/%3e %3cg id='etherscan-seeklogo.com' transform='translate(288.125 1871)'%3e %3cpath id='Path_138' data-name='Path 138' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.752%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.458%2c1.458%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_139' data-name='Path 139' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3c/g%3e%3c/svg%3e";
+var img$1 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.756' height='41.177' viewBox='0 0 41.756 41.177'%3e %3cg id='Group_1482' data-name='Group 1482' transform='translate(-288 -1871)'%3e %3cellipse id='Ellipse_1' data-name='Ellipse 1' cx='20.878' cy='20.469' rx='20.878' ry='20.469' transform='translate(288 1871.24)' fill='white'/%3e %3cg id='etherscan-seeklogo.com' transform='translate(288.125 1871)'%3e %3cpath id='Path_138' data-name='Path 138' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.752%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.458%2c1.458%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_139' data-name='Path 139' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3c/g%3e%3c/svg%3e";
 
 const Card = _ref => {
   let {
@@ -291,7 +291,7 @@ const Card = _ref => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "gallery-social-items-box"
   }, /*#__PURE__*/React.createElement("img", {
-    src: img$1,
+    src: img$2,
     alt: "opensea",
     style: {
       maxWidth: '30px',
@@ -299,7 +299,7 @@ const Card = _ref => {
     },
     onClick: () => handleOpenseaClick(card.tokenId)
   }), /*#__PURE__*/React.createElement("img", {
-    src: img,
+    src: img$1,
     alt: "etherscan",
     style: {
       maxWidth: '30px',
@@ -319,8 +319,8 @@ const Card = _ref => {
   })))));
 };
 
-var css_248z$1 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";
-styleInject(css_248z$1);
+var css_248z$2 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";
+styleInject(css_248z$2);
 
 const ScrollComponent = _ref => {
   let {
@@ -465,30 +465,95 @@ const Explorer = _ref => {
   }));
 };
 
-var css_248z = "@font-face {\r\n  font-family: 'bau';\r\n  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins';\r\n  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-semibold';\r\n  src: local('poppins-semibold'),\r\n    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-medium';\r\n  src: local('poppins-medium'),\r\n    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n";
+var css_248z$1 = "@font-face {\r\n  font-family: 'bau';\r\n  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins';\r\n  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-semibold';\r\n  src: local('poppins-semibold'),\r\n    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-medium';\r\n  src: local('poppins-medium'),\r\n    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n";
+styleInject(css_248z$1);
+
+var css_248z = ".gallery-selected-filters-box {\r\n  width: 100%;\r\n  gap: 16px;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.gallery-selected-filters-content-box {\r\n  width: auto;\r\n  display: flex;\r\n  background-color: #faf9f5;\r\n  border-radius: 20px;\r\n  padding: 14px;\r\n  align-items: center;\r\n  box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 9px 5px;\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box {\r\n  background-color: #151a2d;\r\n}\r\n\r\n.gallery-selected-filters-content-box span {\r\n  font-family: 'poppins';\r\n  color: #000;\r\n  font-size: 14px;\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box span {\r\n  color: #FFF\r\n}\r\n\r\n.gallery-selected-filters-category-name{\r\n  margin-right: 5px;\r\n}\r\n.gallery-selected-filters-filter-name {\r\n  margin-right: 15px;\r\n}\r\n.gallery-selected-filters-clear-button{\r\n  cursor: pointer;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n";
 styleInject(css_248z);
 
-var GalleryComponent = function GalleryComponent(_ref) {
-  var apiBaseUrl = _ref.apiBaseUrl,
-    openseaUrl = _ref.openseaUrl,
-    etherscanUrl = _ref.etherscanUrl,
-    handleCardClick = _ref.handleCardClick,
-    headerStyle = _ref.headerStyle,
-    cardArray = _ref.cardArray,
-    _ref$displayTraits = _ref.displayTraits,
-    displayTraits = _ref$displayTraits === void 0 ? false : _ref$displayTraits,
-    _ref$displayFilters = _ref.displayFilters,
-    displayFilters = _ref$displayFilters === void 0 ? true : _ref$displayFilters;
+var img = "data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M24 3.35998L20.64 0L12 8.63999L3.35998 0L0 3.35998L8.63999 12L0 20.64L3.35998 24L12 15.36L20.64 24L24 20.64L15.36 12L24 3.35998Z' fill='%23FE2C85'/%3e%3c/svg%3e";
+
+const SelectedFilterItem = _ref => {
+  let {
+    filterKeyName,
+    filterName,
+    handleClearOne
+  } = _ref;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "gallery-selected-filters-content-box"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gallery-selected-filters-category-name"
+  }, filterKeyName, ":", ' '), /*#__PURE__*/React.createElement("span", {
+    className: "gallery-selected-filters-filter-name"
+  }, filterName), /*#__PURE__*/React.createElement("div", {
+    className: "gallery-selected-filters-clear-button",
+    onClick: () => handleClearOne(filterKeyName, filterName)
+  }, /*#__PURE__*/React.createElement("img", {
+    src: img,
+    alt: "clear",
+    style: {
+      height: '15px',
+      width: '15px'
+    }
+  })));
+};
+
+const SelectedFilters = () => {
+  const {
+    filters,
+    updateFilters
+  } = useContext(FilterContext);
+  const handleClearOne = (category, value) => {
+    const activeFilters = {
+      ...filters
+    };
+    const filteredArray = activeFilters[category].filter(data => data !== value);
+    if (filteredArray.length === 0) {
+      delete activeFilters[category];
+    } else {
+      activeFilters[category] = filteredArray;
+    }
+    updateFilters(activeFilters);
+  };
+  const renderSelectedFilters = () => {
+    return filters ? Object.keys(filters).map(keyName => {
+      return filters[keyName].map((filter, index) => {
+        return /*#__PURE__*/React.createElement(SelectedFilterItem, {
+          filterKeyName: keyName,
+          filterName: filter,
+          handleClearOne: handleClearOne,
+          key: index
+        });
+      });
+    }) : "";
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: "gallery-selected-filters-box"
+  }, renderSelectedFilters());
+};
+var SelectedFilters$1 = /*#__PURE__*/React.memo(SelectedFilters);
+
+const GalleryComponent = _ref => {
+  let {
+    apiBaseUrl,
+    openseaUrl,
+    etherscanUrl,
+    handleCardClick,
+    headerStyle,
+    cardArray,
+    displayTraits = false,
+    displayFilters = true
+  } = _ref;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       width: '100%',
       position: 'relative'
     },
     className: "gallery-component-box"
-  }, /*#__PURE__*/React.createElement(FilterContextProvider, null, apiBaseUrl && displayFilters ? /*#__PURE__*/React.createElement(Filter$1, {
+  }, /*#__PURE__*/React.createElement(FilterContextProvider, null, apiBaseUrl && displayFilters ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Filter$1, {
     baseUrl: apiBaseUrl,
     headerStyle: headerStyle
-  }) : null, /*#__PURE__*/React.createElement(Explorer, {
+  }), /*#__PURE__*/React.createElement(SelectedFilters$1, null)) : null, /*#__PURE__*/React.createElement(Explorer, {
     baseUrl: apiBaseUrl,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,

@@ -38,6 +38,7 @@ const Explorer = ({
       fetchNfts();
     }
   }, [filters, baseUrl, currentPage])
+  
   useEffect(() => {
     if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);

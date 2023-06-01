@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FilterContextProvider } from '../../context/DataContext';
 import Filter from '../filter/Filter';
 import Explorer from '../explorer/Explorer';
 import './GalleryComponent.css';
+import SelectedFilters from '../selected-filter/SelectedFilters';
 
 const GalleryComponent = ({
   apiBaseUrl,
@@ -11,14 +12,16 @@ const GalleryComponent = ({
   handleCardClick,
   headerStyle,
   cardArray,
-  displayTraits = false, 
+  displayTraits = false,
   displayFilters = true,
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
       <FilterContextProvider>
-        {apiBaseUrl && displayFilters ? (
+        {apiBaseUrl && displayFilters ? (<>
           <Filter baseUrl={apiBaseUrl} headerStyle={headerStyle} />
+          <SelectedFilters />
+        </>
         ) : null}
         <Explorer
           baseUrl={apiBaseUrl}
