@@ -27,13 +27,18 @@
   height: 100%;
 }
 
+.gallery-card-content-general {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+
 .gallery-card-content-name {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 20px;
   color: #000;
   font-family: 'poppins-medium';
   text-align: left;
-  max-width: 60%;
 }
 
 .dark .gallery-card-content-name {
@@ -48,7 +53,8 @@
 
 .gallery-card-content-id-box span {
   font-family: 'poppins';
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 16px;
   color: #00000090;
   text-align: left;
 }
@@ -59,7 +65,7 @@
 
 .gallery-card-content-id-box p {
   font-family: 'poppins-medium';
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
   text-align: left;
 }
@@ -67,8 +73,20 @@
 .dark .gallery-card-content-id-box p {
   color: #FFFFFF;
 }
+.gallery-card-content-id-box.gallery-owner-box p:hover {
+  color: #FE2C85;
+}
+.gallery-price-box{
+  margin-bottom: 5px;
+}
+.gallery-price-box p {
+  color: #FE2C85 !important;
+  line-height: 18px;
+  font-size: 14px;
+  font-family: 'poppins-semibold';
+}
 
-.gallery-social-trait-box{
+.gallery-social-trait-box {
   display: flex;
   flex-direction: column;
   gap: 10px;

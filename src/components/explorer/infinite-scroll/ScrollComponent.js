@@ -10,7 +10,8 @@ const ScrollComponent = ({
   openseaUrl,
   etherscanUrl,
   handleCardClick,
-  displayTraits
+  displayTraits,
+  handleOwnerClick,
 }) => {
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -28,11 +29,16 @@ const ScrollComponent = ({
       return (
         <div key={i} className='gallery-card-item'>
           <Card
-            card={card}
+            card={card.metadata ? card.metadata : card}
             openseaUrl={openseaUrl}
             etherscanUrl={etherscanUrl}
             handleCardClick={handleCardClick}
             displayTraits={displayTraits}
+            owner={card.owner || null}
+            ownerLabel={card.ownerLabel || null}
+            etherOffer={card.marketplaceData.ethOffer || null}
+            dustOffer={card.marketplaceData.dustOffer || null}
+            handleOwnerClick={handleOwnerClick}
           />
         </div>
       );
@@ -43,23 +49,22 @@ const ScrollComponent = ({
     if (nfts.length > 0) {
       setCards(nfts);
     } else {
-      setCards([])
+      setCards([]);
     }
   }, [nfts]);
 
   useEffect(() => {
     //need to set currentPageRef.current 1 when we select a filter
-    if(currentPage === 1) {
+    if (currentPage === 1) {
       currentPageRef.current = 1;
     }
-  }, [currentPage])
-  
+  }, [currentPage]);
 
   if (!nfts) {
     return <div>ERROR</div>;
   }
-  if(cards.length === 0 ) {
-    return <p>No item to display</p>
+  if (cards.length === 0) {
+    return <p>No item to display</p>;
   }
   return (
     <InfiniteScroll
