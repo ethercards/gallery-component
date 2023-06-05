@@ -19,6 +19,7 @@ const Explorer = ({
   const { filters, currentPage } = useContext(FilterContext);
   const explorerRef = useRef(null);
   const [loading, setLoading] = useState(false)
+  
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters, currentPage).then((res) => {
       if (res.length > 0 && currentPage > 1) {
@@ -40,11 +41,11 @@ const Explorer = ({
     }
   }, [filters, baseUrl, currentPage])
 
-  useEffect(() => {
+  useDeepEffect(() => {
     if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
     }
-  }, []);
+  }, [nftsCardList]);
 
   return (
     <div
