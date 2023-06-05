@@ -52,7 +52,8 @@ const FilterItem = _ref => {
   let {
     filterKeyName,
     filterList = [],
-    handleSelect
+    handleSelect,
+    selectedFilters = []
   } = _ref;
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
@@ -78,7 +79,8 @@ const FilterItem = _ref => {
     type: "checkbox",
     name: filterKeyName,
     value: option,
-    onChange: handleCheckboxChange
+    onChange: handleCheckboxChange,
+    checked: selectedFilters.includes(option)
   }), option))), /*#__PURE__*/React.createElement("div", {
     className: `gallery-filter-dropdown-backdrop ${isOpen ? 'open' : ''}`,
     onClick: toggleDropdown
@@ -147,7 +149,8 @@ const FilterContainer = _ref => {
       filterKeyName: filterKeyName,
       filterList: filtersArray[filterKeyName],
       key: index,
-      handleSelect: handleSelect
+      handleSelect: handleSelect,
+      selectedFilters: filters[filterKeyName]
     })) : 'No filters loaded!';
   };
   return /*#__PURE__*/React.createElement("div", {

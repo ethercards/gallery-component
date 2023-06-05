@@ -5,10 +5,10 @@ import { FilterContext } from '../../../context/DataContext';
 
 export const FilterContainer = ({ filtersArray }) => {
   const { filters, updateFilters } = useContext(FilterContext);
-  
+
   const handleSelect = (category, item, checked) => {
     const activeFilters = { ...filters };
-    
+
     if (checked) {
       const tmpArray = activeFilters[category] ? [...activeFilters[category], item] : [item];
       activeFilters[category] = tmpArray;
@@ -22,7 +22,7 @@ export const FilterContainer = ({ filtersArray }) => {
         }
       }
     }
-    
+
     updateFilters(activeFilters);
   }
   const renderFilters = () => {
@@ -33,6 +33,7 @@ export const FilterContainer = ({ filtersArray }) => {
           filterList={filtersArray[filterKeyName]}
           key={index}
           handleSelect={handleSelect}
+          selectedFilters={filters[filterKeyName]}
         />
       ))
       : 'No filters loaded!';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const FilterItem = ({ filterKeyName, filterList = [], handleSelect }) => {
+const FilterItem = ({ filterKeyName, filterList = [], handleSelect, selectedFilters=[] }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -25,6 +25,7 @@ const FilterItem = ({ filterKeyName, filterList = [], handleSelect }) => {
                 name={filterKeyName}
                 value={option}
                 onChange={handleCheckboxChange}
+                checked={selectedFilters.includes(option)}
               />
               {option}
             </label>
