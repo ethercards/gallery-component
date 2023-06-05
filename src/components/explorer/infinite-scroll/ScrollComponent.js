@@ -12,6 +12,7 @@ const ScrollComponent = ({
   handleCardClick,
   displayTraits,
   handleOwnerClick,
+  scrollCallback,
 }) => {
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -71,7 +72,7 @@ const ScrollComponent = ({
       className='gallery-infinite-scroll'
       dataLength={cards.length}
       next={() => {
-        setCurrentPage(currentPageRef.current + 1);
+        scrollCallback ? scrollCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
       }}
       pullDownToRefreshThreshold={500}
       hasMore={currentPageRef.current * ITEMS_PER_PAGE < cards.length}

@@ -13,7 +13,8 @@ const Explorer = ({
   handleCardClick,
   nftsCardList = [],
   displayTraits,
-  handleOwnerClick
+  handleOwnerClick,
+  scrollCallback
 }) => {
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
@@ -65,6 +66,7 @@ const Explorer = ({
           handleCardClick={handleCardClick}
           displayTraits={displayTraits}
           handleOwnerClick={handleOwnerClick}
+          scrollCallback={scrollCallback}
         />
       }
     </div>

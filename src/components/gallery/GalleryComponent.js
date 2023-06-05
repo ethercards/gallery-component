@@ -15,7 +15,8 @@ const GalleryComponent = ({
   displayTraits = false,
   displayFilters = true,
   handleOwnerClick = undefined,
-  displaySelectedFilters = false
+  displaySelectedFilters = false,
+  scrollCallback = undefined
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
@@ -32,7 +33,8 @@ const GalleryComponent = ({
           handleCardClick={handleCardClick}
           nftsCardList={cardArray}
           displayTraits={displayTraits}
-          handleOwnerClick={handleOwnerClick}
+          handleOwnerClick={handleOwnerClick} 
+          scrollCallback={scrollCallback}
         />
       </FilterContextProvider>
     </div>
