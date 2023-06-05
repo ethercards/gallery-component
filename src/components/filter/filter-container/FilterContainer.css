@@ -8,7 +8,8 @@
   z-index: 1;
 
 }
-.gallery-filter-inner-container{
+
+.gallery-filter-inner-container {
   padding: 16px 20px;
   display: flex;
   column-gap: 32px;
@@ -19,13 +20,14 @@
   background-color: #151E2A;
 }
 
-.dropdown-label{
+.dropdown-label {
   font-family: 'poppins-semibold';
   font-size: 16px;
   cursor: pointer;
   color: #000;
 }
-.dark .dropdown-label{
+
+.dark .dropdown-label {
   color: #FFF
 }
 
@@ -36,32 +38,101 @@
 .gallery-filter-dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #faf9f5;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 3;
   max-height: 160px;
-  overflow-y: auto;
+  overflow:  hidden auto ;
+  scrollbar-width: thin;
+  scrollbar-color: #FE2C85 transparent;
+}
+.dark .gallery-filter-dropdown-content {
+  background-color: #151E2A;
 }
 
 .gallery-filter-dropdown-content.open {
   display: block;
 }
-.gallery-filter-dropdown-backdrop{
+.gallery-filter-dropdown-content::-webkit-scrollbar {
+  width: 6px;               /* width of the entire scrollbar */
+}
+
+.gallery-filter-dropdown-content::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+.gallery-filter-dropdown-content::-webkit-scrollbar-thumb {
+  background-color: #FE2C85;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid #FE2C85;  /* creates padding around scroll thumb */
+}
+.gallery-filter-dropdown-backdrop {
   display: none;
   position: absolute;
   width: 90vw;
   height: 100vh;
   z-index: 2;
-  top:0;
+  top: 0;
   left: 0;
 }
+
 .gallery-filter-dropdown-backdrop.open {
   display: block;
 }
 
-.gallery-filter-dropdown-content label {
-  display: block;
+
+
+.gallery-filter-item-box {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+.gallery-filter-item-box .gallery-filter-item-box-name {
+  font-family: 'poppins';
+  font-size: 14px;
   margin-bottom: 8px;
+}
+.dark .gallery-filter-item-box .gallery-filter-item-box-name {
+ color: #FFF;
+}
+
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #FFF;
+  border: 1px solid #FE2C85;
+  cursor: pointer;
+}
+.dark .checkmark {
+  background-color: #151E2A;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #FE2C85;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

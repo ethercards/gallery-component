@@ -84,15 +84,21 @@ const FilterItem = _ref => {
     onClick: toggleDropdown
   }, filterKeyName), /*#__PURE__*/React__default["default"].createElement("div", {
     className: `gallery-filter-dropdown-content ${isOpen ? 'open' : ''}`
-  }, filterList.map(option => /*#__PURE__*/React__default["default"].createElement("label", {
+  }, filterList.map(option => /*#__PURE__*/React__default["default"].createElement("div", {
+    className: "gallery-filter-item-box",
     key: option
+  }, /*#__PURE__*/React__default["default"].createElement("label", {
+    className: "gallery-filter-item-box-name"
+  }, option), /*#__PURE__*/React__default["default"].createElement("label", {
+    className: "checkbox-container"
   }, /*#__PURE__*/React__default["default"].createElement("input", {
     type: "checkbox",
-    name: filterKeyName,
     value: option,
     onChange: handleCheckboxChange,
     checked: selectedFilters.includes(option)
-  }), option))), /*#__PURE__*/React__default["default"].createElement("div", {
+  }), /*#__PURE__*/React__default["default"].createElement("span", {
+    className: "checkmark"
+  }))))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: `gallery-filter-dropdown-backdrop ${isOpen ? 'open' : ''}`,
     onClick: toggleDropdown
   }));
@@ -125,7 +131,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$4 = ".gallery-filter-container-root {\r\n  margin: 20px auto;\r\n  text-align: center;\r\n  width: 100%;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 1;\r\n\r\n}\r\n.gallery-filter-inner-container{\r\n  padding: 16px 20px;\r\n  display: flex;\r\n  column-gap: 32px;\r\n  width: auto;\r\n}\r\n\r\n.dark .gallery-filter-container-root {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.dropdown-label{\r\n  font-family: 'poppins-semibold';\r\n  font-size: 16px;\r\n  cursor: pointer;\r\n  color: #000;\r\n}\r\n.dark .dropdown-label{\r\n  color: #FFF\r\n}\r\n\r\n.gallery-filter-dropdown-container {\r\n  display: inline-block;\r\n}\r\n\r\n.gallery-filter-dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f9f9f9;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  padding: 12px 16px;\r\n  z-index: 3;\r\n  max-height: 160px;\r\n  overflow-y: auto;\r\n}\r\n\r\n.gallery-filter-dropdown-content.open {\r\n  display: block;\r\n}\r\n.gallery-filter-dropdown-backdrop{\r\n  display: none;\r\n  position: absolute;\r\n  width: 90vw;\r\n  height: 100vh;\r\n  z-index: 2;\r\n  top:0;\r\n  left: 0;\r\n}\r\n.gallery-filter-dropdown-backdrop.open {\r\n  display: block;\r\n}\r\n\r\n.gallery-filter-dropdown-content label {\r\n  display: block;\r\n  margin-bottom: 8px;\r\n}";
+var css_248z$4 = ".gallery-filter-container-root {\r\n  margin: 20px auto;\r\n  text-align: center;\r\n  width: 100%;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 1;\r\n\r\n}\r\n\r\n.gallery-filter-inner-container {\r\n  padding: 16px 20px;\r\n  display: flex;\r\n  column-gap: 32px;\r\n  width: auto;\r\n}\r\n\r\n.dark .gallery-filter-container-root {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.dropdown-label {\r\n  font-family: 'poppins-semibold';\r\n  font-size: 16px;\r\n  cursor: pointer;\r\n  color: #000;\r\n}\r\n\r\n.dark .dropdown-label {\r\n  color: #FFF\r\n}\r\n\r\n.gallery-filter-dropdown-container {\r\n  display: inline-block;\r\n}\r\n\r\n.gallery-filter-dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #faf9f5;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  padding: 12px 16px;\r\n  z-index: 3;\r\n  max-height: 160px;\r\n  overflow:  hidden auto ;\r\n  scrollbar-width: thin;\r\n  scrollbar-color: #FE2C85 transparent;\r\n}\r\n.dark .gallery-filter-dropdown-content {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-filter-dropdown-content.open {\r\n  display: block;\r\n}\r\n.gallery-filter-dropdown-content::-webkit-scrollbar {\r\n  width: 6px;               /* width of the entire scrollbar */\r\n}\r\n\r\n.gallery-filter-dropdown-content::-webkit-scrollbar-track {\r\n  background: transparent;        /* color of the tracking area */\r\n}\r\n\r\n.gallery-filter-dropdown-content::-webkit-scrollbar-thumb {\r\n  background-color: #FE2C85;    /* color of the scroll thumb */\r\n  border-radius: 20px;       /* roundness of the scroll thumb */\r\n  border: 1px solid #FE2C85;  /* creates padding around scroll thumb */\r\n}\r\n.gallery-filter-dropdown-backdrop {\r\n  display: none;\r\n  position: absolute;\r\n  width: 90vw;\r\n  height: 100vh;\r\n  z-index: 2;\r\n  top: 0;\r\n  left: 0;\r\n}\r\n\r\n.gallery-filter-dropdown-backdrop.open {\r\n  display: block;\r\n}\r\n\r\n\r\n\r\n.gallery-filter-item-box {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  column-gap: 10px;\r\n}\r\n\r\n.gallery-filter-item-box .gallery-filter-item-box-name {\r\n  font-family: 'poppins';\r\n  font-size: 14px;\r\n  margin-bottom: 8px;\r\n}\r\n.dark .gallery-filter-item-box .gallery-filter-item-box-name {\r\n color: #FFF;\r\n}\r\n\r\n.checkbox-container {\r\n  display: inline-block;\r\n  position: relative;\r\n}\r\n\r\n.checkmark {\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 0;\r\n  height: 15px;\r\n  width: 15px;\r\n  background-color: #FFF;\r\n  border: 1px solid #FE2C85;\r\n  cursor: pointer;\r\n}\r\n.dark .checkmark {\r\n  background-color: #151E2A;\r\n}\r\n.checkmark:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  display: none;\r\n}\r\n\r\n.checkbox-container input:checked ~ .checkmark:after {\r\n  display: block;\r\n}\r\n\r\n.checkbox-container .checkmark:after {\r\n  left: 5px;\r\n  top: 1px;\r\n  width: 4px;\r\n  height: 8px;\r\n  border: solid #FE2C85;\r\n  border-width: 0 2px 2px 0;\r\n  transform: rotate(45deg);\r\n}";
 styleInject(css_248z$4);
 
 const FilterContainer = _ref => {

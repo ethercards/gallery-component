@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-const FilterItem = ({ filterKeyName, filterList = [], handleSelect, selectedFilters=[] }) => {
+const FilterItem = ({
+  filterKeyName,
+  filterList = [],
+  handleSelect,
+  selectedFilters = [],
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -13,27 +18,34 @@ const FilterItem = ({ filterKeyName, filterList = [], handleSelect, selectedFilt
   };
 
   return (
-    <div className="gallery-filter-dropdown-container">
-      <label className="dropdown-label" onClick={toggleDropdown}>
+    <div className='gallery-filter-dropdown-container'>
+      <label className='dropdown-label' onClick={toggleDropdown}>
         {filterKeyName}
       </label>
-        <div className={`gallery-filter-dropdown-content ${isOpen ? 'open' : ''}`}>
-          {filterList.map((option) => (
-            <label key={option}>
-              <input
-                type="checkbox"
-                name={filterKeyName}
-                value={option}
-                onChange={handleCheckboxChange}
-                checked={selectedFilters.includes(option)}
-              />
-              {option}
+      <div
+        className={`gallery-filter-dropdown-content ${isOpen ? 'open' : ''}`}
+      >
+        {filterList.map((option) => (
+          <div className='gallery-filter-item-box' key={option}>
+            <label className='gallery-filter-item-box-name'>{option}</label>
+            <label className="checkbox-container">
+            <input
+              type='checkbox'
+              value={option}
+              onChange={handleCheckboxChange}
+              checked={selectedFilters.includes(option)}
+            />
+              <span className="checkmark"></span>
             </label>
-          ))}
-        </div>
-        <div className={`gallery-filter-dropdown-backdrop ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}></div>
+          </div>
+        ))}
+      </div>
+      <div
+        className={`gallery-filter-dropdown-backdrop ${isOpen ? 'open' : ''}`}
+        onClick={toggleDropdown}
+      ></div>
     </div>
-  )
-}
+  );
+};
 
-export default FilterItem
+export default FilterItem;
