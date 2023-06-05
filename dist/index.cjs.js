@@ -521,7 +521,7 @@ const Explorer = _ref => {
 var css_248z$1 = "@font-face {\r\n  font-family: 'bau';\r\n  src: local('bau'), url(../../assets/fonts/Bau-Regular.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins';\r\n  src: local('poppins'), url(../../assets/fonts/Poppins.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-semibold';\r\n  src: local('poppins-semibold'),\r\n    url(../../assets/fonts/Poppins-SemiBold.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'poppins-medium';\r\n  src: local('poppins-medium'),\r\n    url(../../assets/fonts/Poppins-Medium.ttf) format('truetype');\r\n  font-display: swap;\r\n}\r\n\r\n";
 styleInject(css_248z$1);
 
-var css_248z = ".gallery-selected-filters-box {\r\n  width: 100%;\r\n  gap: 16px;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.gallery-selected-filters-content-box {\r\n  width: auto;\r\n  display: flex;\r\n  background-color: #faf9f5;\r\n  border-radius: 20px;\r\n  padding: 14px;\r\n  align-items: center;\r\n  box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 9px 5px;\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box {\r\n  background-color: #151a2d;\r\n}\r\n\r\n.gallery-selected-filters-content-box span {\r\n  font-family: 'poppins';\r\n  color: #000;\r\n  font-size: 14px;\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box span {\r\n  color: #FFF\r\n}\r\n\r\n.gallery-selected-filters-category-name{\r\n  margin-right: 5px;\r\n}\r\n.gallery-selected-filters-filter-name {\r\n  margin-right: 15px;\r\n}\r\n.gallery-selected-filters-clear-button{\r\n  cursor: pointer;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n";
+var css_248z = ".gallery-selected-filters-box {\r\n  width: 100%;\r\n  gap: 16px;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.gallery-selected-filters-content-box {\r\n  width: auto;\r\n  display: flex;\r\n  background-color: #faf9f5;\r\n  border-radius: 20px;\r\n  padding: 14px;\r\n  align-items: center;\r\n  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 29%)\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box {\r\n  background-color: #151a2d;\r\n}\r\n\r\n.gallery-selected-filters-content-box span {\r\n  font-family: 'poppins';\r\n  color: #000;\r\n  font-size: 14px;\r\n}\r\n\r\n.dark .gallery-selected-filters-content-box span {\r\n  color: #FFF\r\n}\r\n\r\n.gallery-selected-filters-category-name {\r\n  margin-right: 5px;\r\n}\r\n\r\n.gallery-selected-filters-filter-name {\r\n  margin-right: 15px;\r\n}\r\n\r\n.gallery-selected-filters-clear-button {\r\n  cursor: pointer;\r\n  display: flex;\r\n  align-items: center;\r\n}";
 styleInject(css_248z);
 
 var img = "data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M24 3.35998L20.64 0L12 8.63999L3.35998 0L0 3.35998L8.63999 12L0 20.64L3.35998 24L12 15.36L20.64 24L24 20.64L15.36 12L24 3.35998Z' fill='%23FE2C85'/%3e%3c/svg%3e";
@@ -586,19 +586,19 @@ const SelectedFilters = () => {
 };
 var SelectedFilters$1 = /*#__PURE__*/React__default["default"].memo(SelectedFilters);
 
-var GalleryComponent = function GalleryComponent(_ref) {
-  var apiBaseUrl = _ref.apiBaseUrl,
-    openseaUrl = _ref.openseaUrl,
-    etherscanUrl = _ref.etherscanUrl,
-    handleCardClick = _ref.handleCardClick,
-    headerStyle = _ref.headerStyle,
-    cardArray = _ref.cardArray,
-    _ref$displayTraits = _ref.displayTraits,
-    displayTraits = _ref$displayTraits === void 0 ? false : _ref$displayTraits,
-    _ref$displayFilters = _ref.displayFilters,
-    displayFilters = _ref$displayFilters === void 0 ? true : _ref$displayFilters,
-    _ref$handleOwnerClick = _ref.handleOwnerClick,
-    handleOwnerClick = _ref$handleOwnerClick === void 0 ? undefined : _ref$handleOwnerClick;
+const GalleryComponent = _ref => {
+  let {
+    apiBaseUrl,
+    openseaUrl,
+    etherscanUrl,
+    handleCardClick,
+    headerStyle,
+    cardArray,
+    displayTraits = false,
+    displayFilters = true,
+    handleOwnerClick = undefined,
+    displaySelectedFilters = false
+  } = _ref;
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
@@ -608,7 +608,7 @@ var GalleryComponent = function GalleryComponent(_ref) {
   }, /*#__PURE__*/React__default["default"].createElement(FilterContextProvider, null, apiBaseUrl && displayFilters ? /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement(Filter$1, {
     baseUrl: apiBaseUrl,
     headerStyle: headerStyle
-  }), /*#__PURE__*/React__default["default"].createElement(SelectedFilters$1, null)) : null, /*#__PURE__*/React__default["default"].createElement(Explorer, {
+  }), displaySelectedFilters && /*#__PURE__*/React__default["default"].createElement(SelectedFilters$1, null)) : null, /*#__PURE__*/React__default["default"].createElement(Explorer, {
     baseUrl: apiBaseUrl,
     openseaUrl: openseaUrl,
     etherscanUrl: etherscanUrl,

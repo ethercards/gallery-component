@@ -14,14 +14,15 @@ const GalleryComponent = ({
   cardArray,
   displayTraits = false,
   displayFilters = true,
-  handleOwnerClick = undefined
+  handleOwnerClick = undefined,
+  displaySelectedFilters = false
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
       <FilterContextProvider>
         {apiBaseUrl && displayFilters ? (<>
           <Filter baseUrl={apiBaseUrl} headerStyle={headerStyle} />
-          <SelectedFilters />
+          {displaySelectedFilters && <SelectedFilters />}
         </>
         ) : null}
         <Explorer
