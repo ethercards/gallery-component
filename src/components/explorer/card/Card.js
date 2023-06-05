@@ -14,8 +14,8 @@ const Card = ({
   displayTraits,
   owner,
   ownerLabel,
-  etherOffer,
-  dustOffer,
+  etherOffer = null,
+  dustOffer = null,
   handleOwnerClick,
 }) => {
   const [loading, setLoading] = useState(true);
