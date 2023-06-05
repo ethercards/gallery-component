@@ -363,7 +363,8 @@ const ScrollComponent = _ref => {
     etherscanUrl,
     handleCardClick,
     displayTraits,
-    handleOwnerClick
+    handleOwnerClick,
+    scrollCallback
   } = _ref;
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -423,7 +424,7 @@ const ScrollComponent = _ref => {
     className: "gallery-infinite-scroll",
     dataLength: cards.length,
     next: () => {
-      setCurrentPage(currentPageRef.current + 1);
+      scrollCallback ? scrollCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
     },
     pullDownToRefreshThreshold: 500,
     hasMore: currentPageRef.current * ITEMS_PER_PAGE < cards.length
@@ -456,7 +457,8 @@ const Explorer = _ref => {
     handleCardClick,
     nftsCardList = [],
     displayTraits,
-    handleOwnerClick
+    handleOwnerClick,
+    scrollCallback
   } = _ref;
   const [nfts, setNfts] = useState([]);
   const {
@@ -503,7 +505,8 @@ const Explorer = _ref => {
     etherscanUrl: etherscanUrl,
     handleCardClick: handleCardClick,
     displayTraits: displayTraits,
-    handleOwnerClick: handleOwnerClick
+    handleOwnerClick: handleOwnerClick,
+    scrollCallback: scrollCallback
   }));
 };
 
@@ -589,7 +592,9 @@ var GalleryComponent = function GalleryComponent(_ref) {
     _ref$handleOwnerClick = _ref.handleOwnerClick,
     handleOwnerClick = _ref$handleOwnerClick === void 0 ? undefined : _ref$handleOwnerClick,
     _ref$displaySelectedF = _ref.displaySelectedFilters,
-    displaySelectedFilters = _ref$displaySelectedF === void 0 ? false : _ref$displaySelectedF;
+    displaySelectedFilters = _ref$displaySelectedF === void 0 ? false : _ref$displaySelectedF,
+    _ref$scrollCallback = _ref.scrollCallback,
+    scrollCallback = _ref$scrollCallback === void 0 ? undefined : _ref$scrollCallback;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       width: '100%',
@@ -606,7 +611,8 @@ var GalleryComponent = function GalleryComponent(_ref) {
     handleCardClick: handleCardClick,
     nftsCardList: cardArray,
     displayTraits: displayTraits,
-    handleOwnerClick: handleOwnerClick
+    handleOwnerClick: handleOwnerClick,
+    scrollCallback: scrollCallback
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React.memo(GalleryComponent);
