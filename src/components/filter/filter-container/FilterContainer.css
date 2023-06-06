@@ -88,31 +88,35 @@
   display: flex;
   justify-content: space-between;
   column-gap: 10px;
+  margin-bottom: 8px;
 }
 
 .gallery-filter-item-box .gallery-filter-item-box-name {
   font-family: 'poppins';
   font-size: 14px;
-  margin-bottom: 8px;
 }
 .dark .gallery-filter-item-box .gallery-filter-item-box-name {
  color: #FFF;
 }
 
 .checkbox-container {
-  display: inline-block;
+  display: inline-block; 
   position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 }
 
 .checkmark {
   position: absolute;
-  top: 1px;
-  left: 0;
   height: 15px;
   width: 15px;
   background-color: #FFF;
   border: 1px solid #FE2C85;
   cursor: pointer;
+}
+.checkbox-container input{
+  margin: 0;
 }
 .dark .checkmark {
   background-color: #151E2A;
