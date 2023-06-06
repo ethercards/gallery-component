@@ -379,6 +379,10 @@ const ScrollComponent = _ref => {
     updateCurrentPage(val);
     currentPageRef.current = val;
   };
+  const handleCallback = val => {
+    scrollCallback(currentPageRef.current + 1);
+    currentPageRef.current = val;
+  };
   const renderCards = () => {
     return cards.map((card, i) => {
       return /*#__PURE__*/React.createElement("div", {
@@ -421,11 +425,12 @@ const ScrollComponent = _ref => {
       className: "gallery-no-item-message"
     }, "No item to display");
   }
+  console.log(currentPageRef.current + 1);
   return /*#__PURE__*/React.createElement(InfiniteScroll, {
     className: "gallery-infinite-scroll",
     dataLength: cards.length,
     next: () => {
-      scrollCallback ? scrollCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
+      scrollCallback ? handleCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
     },
     pullDownToRefreshThreshold: 300,
     hasMore: !done && currentPageRef.current * ITEMS_PER_PAGE < cards.length
