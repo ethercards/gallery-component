@@ -13,6 +13,7 @@ const ScrollComponent = ({
   displayTraits,
   handleOwnerClick,
   scrollCallback,
+  done
 }) => {
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -74,8 +75,8 @@ const ScrollComponent = ({
       next={() => {
         scrollCallback ? scrollCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
       }}
-      pullDownToRefreshThreshold={500}
-      hasMore={currentPageRef.current * ITEMS_PER_PAGE < cards.length}
+      pullDownToRefreshThreshold={300}
+      hasMore={!done && currentPageRef.current * ITEMS_PER_PAGE < cards.length}
       // scrollThreshold="200px"
       // scrollableTarget="content-container"
       // initialScrollY={1000}

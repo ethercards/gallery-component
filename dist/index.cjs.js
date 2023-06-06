@@ -375,7 +375,8 @@ const ScrollComponent = _ref => {
     handleCardClick,
     displayTraits,
     handleOwnerClick,
-    scrollCallback
+    scrollCallback,
+    done
   } = _ref;
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = React.useState([]);
@@ -437,8 +438,8 @@ const ScrollComponent = _ref => {
     next: () => {
       scrollCallback ? scrollCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
     },
-    pullDownToRefreshThreshold: 500,
-    hasMore: currentPageRef.current * ITEMS_PER_PAGE < cards.length
+    pullDownToRefreshThreshold: 300,
+    hasMore: !done && currentPageRef.current * ITEMS_PER_PAGE < cards.length
     // scrollThreshold="200px"
     // scrollableTarget="content-container"
     // initialScrollY={1000}
@@ -469,7 +470,8 @@ const Explorer = _ref => {
     nftsCardList = [],
     displayTraits,
     handleOwnerClick,
-    scrollCallback
+    scrollCallback,
+    done
   } = _ref;
   const [nfts, setNfts] = React.useState([]);
   const {
@@ -517,7 +519,8 @@ const Explorer = _ref => {
     handleCardClick: handleCardClick,
     displayTraits: displayTraits,
     handleOwnerClick: handleOwnerClick,
-    scrollCallback: scrollCallback
+    scrollCallback: scrollCallback,
+    done: done
   }));
 };
 
@@ -589,23 +592,21 @@ const SelectedFilters = () => {
 };
 var SelectedFilters$1 = /*#__PURE__*/React__default["default"].memo(SelectedFilters);
 
-var GalleryComponent = function GalleryComponent(_ref) {
-  var apiBaseUrl = _ref.apiBaseUrl,
-    openseaUrl = _ref.openseaUrl,
-    etherscanUrl = _ref.etherscanUrl,
-    handleCardClick = _ref.handleCardClick,
-    headerStyle = _ref.headerStyle,
-    cardArray = _ref.cardArray,
-    _ref$displayTraits = _ref.displayTraits,
-    displayTraits = _ref$displayTraits === void 0 ? false : _ref$displayTraits,
-    _ref$displayFilters = _ref.displayFilters,
-    displayFilters = _ref$displayFilters === void 0 ? true : _ref$displayFilters,
-    _ref$handleOwnerClick = _ref.handleOwnerClick,
-    handleOwnerClick = _ref$handleOwnerClick === void 0 ? undefined : _ref$handleOwnerClick,
-    _ref$displaySelectedF = _ref.displaySelectedFilters,
-    displaySelectedFilters = _ref$displaySelectedF === void 0 ? false : _ref$displaySelectedF,
-    _ref$scrollCallback = _ref.scrollCallback,
-    scrollCallback = _ref$scrollCallback === void 0 ? undefined : _ref$scrollCallback;
+const GalleryComponent = _ref => {
+  let {
+    apiBaseUrl,
+    openseaUrl,
+    etherscanUrl,
+    handleCardClick,
+    headerStyle,
+    cardArray,
+    displayTraits = false,
+    displayFilters = true,
+    handleOwnerClick = undefined,
+    displaySelectedFilters = false,
+    scrollCallback = undefined,
+    done = false
+  } = _ref;
   return /*#__PURE__*/React__default["default"].createElement("div", {
     style: {
       width: '100%',
@@ -623,7 +624,8 @@ var GalleryComponent = function GalleryComponent(_ref) {
     nftsCardList: cardArray,
     displayTraits: displayTraits,
     handleOwnerClick: handleOwnerClick,
-    scrollCallback: scrollCallback
+    scrollCallback: scrollCallback,
+    done: done
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React__default["default"].memo(GalleryComponent);
