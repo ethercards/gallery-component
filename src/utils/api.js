@@ -4,6 +4,9 @@ export const getFilters = async (base_url) => {
   return new Promise((resolve, reject) => {
     axios.get(`${base_url}filters`).then((response) => {
       resolve(response.data);
+    }).catch(e => {
+      console.log(e.response.status)
+      reject(e.response.status)
     });
   });
 };

@@ -46,6 +46,9 @@ const getFilters = async base_url => {
   return new Promise((resolve, reject) => {
     axios__default["default"].get(`${base_url}filters`).then(response => {
       resolve(response.data);
+    }).catch(e => {
+      console.log(e.response.status);
+      reject(e.response.status);
     });
   });
 };
@@ -187,12 +190,16 @@ const Filter = _ref => {
   const fetchFilters = async () => {
     getFilters(baseUrl).then(res => {
       setFilters(res);
+    }).catch(e => {
+      if (e) {
+        setFilters(null);
+      }
     });
   };
   React.useEffect(() => {
     fetchFilters();
   }, [baseUrl]);
-  return /*#__PURE__*/React__default["default"].createElement(FilterContainer, {
+  return filters && /*#__PURE__*/React__default["default"].createElement(FilterContainer, {
     filtersArray: filters
   });
 };

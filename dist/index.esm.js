@@ -35,6 +35,9 @@ const getFilters = async base_url => {
   return new Promise((resolve, reject) => {
     axios.get(`${base_url}filters`).then(response => {
       resolve(response.data);
+    }).catch(e => {
+      console.log(e.response.status);
+      reject(e.response.status);
     });
   });
 };
@@ -176,12 +179,16 @@ const Filter = _ref => {
   const fetchFilters = async () => {
     getFilters(baseUrl).then(res => {
       setFilters(res);
+    }).catch(e => {
+      if (e) {
+        setFilters(null);
+      }
     });
   };
   useEffect(() => {
     fetchFilters();
   }, [baseUrl]);
-  return /*#__PURE__*/React.createElement(FilterContainer, {
+  return filters && /*#__PURE__*/React.createElement(FilterContainer, {
     filtersArray: filters
   });
 };

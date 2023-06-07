@@ -9,14 +9,18 @@ const Filter = ({ baseUrl, headerStyle }) => {
   const fetchFilters = async () => {
     getFilters(baseUrl).then((res) => {
       setFilters(res);
-    });
+    }).catch(e => {
+      if (e) {
+        setFilters(null)
+      }
+    })
   };
 
   useEffect(() => {
     fetchFilters();
   }, [baseUrl]);
 
-  return  <FilterContainer filtersArray={filters}/>;
+  return filters && <FilterContainer filtersArray={filters} />;
 };
 
 export default React.memo(Filter);
