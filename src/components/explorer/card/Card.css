@@ -108,10 +108,12 @@
 
 .gallery-trait-holder-box {
   border-radius: 20px;
-  width: 26px;
-  height: 26px;
-  background-color: #FE2C85;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
   padding: 2px;
+  overflow: hidden;
+  border: 1px solid #FE2C85;
 }
 
 .gallery-trait-holder-box img {
