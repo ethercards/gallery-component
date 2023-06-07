@@ -20,8 +20,9 @@ const Explorer = ({
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
   const explorerRef = useRef(null);
-  const [loading, setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(false);
+  const [fetchDone, setFetchDone] = useState(false)
+
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters, currentPage).then((res) => {
       if (res.length > 0 && currentPage > 1) {
@@ -31,6 +32,9 @@ const Explorer = ({
       if (currentPage === 1) {
         //this happens when select a filter 
         setNfts(res);
+      }
+      if (currentPage > 1 && res.length === 0) {
+        setFetchDone(true)
       }
     });
     setLoading(false);
@@ -68,7 +72,7 @@ const Explorer = ({
           displayTraits={displayTraits}
           handleOwnerClick={handleOwnerClick}
           scrollCallback={scrollCallback}
-          done={done}
+          done={done || fetchDone}
         />
       }
     </div>

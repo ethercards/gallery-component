@@ -75,8 +75,6 @@ const ScrollComponent = ({
     return <p className='gallery-no-item-message'>No item to display</p>
   }
 
-  console.log(currentPageRef.current + 1);
-  
   return (
     <InfiniteScroll
       className='gallery-infinite-scroll'

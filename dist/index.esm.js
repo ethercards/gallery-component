@@ -436,7 +436,6 @@ const ScrollComponent = _ref => {
       className: "gallery-no-item-message"
     }, "No item to display");
   }
-  console.log(currentPageRef.current + 1);
   return /*#__PURE__*/React.createElement(InfiniteScroll, {
     className: "gallery-infinite-scroll",
     dataLength: cards.length,
@@ -474,6 +473,7 @@ const Explorer = _ref => {
   } = useContext(FilterContext);
   const explorerRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [fetchDone, setFetchDone] = useState(false);
   const fetchNfts = async () => {
     getFilteredCards(baseUrl, filters, currentPage).then(res => {
       if (res.length > 0 && currentPage > 1) {
@@ -483,6 +483,9 @@ const Explorer = _ref => {
       if (currentPage === 1) {
         //this happens when select a filter 
         setNfts(res);
+      }
+      if (currentPage > 1 && res.length === 0) {
+        setFetchDone(true);
       }
     });
     setLoading(false);
@@ -514,7 +517,7 @@ const Explorer = _ref => {
     displayTraits: displayTraits,
     handleOwnerClick: handleOwnerClick,
     scrollCallback: scrollCallback,
-    done: done
+    done: done || fetchDone
   }));
 };
 
