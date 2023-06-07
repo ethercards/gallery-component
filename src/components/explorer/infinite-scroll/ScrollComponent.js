@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Card from '../card/Card';
 import './ScrollComponent.css';
 import { FilterContext } from '../../../context/DataContext';
+import { useDeepEffect } from '../../../hooks/useDeepEffect';
 
 const ScrollComponent = ({
   nfts,
@@ -52,10 +53,10 @@ const ScrollComponent = ({
     });
   };
 
-  useEffect(() => {
+  useDeepEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
-    } else {
+    } else if(nfts.length === 0 && currentPageRef.current === 1) {
       setCards([]);
     }
   }, [nfts]);

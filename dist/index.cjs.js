@@ -367,6 +367,17 @@ const Card = _ref => {
 var css_248z$2 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n  padding: 10px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";
 styleInject(css_248z$2);
 
+function useDeepCompareMemoize(value) {
+  const ref = React.useRef();
+  if (!___default["default"].isEqual(value, ref.current)) {
+    ref.current = value;
+  }
+  return ref.current;
+}
+function useDeepEffect(callback, dependencies) {
+  React.useEffect(callback, useDeepCompareMemoize(dependencies));
+}
+
 const ScrollComponent = _ref => {
   let {
     nfts,
@@ -413,10 +424,10 @@ const ScrollComponent = _ref => {
       }));
     });
   };
-  React.useEffect(() => {
+  useDeepEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
-    } else {
+    } else if (nfts.length === 0 && currentPageRef.current === 1) {
       setCards([]);
     }
   }, [nfts]);
@@ -454,17 +465,6 @@ const ScrollComponent = _ref => {
     className: "gallery-grid-container"
   }, renderCards()));
 };
-
-function useDeepCompareMemoize(value) {
-  const ref = React.useRef();
-  if (!___default["default"].isEqual(value, ref.current)) {
-    ref.current = value;
-  }
-  return ref.current;
-}
-function useDeepEffect(callback, dependencies) {
-  React.useEffect(callback, useDeepCompareMemoize(dependencies));
-}
 
 const Explorer = _ref => {
   let {
