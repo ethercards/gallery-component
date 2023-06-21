@@ -349,15 +349,19 @@ const Card = _ref => {
     onClick: () => handleEtherscanClick()
   })) : null, card.traits && displayTraits && /*#__PURE__*/React.createElement("div", {
     className: "gallery-trait-container"
-  }, card.traits.map((item, index) => {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "gallery-trait-holder-box",
-      key: index
-    }, /*#__PURE__*/React.createElement("img", {
-      src: item.icon_url,
-      alt: "trait"
-    }));
-  })))));
+  }, card.traits.map((item, index) => item.status ? item.status === "1" && /*#__PURE__*/React.createElement("div", {
+    className: "gallery-trait-holder-box",
+    key: index
+  }, /*#__PURE__*/React.createElement("img", {
+    src: item.icon_url,
+    alt: "trait"
+  })) : /*#__PURE__*/React.createElement("div", {
+    className: "gallery-trait-holder-box",
+    key: index
+  }, /*#__PURE__*/React.createElement("img", {
+    src: item.icon_url,
+    alt: "trait"
+  })))))));
 };
 
 var css_248z$2 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n  padding: 10px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";

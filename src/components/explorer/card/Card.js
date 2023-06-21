@@ -110,13 +110,19 @@ const Card = ({
           ) : null}
           {card.traits && displayTraits && (
             <div className='gallery-trait-container'>
-              {card.traits.map((item, index) => {
-                return (
+              {card.traits.map((item, index) => (
+                item.status ? (
+                  item.status === "1" && (
+                    <div className='gallery-trait-holder-box' key={index}>
+                      <img src={item.icon_url} alt='trait' />
+                    </div>
+                  )
+                ) : (
                   <div className='gallery-trait-holder-box' key={index}>
                     <img src={item.icon_url} alt='trait' />
                   </div>
-                );
-              })}
+                )
+              ))}
             </div>
           )}
         </div>
