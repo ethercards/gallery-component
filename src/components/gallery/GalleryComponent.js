@@ -2,7 +2,7 @@ import React from 'react';
 import { FilterContextProvider } from '../../context/DataContext';
 import Filter from '../filter/Filter';
 import Explorer from '../explorer/Explorer';
-import './GalleryComponent.css';
+// import './GalleryComponent.css';
 import SelectedFilters from '../selected-filter/SelectedFilters';
 
 const GalleryComponent = ({
