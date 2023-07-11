@@ -14,7 +14,10 @@ const ScrollComponent = ({
   displayTraits,
   handleOwnerClick,
   scrollCallback,
-  done
+  done,
+  isMarketplace,
+  erc777Symbol,
+  chainDefaultToken,
 }) => {
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -44,9 +47,10 @@ const ScrollComponent = ({
             displayTraits={displayTraits}
             owner={card.owner || null}
             ownerLabel={card.ownerLabel || null}
-            etherOffer={card.marketplaceData ? card.marketplaceData.ethOffer : null}
-            dustOffer={card.marketplaceData ? card.marketplaceData.dustOffer : null}
+            erc777Symbol={erc777Symbol}
+            chainDefaultToken={chainDefaultToken}
             handleOwnerClick={handleOwnerClick}
+            isMarketplace={isMarketplace}
           />
         </div>
       );
@@ -56,7 +60,7 @@ const ScrollComponent = ({
   useDeepEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
-    } else if(nfts.length === 0 && currentPageRef.current === 1) {
+    } else if (nfts.length === 0 && currentPageRef.current === 1) {
       setCards([]);
     }
   }, [nfts]);

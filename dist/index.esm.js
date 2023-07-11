@@ -3,30 +3,476 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import _ from 'lodash';
 
-const FilterContext = /*#__PURE__*/createContext([]);
-const FilterContextProvider = _ref => {
-  let {
-    children
-  } = _ref;
-  const [filters, setFilters] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const updateFilters = value => {
+function _iterableToArrayLimit(arr, i) {
+  var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+  if (null != _i) {
+    var _s,
+      _e,
+      _x,
+      _r,
+      _arr = [],
+      _n = !0,
+      _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, 0 === i) {
+        if (Object(_i) !== _i) return;
+        _n = !1;
+      } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0);
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return;
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+}
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _regeneratorRuntime() {
+  _regeneratorRuntime = function () {
+    return exports;
+  };
+  var exports = {},
+    Op = Object.prototype,
+    hasOwn = Op.hasOwnProperty,
+    defineProperty = Object.defineProperty || function (obj, key, desc) {
+      obj[key] = desc.value;
+    },
+    $Symbol = "function" == typeof Symbol ? Symbol : {},
+    iteratorSymbol = $Symbol.iterator || "@@iterator",
+    asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
+    toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  function define(obj, key, value) {
+    return Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), obj[key];
+  }
+  try {
+    define({}, "");
+  } catch (err) {
+    define = function (obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
+      generator = Object.create(protoGenerator.prototype),
+      context = new Context(tryLocsList || []);
+    return defineProperty(generator, "_invoke", {
+      value: makeInvokeMethod(innerFn, self, context)
+    }), generator;
+  }
+  function tryCatch(fn, obj, arg) {
+    try {
+      return {
+        type: "normal",
+        arg: fn.call(obj, arg)
+      };
+    } catch (err) {
+      return {
+        type: "throw",
+        arg: err
+      };
+    }
+  }
+  exports.wrap = wrap;
+  var ContinueSentinel = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var IteratorPrototype = {};
+  define(IteratorPrototype, iteratorSymbol, function () {
+    return this;
+  });
+  var getProto = Object.getPrototypeOf,
+    NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function (method) {
+      define(prototype, method, function (arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if ("throw" !== record.type) {
+        var result = record.arg,
+          value = result.value;
+        return value && "object" == typeof value && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) {
+          invoke("next", value, resolve, reject);
+        }, function (err) {
+          invoke("throw", err, resolve, reject);
+        }) : PromiseImpl.resolve(value).then(function (unwrapped) {
+          result.value = unwrapped, resolve(result);
+        }, function (error) {
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+      reject(record.arg);
+    }
+    var previousPromise;
+    defineProperty(this, "_invoke", {
+      value: function (method, arg) {
+        function callInvokeWithMethodAndArg() {
+          return new PromiseImpl(function (resolve, reject) {
+            invoke(method, arg, resolve, reject);
+          });
+        }
+        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = "suspendedStart";
+    return function (method, arg) {
+      if ("executing" === state) throw new Error("Generator is already running");
+      if ("completed" === state) {
+        if ("throw" === method) throw arg;
+        return doneResult();
+      }
+      for (context.method = method, context.arg = arg;;) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+        if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) {
+          if ("suspendedStart" === state) throw state = "completed", context.arg;
+          context.dispatchException(context.arg);
+        } else "return" === context.method && context.abrupt("return", context.arg);
+        state = "executing";
+        var record = tryCatch(innerFn, self, context);
+        if ("normal" === record.type) {
+          if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
+          return {
+            value: record.arg,
+            done: context.done
+          };
+        }
+        "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(delegate, context) {
+    var methodName = context.method,
+      method = delegate.iterator[methodName];
+    if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel;
+    var record = tryCatch(method, delegate.iterator, context.arg);
+    if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
+    var info = record.arg;
+    return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
+  }
+  function pushTryEntry(locs) {
+    var entry = {
+      tryLoc: locs[0]
+    };
+    1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
+  }
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal", delete record.arg, entry.completion = record;
+  }
+  function Context(tryLocsList) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) return iteratorMethod.call(iterable);
+      if ("function" == typeof iterable.next) return iterable;
+      if (!isNaN(iterable.length)) {
+        var i = -1,
+          next = function next() {
+            for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
+            return next.value = undefined, next.done = !0, next;
+          };
+        return next.next = next;
+      }
+    }
+    return {
+      next: doneResult
+    };
+  }
+  function doneResult() {
+    return {
+      value: undefined,
+      done: !0
+    };
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), defineProperty(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) {
+    var ctor = "function" == typeof genFun && genFun.constructor;
+    return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
+  }, exports.mark = function (genFun) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+  }, exports.awrap = function (arg) {
+    return {
+      __await: arg
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+    return this;
+  }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    void 0 === PromiseImpl && (PromiseImpl = Promise);
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
+  }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () {
+    return this;
+  }), define(Gp, "toString", function () {
+    return "[object Generator]";
+  }), exports.keys = function (val) {
+    var object = Object(val),
+      keys = [];
+    for (var key in object) keys.push(key);
+    return keys.reverse(), function next() {
+      for (; keys.length;) {
+        var key = keys.pop();
+        if (key in object) return next.value = key, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, exports.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function (skipTempReset) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+    },
+    stop: function () {
+      this.done = !0;
+      var rootRecord = this.tryEntries[0].completion;
+      if ("throw" === rootRecord.type) throw rootRecord.arg;
+      return this.rval;
+    },
+    dispatchException: function (exception) {
+      if (this.done) throw exception;
+      var context = this;
+      function handle(loc, caught) {
+        return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
+      }
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i],
+          record = entry.completion;
+        if ("root" === entry.tryLoc) return handle("end");
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc"),
+            hasFinally = hasOwn.call(entry, "finallyLoc");
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+          } else {
+            if (!hasFinally) throw new Error("try statement without catch or finally");
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function (type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+      finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
+      var record = finallyEntry ? finallyEntry.completion : {};
+      return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
+    },
+    complete: function (record, afterLoc) {
+      if ("throw" === record.type) throw record.arg;
+      return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
+    },
+    finish: function (finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
+      }
+    },
+    catch: function (tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if ("throw" === record.type) {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+      throw new Error("illegal catch attempt");
+    },
+    delegateYield: function (iterable, resultName, nextLoc) {
+      return this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
+    }
+  }, exports;
+}
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return typeof key === "symbol" ? key : String(key);
+}
+
+var FilterContext = /*#__PURE__*/createContext([]);
+var FilterContextProvider = function FilterContextProvider(_ref) {
+  var children = _ref.children;
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    filters = _useState2[0],
+    setFilters = _useState2[1];
+  var _useState3 = useState(1),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentPage = _useState4[0],
+    setCurrentPage = _useState4[1];
+  var updateFilters = function updateFilters(value) {
     setFilters(value);
     resetCurrentPage();
   };
-  const updateCurrentPage = value => {
+  var updateCurrentPage = function updateCurrentPage(value) {
     setCurrentPage(value);
   };
-  const resetCurrentPage = () => {
+  var resetCurrentPage = function resetCurrentPage() {
     setCurrentPage(1);
   };
   return /*#__PURE__*/React.createElement(FilterContext.Provider, {
     value: {
-      filters,
-      updateFilters,
-      updateCurrentPage,
-      currentPage,
-      resetCurrentPage
+      filters: filters,
+      updateFilters: updateFilters,
+      updateCurrentPage: updateCurrentPage,
+      currentPage: currentPage,
+      resetCurrentPage: resetCurrentPage
     }
   }, children);
 };
@@ -169,23 +615,37 @@ const FilterContainer = _ref => {
   }, renderFilters()));
 };
 
-const Filter = _ref => {
-  let {
-    baseUrl,
-    headerStyle
-  } = _ref;
+var Filter = function Filter(_ref) {
+  var baseUrl = _ref.baseUrl;
+    _ref.headerStyle;
   //this component fetching data from BE
-  const [filters, setFilters] = useState({});
-  const fetchFilters = async () => {
-    getFilters(baseUrl).then(res => {
-      setFilters(res);
-    }).catch(e => {
-      if (e) {
-        setFilters(null);
-      }
-    });
-  };
-  useEffect(() => {
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    filters = _useState2[0],
+    setFilters = _useState2[1];
+  var fetchFilters = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            getFilters(baseUrl).then(function (res) {
+              setFilters(res);
+            }).catch(function (e) {
+              if (e) {
+                setFilters(null);
+              }
+            });
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function fetchFilters() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  useEffect(function () {
     fetchFilters();
   }, [baseUrl]);
   return filters && /*#__PURE__*/React.createElement(FilterContainer, {
@@ -268,6 +728,7 @@ var img$2 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width=
 
 var img$1 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.756' height='41.177' viewBox='0 0 41.756 41.177'%3e %3cg id='Group_1482' data-name='Group 1482' transform='translate(-288 -1871)'%3e %3cellipse id='Ellipse_1' data-name='Ellipse 1' cx='20.878' cy='20.469' rx='20.878' ry='20.469' transform='translate(288 1871.24)' fill='white'/%3e %3cg id='etherscan-seeklogo.com' transform='translate(288.125 1871)'%3e %3cpath id='Path_138' data-name='Path 138' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.752%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.752-1.752h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.752V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.458%2c1.458%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_139' data-name='Path 139' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3c/g%3e%3c/svg%3e";
 
+const DEFAULT_PRICE = '0.00';
 const Card = _ref => {
   let {
     card,
@@ -277,9 +738,10 @@ const Card = _ref => {
     displayTraits,
     owner,
     ownerLabel,
-    etherOffer = null,
-    dustOffer = null,
-    handleOwnerClick
+    handleOwnerClick,
+    isMarketplace,
+    erc777Symbol = '',
+    chainDefaultToken = ''
   } = _ref;
   const [loading, setLoading] = useState(true);
   const handleCardImageClick = tokenId => {
@@ -323,11 +785,11 @@ const Card = _ref => {
     }
   }, ownerLabel || owner.slice(0, 6) + '...')) : '', /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box "
-  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), (etherOffer || dustOffer) && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
-  }, /*#__PURE__*/React.createElement("span", null, "Price"), /*#__PURE__*/React.createElement("p", null, etherOffer)), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Price"), /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native || DEFAULT_PRICE, " ", chainDefaultToken)), /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
-  }, /*#__PURE__*/React.createElement("p", null, dustOffer)))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_erc777 || DEFAULT_PRICE, " ", erc777Symbol)))), /*#__PURE__*/React.createElement("div", {
     className: "gallery-social-trait-box"
   }, etherscanUrl || openseaUrl ? /*#__PURE__*/React.createElement("div", {
     className: "gallery-social-items-box"
@@ -387,7 +849,10 @@ const ScrollComponent = _ref => {
     displayTraits,
     handleOwnerClick,
     scrollCallback,
-    done
+    done,
+    isMarketplace,
+    erc777Symbol,
+    chainDefaultToken
   } = _ref;
   const ITEMS_PER_PAGE = 16;
   const [cards, setCards] = useState([]);
@@ -418,9 +883,10 @@ const ScrollComponent = _ref => {
         displayTraits: displayTraits,
         owner: card.owner || null,
         ownerLabel: card.ownerLabel || null,
-        etherOffer: card.marketplaceData ? card.marketplaceData.ethOffer : null,
-        dustOffer: card.marketplaceData ? card.marketplaceData.dustOffer : null,
-        handleOwnerClick: handleOwnerClick
+        erc777Symbol: erc777Symbol,
+        chainDefaultToken: chainDefaultToken,
+        handleOwnerClick: handleOwnerClick,
+        isMarketplace: isMarketplace
       }));
     });
   };
@@ -465,49 +931,75 @@ const ScrollComponent = _ref => {
   }, renderCards()));
 };
 
-const Explorer = _ref => {
-  let {
-    baseUrl = undefined,
-    openseaUrl,
-    etherscanUrl,
-    handleCardClick,
-    nftsCardList = [],
-    displayTraits,
-    handleOwnerClick,
-    scrollCallback,
-    done
-  } = _ref;
-  const [nfts, setNfts] = useState([]);
-  const {
-    filters,
-    currentPage
-  } = useContext(FilterContext);
-  const explorerRef = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [fetchDone, setFetchDone] = useState(false);
-  const fetchNfts = async () => {
-    getFilteredCards(baseUrl, filters, currentPage).then(res => {
-      if (res.length > 0 && currentPage > 1) {
-        //load elements into array when currentPage is increasing
-        setNfts(prevState => [...prevState, ...res]);
-      }
-      if (currentPage === 1) {
-        //this happens when select a filter 
-        setNfts(res);
-      }
-      if (currentPage > 1 && res.length === 0) {
-        setFetchDone(true);
-      }
-    });
-    setLoading(false);
-  };
-  useDeepEffect(() => {
+var Explorer = function Explorer(_ref) {
+  var _ref$baseUrl = _ref.baseUrl,
+    baseUrl = _ref$baseUrl === void 0 ? undefined : _ref$baseUrl,
+    openseaUrl = _ref.openseaUrl,
+    etherscanUrl = _ref.etherscanUrl,
+    handleCardClick = _ref.handleCardClick,
+    _ref$nftsCardList = _ref.nftsCardList,
+    nftsCardList = _ref$nftsCardList === void 0 ? [] : _ref$nftsCardList,
+    displayTraits = _ref.displayTraits,
+    handleOwnerClick = _ref.handleOwnerClick,
+    scrollCallback = _ref.scrollCallback,
+    done = _ref.done,
+    isMarketplace = _ref.isMarketplace,
+    erc777Symbol = _ref.erc777Symbol,
+    chainDefaultToken = _ref.chainDefaultToken;
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    nfts = _useState2[0],
+    setNfts = _useState2[1];
+  var _useContext = useContext(FilterContext),
+    filters = _useContext.filters,
+    currentPage = _useContext.currentPage;
+  var explorerRef = useRef(null);
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    fetchDone = _useState6[0],
+    setFetchDone = _useState6[1];
+  var fetchNfts = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            getFilteredCards(baseUrl, filters, currentPage).then(function (res) {
+              if (res.length > 0 && currentPage > 1) {
+                //load elements into array when currentPage is increasing
+                setNfts(function (prevState) {
+                  return [].concat(_toConsumableArray(prevState), _toConsumableArray(res));
+                });
+              }
+              if (currentPage === 1) {
+                //this happens when select a filter 
+                setNfts(res);
+              }
+              if (currentPage > 1 && res.length === 0) {
+                setFetchDone(true);
+              }
+            });
+            setLoading(false);
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function fetchNfts() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  useDeepEffect(function () {
     if (baseUrl) {
       setLoading(true);
       fetchNfts();
     }
   }, [filters, baseUrl, currentPage]);
-  useDeepEffect(() => {
+  useDeepEffect(function () {
     if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
     }
@@ -528,7 +1020,10 @@ const Explorer = _ref => {
     displayTraits: displayTraits,
     handleOwnerClick: handleOwnerClick,
     scrollCallback: scrollCallback,
-    done: done || fetchDone
+    done: done || fetchDone,
+    isMarketplace: isMarketplace,
+    erc777Symbol: erc777Symbol,
+    chainDefaultToken: chainDefaultToken
   }));
 };
 
@@ -562,16 +1057,15 @@ const SelectedFilterItem = _ref => {
   })));
 };
 
-const SelectedFilters = () => {
-  const {
-    filters,
-    updateFilters
-  } = useContext(FilterContext);
-  const handleClearOne = (category, value) => {
-    const activeFilters = {
-      ...filters
-    };
-    const filteredArray = activeFilters[category].filter(data => data !== value);
+var SelectedFilters = function SelectedFilters() {
+  var _useContext = useContext(FilterContext),
+    filters = _useContext.filters,
+    updateFilters = _useContext.updateFilters;
+  var handleClearOne = function handleClearOne(category, value) {
+    var activeFilters = _objectSpread2({}, filters);
+    var filteredArray = activeFilters[category].filter(function (data) {
+      return data !== value;
+    });
     if (filteredArray.length === 0) {
       delete activeFilters[category];
     } else {
@@ -579,9 +1073,9 @@ const SelectedFilters = () => {
     }
     updateFilters(activeFilters);
   };
-  const renderSelectedFilters = () => {
-    return filters ? Object.keys(filters).map(keyName => {
-      return filters[keyName].map((filter, index) => {
+  var renderSelectedFilters = function renderSelectedFilters() {
+    return filters ? Object.keys(filters).map(function (keyName) {
+      return filters[keyName].map(function (filter, index) {
         return /*#__PURE__*/React.createElement(SelectedFilterItem, {
           filterKeyName: keyName,
           filterName: filter,
@@ -597,21 +1091,31 @@ const SelectedFilters = () => {
 };
 var SelectedFilters$1 = /*#__PURE__*/React.memo(SelectedFilters);
 
-const GalleryComponent = _ref => {
-  let {
-    apiBaseUrl,
-    openseaUrl,
-    etherscanUrl,
-    handleCardClick,
-    headerStyle,
-    cardArray,
-    displayTraits = false,
-    displayFilters = true,
-    handleOwnerClick = undefined,
-    displaySelectedFilters = false,
-    scrollCallback = undefined,
-    done = false
-  } = _ref;
+var GalleryComponent = function GalleryComponent(_ref) {
+  var apiBaseUrl = _ref.apiBaseUrl,
+    openseaUrl = _ref.openseaUrl,
+    etherscanUrl = _ref.etherscanUrl,
+    handleCardClick = _ref.handleCardClick,
+    headerStyle = _ref.headerStyle,
+    cardArray = _ref.cardArray,
+    _ref$displayTraits = _ref.displayTraits,
+    displayTraits = _ref$displayTraits === void 0 ? false : _ref$displayTraits,
+    _ref$displayFilters = _ref.displayFilters,
+    displayFilters = _ref$displayFilters === void 0 ? true : _ref$displayFilters,
+    _ref$handleOwnerClick = _ref.handleOwnerClick,
+    handleOwnerClick = _ref$handleOwnerClick === void 0 ? undefined : _ref$handleOwnerClick,
+    _ref$displaySelectedF = _ref.displaySelectedFilters,
+    displaySelectedFilters = _ref$displaySelectedF === void 0 ? false : _ref$displaySelectedF,
+    _ref$scrollCallback = _ref.scrollCallback,
+    scrollCallback = _ref$scrollCallback === void 0 ? undefined : _ref$scrollCallback,
+    _ref$done = _ref.done,
+    done = _ref$done === void 0 ? false : _ref$done,
+    _ref$isMarketplace = _ref.isMarketplace,
+    isMarketplace = _ref$isMarketplace === void 0 ? false : _ref$isMarketplace,
+    _ref$erc777Symbol = _ref.erc777Symbol,
+    erc777Symbol = _ref$erc777Symbol === void 0 ? '' : _ref$erc777Symbol,
+    _ref$chainDefaultToke = _ref.chainDefaultToken,
+    chainDefaultToken = _ref$chainDefaultToke === void 0 ? '' : _ref$chainDefaultToke;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       width: '100%',
@@ -630,7 +1134,10 @@ const GalleryComponent = _ref => {
     displayTraits: displayTraits,
     handleOwnerClick: handleOwnerClick,
     scrollCallback: scrollCallback,
-    done: done
+    done: done,
+    isMarketplace: isMarketplace,
+    erc777Symbol: erc777Symbol,
+    chainDefaultToken: chainDefaultToken
   })));
 };
 var GalleryComponent$1 = /*#__PURE__*/React.memo(GalleryComponent);

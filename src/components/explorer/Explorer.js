@@ -15,7 +15,10 @@ const Explorer = ({
   displayTraits,
   handleOwnerClick,
   scrollCallback,
-  done
+  done,
+  isMarketplace,
+  erc777Symbol,
+  chainDefaultToken
 }) => {
   const [nfts, setNfts] = useState([]);
   const { filters, currentPage } = useContext(FilterContext);
@@ -73,6 +76,9 @@ const Explorer = ({
           handleOwnerClick={handleOwnerClick}
           scrollCallback={scrollCallback}
           done={done || fetchDone}
+          isMarketplace={isMarketplace}
+          erc777Symbol={erc777Symbol}
+          chainDefaultToken={chainDefaultToken}
         />
       }
     </div>

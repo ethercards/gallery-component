@@ -6,6 +6,7 @@ import './Card.css';
 import opensea from '../../../assets/images/opensea.svg';
 import etherscan from '../../../assets/images/etherscan.svg';
 
+const DEFAULT_PRICE = '0.00'
 const Card = ({
   card,
   openseaUrl,
@@ -14,9 +15,10 @@ const Card = ({
   displayTraits,
   owner,
   ownerLabel,
-  etherOffer = null,
-  dustOffer = null,
   handleOwnerClick,
+  isMarketplace,
+  erc777Symbol = '',
+  chainDefaultToken = ''
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -69,14 +71,14 @@ const Card = ({
               <p>#{card.tokenId}</p>
             </div>
           </div>
-          {(etherOffer || dustOffer) && (
+          {(isMarketplace && card.marketplace) && (
             <div>
               <div className='gallery-card-content-id-box gallery-price-box'>
                 <span>Price</span>
-                <p>{etherOffer}</p>
+                <p>{card.marketplace.sale_native || DEFAULT_PRICE} {chainDefaultToken}</p>
               </div>
               <div className='gallery-card-content-id-box gallery-price-box'>
-                <p>{dustOffer}</p>
+                <p>{card.marketplace.sale_erc777 || DEFAULT_PRICE} {erc777Symbol}</p>
               </div>
             </div>
           )}

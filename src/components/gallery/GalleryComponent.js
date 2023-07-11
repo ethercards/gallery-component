@@ -17,7 +17,10 @@ const GalleryComponent = ({
   handleOwnerClick = undefined,
   displaySelectedFilters = false,
   scrollCallback = undefined,
-  done = false
+  done = false,
+  isMarketplace = false,
+  erc777Symbol = '',
+  chainDefaultToken = '',
 }) => {
   return (
     <div style={{ width: '100%', position: 'relative' }} className='gallery-component-box'>
@@ -34,9 +37,12 @@ const GalleryComponent = ({
           handleCardClick={handleCardClick}
           nftsCardList={cardArray}
           displayTraits={displayTraits}
-          handleOwnerClick={handleOwnerClick} 
+          handleOwnerClick={handleOwnerClick}
           scrollCallback={scrollCallback}
           done={done}
+          isMarketplace={isMarketplace}
+          erc777Symbol={erc777Symbol}
+          chainDefaultToken={chainDefaultToken}
         />
       </FilterContextProvider>
     </div>
