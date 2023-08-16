@@ -118,9 +118,13 @@
   padding: 2px;
   overflow: hidden;
   border: 1px solid #FE2C85;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .gallery-trait-holder-box img {
+  min-height: 28px;
   height: 100%;
   width: auto;
 }
