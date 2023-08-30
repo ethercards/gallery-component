@@ -97,7 +97,7 @@ const Card = ({
                   onClick={() => handleOpenseaClick(card.tokenId)}
                 />
               )}
-              {/* {etherscanUrl && (
+              {etherscanUrl && (
                 <img
                   src={etherscan}
                   alt='etherscan'
@@ -107,7 +107,7 @@ const Card = ({
                   }}
                   onClick={() => handleEtherscanClick()}
                 />
-              )} */}
+              )}
             </div>
           ) : null}
           {card.traits && displayTraits && (
