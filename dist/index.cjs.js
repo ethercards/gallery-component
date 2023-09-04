@@ -935,8 +935,7 @@ const ScrollComponent = _ref => {
     // scrollThreshold="200px"
     // scrollableTarget="content-container"
     // initialScrollY={1000}
-    ,
-    loader: /*#__PURE__*/React__default["default"].createElement("h4", null, "Loading...")
+    // loader={<h4>Loading...</h4>}
   }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-grid-container"
   }, renderCards()));
@@ -1015,6 +1014,8 @@ var Explorer = function Explorer(_ref) {
       setNfts(nftsCardList);
     }
   }, [nftsCardList]);
+  console.log(nftsCardList, 'nft cardlist');
+  console.log(nfts, 'nfts');
   return /*#__PURE__*/React__default["default"].createElement("div", {
     ref: explorerRef,
     style: {
