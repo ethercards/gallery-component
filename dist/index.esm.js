@@ -893,6 +893,8 @@ const ScrollComponent = _ref => {
   useDeepEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
+    } else if (nfts.length === 0 && isMarketplace) {
+      setCards([]);
     } else if (nfts.length === 0 && currentPageRef.current === 1) {
       setCards([]);
     }
