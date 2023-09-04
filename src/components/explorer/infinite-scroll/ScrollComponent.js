@@ -91,7 +91,7 @@ const ScrollComponent = ({
       // scrollThreshold="200px"
       // scrollableTarget="content-container"
       // initialScrollY={1000}
-      loader={<h4>Loading...</h4>}
+      // loader={<h4>Loading...</h4>}
     >
       <div className='gallery-grid-container'>{renderCards()}</div>
     </InfiniteScroll>

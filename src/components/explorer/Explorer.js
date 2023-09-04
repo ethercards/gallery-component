@@ -51,7 +51,7 @@ const Explorer = ({
   }, [filters, baseUrl, currentPage])
 
   useDeepEffect(() => {
-    if (!baseUrl) {
+    if (!baseUrl && nftsCardList.length > 0) {
       setNfts(nftsCardList);
     }
   }, [nftsCardList]);
