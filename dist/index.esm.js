@@ -999,7 +999,7 @@ var Explorer = function Explorer(_ref) {
     }
   }, [filters, baseUrl, currentPage]);
   useDeepEffect(function () {
-    if (!baseUrl && nftsCardList.length > 0) {
+    if (!baseUrl) {
       setNfts(nftsCardList);
     }
   }, [nftsCardList]);
