@@ -61,7 +61,7 @@ const ScrollComponent = ({
     if (nfts.length > 0) {
       setCards(nfts);
     } else if (nfts.length === 0 && isMarketplace) {
-      currentPageRef.current = 0; 
+      currentPageRef.current = 1; 
       setCards([])
     } else if (nfts.length === 0 && currentPageRef.current === 1) {
       setCards([]);
