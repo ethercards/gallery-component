@@ -73,8 +73,8 @@ const Card = ({
           </div>
           {isMarketplace && card.marketplace && (
             <div className='price-container'>
-              {(card.marketplace?.sale_native ||
-                card.marketplace?.sale_erc777) && <span>Price</span>}
+              {(card.marketplace.sale_native ||
+                card.marketplace.sale_erc777) && <span>Price</span>}
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>{card.marketplace.sale_native}</p>

@@ -786,7 +786,7 @@ const Card = _ref => {
     className: "gallery-card-content-id-box "
   }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React.createElement("div", {
     className: "price-container"
-  }, (card.marketplace?.sale_native || card.marketplace?.sale_erc777) && /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
+  }, (card.marketplace.sale_native || card.marketplace.sale_erc777) && /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
   }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native), /*#__PURE__*/React.createElement("p", null, chainDefaultToken)), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
