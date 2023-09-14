@@ -739,18 +739,18 @@ const Card = _ref => {
     ownerLabel,
     handleOwnerClick,
     isMarketplace,
-    erc777Symbol = "",
-    chainDefaultToken = ""
+    erc777Symbol = '',
+    chainDefaultToken = ''
   } = _ref;
   const [loading, setLoading] = useState(true);
   const handleCardImageClick = tokenId => {
     handleCardClick && handleCardClick(tokenId);
   };
   const handleEtherscanClick = () => {
-    etherscanUrl && window.open(`${etherscanUrl}`, "_blank");
+    etherscanUrl && window.open(`${etherscanUrl}`, '_blank');
   };
   const handleOpenseaClick = tokenId => {
-    openseaUrl && window.open(`${openseaUrl}/${tokenId}`, "_blank");
+    openseaUrl && window.open(`${openseaUrl}/${tokenId}`, '_blank');
   };
   const handleOwnerBoxClick = owner => {
     handleOwnerClick(owner);
@@ -759,7 +759,7 @@ const Card = _ref => {
     className: "gallery-card-root-box"
   }, /*#__PURE__*/React.createElement(LazyImage, {
     style: {
-      cursor: handleCardClick ? "pointer" : "unset"
+      cursor: handleCardClick ? 'pointer' : 'unset'
     },
     src: card.image,
     imageOnLoad: () => setLoading(false),
@@ -780,13 +780,13 @@ const Card = _ref => {
   }, /*#__PURE__*/React.createElement("span", null, "Owner"), /*#__PURE__*/React.createElement("p", {
     onClick: () => handleOwnerBoxClick(owner),
     style: {
-      cursor: handleOwnerBoxClick ? "pointer" : "unset"
+      cursor: handleOwnerBoxClick ? 'pointer' : 'unset'
     }
-  }, ownerLabel || owner.slice(0, 6) + "...")) : "", /*#__PURE__*/React.createElement("div", {
+  }, ownerLabel || owner.slice(0, 6) + '...')) : '', /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box "
-  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && (card.marketplace?.sale_native || card.marketplace?.sale_erc777) && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React.createElement("div", {
     className: "price-container"
-  }, /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
+  }, (card.marketplace?.sale_native || card.marketplace?.sale_erc777) && /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
   }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native), /*#__PURE__*/React.createElement("p", null, chainDefaultToken)), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
@@ -798,21 +798,21 @@ const Card = _ref => {
     src: img$2,
     alt: "opensea",
     style: {
-      maxWidth: "30px",
-      cursor: openseaUrl ? "pointer" : "unset"
+      maxWidth: '30px',
+      cursor: openseaUrl ? 'pointer' : 'unset'
     },
     onClick: () => handleOpenseaClick(card.tokenId)
   }), etherscanUrl && /*#__PURE__*/React.createElement("img", {
     src: img$1,
     alt: "etherscan",
     style: {
-      maxWidth: "30px",
-      cursor: etherscanUrl ? "pointer" : "unset"
+      maxWidth: '30px',
+      cursor: etherscanUrl ? 'pointer' : 'unset'
     },
     onClick: () => handleEtherscanClick()
   })) : null, card.traits && displayTraits && /*#__PURE__*/React.createElement("div", {
     className: "gallery-trait-container"
-  }, card.traits.map((item, index) => item.status ? item.status === "1" && /*#__PURE__*/React.createElement("div", {
+  }, card.traits.map((item, index) => item.status ? item.status === '1' && /*#__PURE__*/React.createElement("div", {
     className: "gallery-trait-holder-box",
     key: index
   }, /*#__PURE__*/React.createElement("img", {
