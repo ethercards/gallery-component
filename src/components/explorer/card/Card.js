@@ -71,8 +71,8 @@ const Card = ({
               <p>#{card.tokenId}</p>
             </div>
           </div>
-          {isMarketplace && card.marketplace && (
-            <div>
+          {isMarketplace && (card.marketplace?.sale_native || card.marketplace?.sale_erc777) && (
+            <div className="price-container">
               <span>Price</span>
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className="gallery-card-content-id-box gallery-price-box">

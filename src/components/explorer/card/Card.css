@@ -72,7 +72,12 @@
   color: #000;
   text-align: left;
 }
-
+.price-container span{ 
+  color: #00000090;
+}
+.dark .price-container span {
+  color: #FFFFFF90;
+}
 .dark .gallery-card-content-id-box p {
   color: #FFFFFF;
 }

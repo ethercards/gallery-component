@@ -477,51 +477,25 @@ var FilterContextProvider = function FilterContextProvider(_ref) {
   }, children);
 };
 
-var getFilters = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(base_url) {
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          return _context.abrupt("return", new Promise(function (resolve, reject) {
-            axios.get("".concat(base_url, "filters")).then(function (response) {
-              resolve(response.data);
-            }).catch(function (e) {
-              console.log(e.response.status);
-              reject(e.response.status);
-            });
-          }));
-        case 1:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return function getFilters(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var getFilteredCards = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(base_url, filters, currentPage) {
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          return _context2.abrupt("return", new Promise(function (resolve, reject) {
-            axios.post("".concat(base_url, "filter?page=").concat(currentPage), filters).then(function (response) {
-              resolve(response.data);
-            }).catch(function (e) {
-              reject(e.message);
-            });
-          }));
-        case 1:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return function getFilteredCards(_x2, _x3, _x4) {
-    return _ref2.apply(this, arguments);
-  };
-}();
+const getFilters = async base_url => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${base_url}filters`).then(response => {
+      resolve(response.data);
+    }).catch(e => {
+      console.log(e.response.status);
+      reject(e.response.status);
+    });
+  });
+};
+const getFilteredCards = async (base_url, filters, currentPage) => {
+  return new Promise((resolve, reject) => {
+    axios.post(`${base_url}filter?page=${currentPage}`, filters).then(response => {
+      resolve(response.data);
+    }).catch(e => {
+      reject(e.message);
+    });
+  });
+};
 
 const FilterItem = _ref => {
   let {
@@ -598,21 +572,24 @@ function styleInject(css, ref) {
 var css_248z$3 = ".gallery-filter-container-root {\r\n  margin: 20px auto;\r\n  text-align: center;\r\n  width: 100%;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%);\r\n  border-radius: 20px;\r\n  z-index: 1;\r\n\r\n}\r\n\r\n.gallery-filter-inner-container {\r\n  padding: 16px 20px;\r\n  display: flex;\r\n  column-gap: 32px;\r\n  width: auto;\r\n}\r\n\r\n.dark .gallery-filter-container-root {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.dropdown-label {\r\n  font-family: 'poppins-semibold';\r\n  font-size: 16px;\r\n  cursor: pointer;\r\n  color: #000;\r\n}\r\n\r\n.dark .dropdown-label {\r\n  color: #FFF\r\n}\r\n\r\n.gallery-filter-dropdown-container {\r\n  display: inline-block;\r\n}\r\n\r\n.gallery-filter-dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #faf9f5;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  padding: 12px 16px;\r\n  z-index: 3;\r\n  max-height: 160px;\r\n  overflow:  hidden auto ;\r\n  scrollbar-width: thin;\r\n  scrollbar-color: #FE2C85 transparent;\r\n}\r\n.dark .gallery-filter-dropdown-content {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-filter-dropdown-content.open {\r\n  display: block;\r\n}\r\n.gallery-filter-dropdown-content::-webkit-scrollbar {\r\n  width: 6px;               /* width of the entire scrollbar */\r\n}\r\n\r\n.gallery-filter-dropdown-content::-webkit-scrollbar-track {\r\n  background: transparent;        /* color of the tracking area */\r\n}\r\n\r\n.gallery-filter-dropdown-content::-webkit-scrollbar-thumb {\r\n  background-color: #FE2C85;    /* color of the scroll thumb */\r\n  border-radius: 20px;       /* roundness of the scroll thumb */\r\n  border: 1px solid #FE2C85;  /* creates padding around scroll thumb */\r\n}\r\n.gallery-filter-dropdown-backdrop {\r\n  display: none;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 100vh;\r\n  z-index: 2;\r\n  top: 0;\r\n  left: 0;\r\n}\r\n\r\n.gallery-filter-dropdown-backdrop.open {\r\n  display: block;\r\n}\r\n\r\n\r\n\r\n.gallery-filter-item-box {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  column-gap: 10px;\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.gallery-filter-item-box .gallery-filter-item-box-name {\r\n  font-family: 'poppins';\r\n  font-size: 14px;\r\n}\r\n.dark .gallery-filter-item-box .gallery-filter-item-box-name {\r\n color: #FFF;\r\n}\r\n\r\n.checkbox-container {\r\n  display: inline-block; \r\n  position: relative;\r\n  display: flex;\r\n  align-items: baseline;\r\n  justify-content: center;\r\n}\r\n\r\n.checkmark {\r\n  position: absolute;\r\n  height: 15px;\r\n  width: 15px;\r\n  background-color: #FFF;\r\n  border: 1px solid #FE2C85;\r\n  cursor: pointer;\r\n}\r\n.checkbox-container input{\r\n  margin: 0;\r\n}\r\n.dark .checkmark {\r\n  background-color: #151E2A;\r\n}\r\n.checkmark:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  display: none;\r\n}\r\n\r\n.checkbox-container input:checked ~ .checkmark:after {\r\n  display: block;\r\n}\r\n\r\n.checkbox-container .checkmark:after {\r\n  left: 5px;\r\n  top: 1px;\r\n  width: 4px;\r\n  height: 8px;\r\n  border: solid #FE2C85;\r\n  border-width: 0 2px 2px 0;\r\n  transform: rotate(45deg);\r\n}";
 styleInject(css_248z$3);
 
-var FilterContainer = function FilterContainer(_ref) {
-  var filtersArray = _ref.filtersArray;
-  var _useContext = useContext(FilterContext),
-    filters = _useContext.filters,
-    updateFilters = _useContext.updateFilters;
-  var handleSelect = function handleSelect(category, item, checked) {
-    var activeFilters = _objectSpread2({}, filters);
+const FilterContainer = _ref => {
+  let {
+    filtersArray
+  } = _ref;
+  const {
+    filters,
+    updateFilters
+  } = useContext(FilterContext);
+  const handleSelect = (category, item, checked) => {
+    const activeFilters = {
+      ...filters
+    };
     if (checked) {
-      var tmpArray = activeFilters[category] ? [].concat(_toConsumableArray(activeFilters[category]), [item]) : [item];
+      const tmpArray = activeFilters[category] ? [...activeFilters[category], item] : [item];
       activeFilters[category] = tmpArray;
     } else {
       if (activeFilters[category]) {
-        var filteredArray = activeFilters[category].filter(function (data) {
-          return data !== item;
-        });
+        const filteredArray = activeFilters[category].filter(data => data !== item);
         if (filteredArray.length === 0) {
           delete activeFilters[category];
         } else {
@@ -622,16 +599,14 @@ var FilterContainer = function FilterContainer(_ref) {
     }
     updateFilters(activeFilters);
   };
-  var renderFilters = function renderFilters() {
-    return filtersArray ? Object.keys(filtersArray).map(function (filterKeyName, index) {
-      return /*#__PURE__*/React.createElement(FilterItem, {
-        filterKeyName: filterKeyName,
-        filterList: filtersArray[filterKeyName],
-        key: index,
-        handleSelect: handleSelect,
-        selectedFilters: filters[filterKeyName]
-      });
-    }) : 'No filters loaded!';
+  const renderFilters = () => {
+    return filtersArray ? Object.keys(filtersArray).map((filterKeyName, index) => /*#__PURE__*/React.createElement(FilterItem, {
+      filterKeyName: filterKeyName,
+      filterList: filtersArray[filterKeyName],
+      key: index,
+      handleSelect: handleSelect,
+      selectedFilters: filters[filterKeyName]
+    })) : 'No filters loaded!';
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "gallery-filter-container-root"
@@ -746,7 +721,7 @@ const LazyImage = _ref => {
   });
 };
 
-var css_248z$2 = ".gallery-card-root-box {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  border-radius: 20px;\r\n  overflow: hidden;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%)\r\n}\r\n\r\n.dark .gallery-card-root-box {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-card-root-box p {\r\n  margin-block-start: 0em !important;\r\n  margin-block-end: 0em !important;\r\n}\r\n\r\n.gallery-card-content {\r\n  padding: 15px 22px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: flex-start;\r\n  gap: 10px;\r\n  height: 100%;\r\n}\r\n\r\n.gallery-card-content-general {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  column-gap: 16px;\r\n}\r\n\r\n.gallery-card-content-name {\r\n  font-size: 16px;\r\n  line-height: 20px;\r\n  color: #000;\r\n  font-family: Poppins;\r\n  font-weight: 500;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-name {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-card-content-id-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: start;\r\n}\r\n\r\n.gallery-card-content-id-box span {\r\n  font-family: Poppins;\r\n  font-weight: 400;\r\n  font-size: 12px;\r\n  line-height: 16px;\r\n  color: #00000090;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box span {\r\n  color: #FFFFFF90;\r\n}\r\n\r\n.gallery-card-content-id-box p {\r\n  font-family: Poppins;\r\n  font-weight: 500;\r\n  font-size: 14px;\r\n  color: #000;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box p {\r\n  color: #FFFFFF;\r\n}\r\n.gallery-card-content-id-box.gallery-owner-box p:hover {\r\n  color: #FE2C85;\r\n}\r\n.gallery-price-box{\r\n  margin-bottom: 5px;\r\n}\r\n.gallery-price-box p {\r\n  color: #FE2C85 !important;\r\n  line-height: 18px;\r\n  font-size: 14px;\r\n  font-family: Poppins;\r\n  font-weight: 600;\r\n}\r\n\r\n.gallery-social-trait-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 10px;\r\n\r\n}\r\n\r\n.gallery-social-items-box {\r\n  display: flex;\r\n  gap: 10px\r\n}\r\n\r\n.gallery-trait-container {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 10px;\r\n  justify-content: flex-start;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.gallery-trait-holder-box {\r\n  /* border-radius: 20px; */\r\n  border-radius: 8px;\r\n  width: 24px;\r\n  height: 24px;\r\n  background-color: transparent;\r\n  padding: 2px;\r\n  overflow: hidden;\r\n  /* border: 1px solid #FE2C85; */\r\n  border: 2px solid white;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.gallery-trait-holder-box img {\r\n  /* min-height: 28px; */\r\n  height: 100%;\r\n  width: auto;\r\n}";
+var css_248z$2 = ".gallery-card-root-box {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  border-radius: 20px;\r\n  overflow: hidden;\r\n  background-color: #faf9f5;\r\n  box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 29%)\r\n}\r\n\r\n.dark .gallery-card-root-box {\r\n  background-color: #151E2A;\r\n}\r\n\r\n.gallery-card-root-box p {\r\n  margin-block-start: 0em !important;\r\n  margin-block-end: 0em !important;\r\n}\r\n\r\n.gallery-card-content {\r\n  padding: 15px 22px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: flex-start;\r\n  gap: 10px;\r\n  height: 100%;\r\n}\r\n\r\n.gallery-card-content-general {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  column-gap: 16px;\r\n}\r\n\r\n.gallery-card-content-name {\r\n  font-size: 16px;\r\n  line-height: 20px;\r\n  color: #000;\r\n  font-family: Poppins;\r\n  font-weight: 500;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-name {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-card-content-id-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: start;\r\n}\r\n\r\n.gallery-card-content-id-box span {\r\n  font-family: Poppins;\r\n  font-weight: 400;\r\n  font-size: 12px;\r\n  line-height: 16px;\r\n  color: #00000090;\r\n  text-align: left;\r\n}\r\n\r\n.dark .gallery-card-content-id-box span {\r\n  color: #FFFFFF90;\r\n}\r\n\r\n.gallery-card-content-id-box p {\r\n  font-family: Poppins;\r\n  font-weight: 500;\r\n  font-size: 14px;\r\n  color: #000;\r\n  text-align: left;\r\n}\r\n.price-container span{ \r\n  color: #00000090;\r\n}\r\n.dark .price-container span {\r\n  color: #FFFFFF90;\r\n}\r\n.dark .gallery-card-content-id-box p {\r\n  color: #FFFFFF;\r\n}\r\n.gallery-card-content-id-box.gallery-owner-box p:hover {\r\n  color: #FE2C85;\r\n}\r\n.gallery-price-box{\r\n  margin-bottom: 5px;\r\n}\r\n.gallery-price-box p {\r\n  color: #FE2C85 !important;\r\n  line-height: 18px;\r\n  font-size: 14px;\r\n  font-family: Poppins;\r\n  font-weight: 600;\r\n}\r\n\r\n.gallery-social-trait-box {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 10px;\r\n\r\n}\r\n\r\n.gallery-social-items-box {\r\n  display: flex;\r\n  gap: 10px\r\n}\r\n\r\n.gallery-trait-container {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 10px;\r\n  justify-content: flex-start;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.gallery-trait-holder-box {\r\n  /* border-radius: 20px; */\r\n  border-radius: 8px;\r\n  width: 24px;\r\n  height: 24px;\r\n  background-color: transparent;\r\n  padding: 2px;\r\n  overflow: hidden;\r\n  /* border: 1px solid #FE2C85; */\r\n  border: 2px solid white;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.gallery-trait-holder-box img {\r\n  /* min-height: 28px; */\r\n  height: 100%;\r\n  width: auto;\r\n}";
 styleInject(css_248z$2);
 
 var img$2 = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.248' height='41.177' viewBox='0 0 41.248 41.177'%3e %3cg id='opensea' transform='translate(-4.953 -6)'%3e %3cg id='Group_1481' data-name='Group 1481' transform='translate(4.953 6)'%3e %3cpath id='Path_140' data-name='Path 140' d='M13.529%2c25.573a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h.008l2.914.008a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V36.6c.328-.1.749-.2%2c1.213-.312a1.461%2c1.461%2c0%2c0%2c0%2c1.128-1.423V21.211a1.75%2c1.75%2c0%2c0%2c1%2c1.751-1.751h2.922a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V33.884s.733-.295%2c1.44-.6a1.463%2c1.463%2c0%2c0%2c0%2c.893-1.347V16.84A1.75%2c1.75%2c0%2c0%2c1%2c32.8%2c15.089h2.914a1.75%2c1.75%2c0%2c0%2c1%2c1.751%2c1.751V29.286A34.4%2c34.4%2c0%2c0%2c0%2c44.593%2c22.6a2.946%2c2.946%2c0%2c0%2c0%2c.446-2.745A20.609%2c20.609%2c0%2c1%2c0%2c7.694%2c36.873a2.6%2c2.6%2c0%2c0%2c0%2c2.484%2c1.288c.556-.051%2c1.238-.118%2c2.055-.211A1.457%2c1.457%2c0%2c0%2c0%2c13.521%2c36.5l.008-10.93' transform='translate(-4.953 -6.003)' fill='%2321325b'/%3e %3cpath id='Path_141' data-name='Path 141' d='M106.1%2c251.479a20.6%2c20.6%2c0%2c0%2c0%2c32.731-16.665c0-.472-.025-.943-.051-1.415-7.528%2c11.233-21.439%2c16.488-32.681%2c18.079' transform='translate(-97.583 -214.252)' fill='%23979695'/%3e %3c/g%3e %3cpath id='Path_142' data-name='Path 142' d='M46.677%2c26.589A20.589%2c20.589%2c0%2c1%2c1%2c26.089%2c6%2c20.592%2c20.592%2c0%2c0%2c1%2c46.677%2c26.589Z' transform='translate(-0.501)' fill='%232081e2'/%3e %3cpath id='Path_143' data-name='Path 143' d='M125.931%2c165.509l.084-.126%2c5.356-8.362c.084-.126.244-.126.328.042.909%2c2.021%2c1.65%2c4.488%2c1.314%2c6.054a8.8%2c8.8%2c0%2c0%2c1-1.069%2c2.307.985.985%2c0%2c0%2c1-.2.328.219.219%2c0%2c0%2c1-.168.084h-5.516A.225.225%2c0%2c0%2c1%2c125.931%2c165.509Z' transform='translate(-110.76 -138.221)' fill='white'/%3e %3cpath id='Path_144' data-name='Path 144' d='M133.105%2c118.418v1.314c0%2c.084-.042.126-.126.168a6.4%2c6.4%2c0%2c0%2c0-2.434%2c1.65c-1.524%2c2.1-2.678%2c5.1-5.229%2c5.1H114.58a6.9%2c6.9%2c0%2c0%2c1-6.88-6.922v-.126a.181.181%2c0%2c0%2c1%2c.168-.168h6.054a.216.216%2c0%2c0%2c1%2c.2.2%2c2.333%2c2.333%2c0%2c0%2c0%2c.2%2c1.154%2c2.094%2c2.094%2c0%2c0%2c0%2c1.895%2c1.154h2.964v-2.307h-2.922a.187.187%2c0%2c0%2c1-.168-.286.581.581%2c0%2c0%2c0%2c.126-.168c.286-.413.657-.985%2c1.069-1.684a9.738%2c9.738%2c0%2c0%2c0%2c.741-1.482%2c2.39%2c2.39%2c0%2c0%2c0%2c.126-.286c.042-.168.126-.328.168-.455s.084-.244.126-.371a6.808%2c6.808%2c0%2c0%2c0%2c.126-1.356%2c2.782%2c2.782%2c0%2c0%2c0-.042-.573c0-.2-.042-.413-.042-.615a2.392%2c2.392%2c0%2c0%2c0-.084-.539%2c5.738%2c5.738%2c0%2c0%2c0-.168-.825l-.042-.084a2.65%2c2.65%2c0%2c0%2c0-.168-.539c-.168-.573-.37-1.154-.573-1.65-.084-.2-.168-.413-.244-.615-.126-.286-.244-.573-.37-.825-.042-.126-.126-.2-.168-.328s-.126-.244-.168-.371c-.042-.084-.084-.168-.126-.244l-.37-.657c-.042-.084.042-.2.126-.168l2.265.615h0l.286.084.328.084.126.042V105a1.192%2c1.192%2c0%2c0%2c1%2c1.154-1.2%2c1.179%2c1.179%2c0%2c0%2c1%2c.825.328%2c1.164%2c1.164%2c0%2c0%2c1%2c.328.825v1.979l.244.084a.041.041%2c0%2c0%2c1%2c.042.042%2c1.448%2c1.448%2c0%2c0%2c0%2c.244.2%2c1.672%2c1.672%2c0%2c0%2c0%2c.286.244c.2.168.5.413.783.657.084.084.168.126.2.2a15.975%2c15.975%2c0%2c0%2c1%2c1.2%2c1.2c.126.126.2.244.328.371s.2.286.328.413c.126.168.286.371.413.539a2.149%2c2.149%2c0%2c0%2c1%2c.168.286c.168.244.286.5.455.741.042.126.126.244.168.371a2.937%2c2.937%2c0%2c0%2c1%2c.328%2c1.027.445.445%2c0%2c0%2c1%2c.042.2h0a.779.779%2c0%2c0%2c1%2c.042.328%2c4.553%2c4.553%2c0%2c0%2c1-.042%2c1.069c-.042.168-.084.286-.126.455a3.135%2c3.135%2c0%2c0%2c1-.168.455%2c9.574%2c9.574%2c0%2c0%2c1-.455.867c-.042.084-.126.2-.2.328a1.157%2c1.157%2c0%2c0%2c0-.2.328c-.084.126-.2.244-.286.371a2.745%2c2.745%2c0%2c0%2c1-.286.371c-.126.168-.286.328-.413.5a2039668559500.258%2c2039668559500.258%2c0%2c0%2c1-.573.573%2c2.593%2c2.593%2c0%2c0%2c1-.371.328l-.244.2a.155.155%2c0%2c0%2c1-.126.042h-1.81v2.307h2.265a2.041%2c2.041%2c0%2c0%2c0%2c1.356-.5c.126-.126.7-.615%2c1.4-1.356.042-.042.042-.042.084-.042l6.257-1.81C133.021%2c118.216%2c133.105%2c118.292%2c133.105%2c118.418Z' transform='translate(-94.095 -89.565)' fill='white'/%3e %3c/g%3e%3c/svg%3e";
@@ -809,7 +784,9 @@ const Card = _ref => {
     }
   }, ownerLabel || owner.slice(0, 6) + "...")) : "", /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box "
-  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Token ID"), /*#__PURE__*/React.createElement("p", null, "#", card.tokenId))), isMarketplace && (card.marketplace?.sale_native || card.marketplace?.sale_erc777) && /*#__PURE__*/React.createElement("div", {
+    className: "price-container"
+  }, /*#__PURE__*/React.createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
   }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native), /*#__PURE__*/React.createElement("p", null, chainDefaultToken)), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
@@ -854,7 +831,7 @@ var css_248z$1 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: 
 styleInject(css_248z$1);
 
 function useDeepCompareMemoize(value) {
-  var ref = useRef();
+  const ref = useRef();
   if (!_.isEqual(value, ref.current)) {
     ref.current = value;
   }
@@ -864,38 +841,38 @@ function useDeepEffect(callback, dependencies) {
   useEffect(callback, useDeepCompareMemoize(dependencies));
 }
 
-var ScrollComponent = function ScrollComponent(_ref) {
-  var nfts = _ref.nfts,
-    openseaUrl = _ref.openseaUrl,
-    etherscanUrl = _ref.etherscanUrl,
-    handleCardClick = _ref.handleCardClick,
-    displayTraits = _ref.displayTraits,
-    handleOwnerClick = _ref.handleOwnerClick,
-    scrollCallback = _ref.scrollCallback,
-    done = _ref.done,
-    isMarketplace = _ref.isMarketplace,
-    erc777Symbol = _ref.erc777Symbol,
-    chainDefaultToken = _ref.chainDefaultToken;
-  var ITEMS_PER_PAGE = 16;
-  var _useState = useState([]),
-    _useState2 = _slicedToArray(_useState, 2),
-    cards = _useState2[0],
-    setCards = _useState2[1];
-  var _useContext = useContext(FilterContext),
-    currentPage = _useContext.currentPage,
-    updateCurrentPage = _useContext.updateCurrentPage;
-  var currentPageRef = useRef(1);
-  var setCurrentPage = function setCurrentPage(val) {
+const ScrollComponent = _ref => {
+  let {
+    nfts,
+    openseaUrl,
+    etherscanUrl,
+    handleCardClick,
+    displayTraits,
+    handleOwnerClick,
+    scrollCallback,
+    done,
+    isMarketplace,
+    erc777Symbol,
+    chainDefaultToken
+  } = _ref;
+  const ITEMS_PER_PAGE = 16;
+  const [cards, setCards] = useState([]);
+  const {
+    currentPage,
+    updateCurrentPage
+  } = useContext(FilterContext);
+  const currentPageRef = useRef(1);
+  const setCurrentPage = val => {
     //update the context, and the ref to store the actual data
     updateCurrentPage(val);
     currentPageRef.current = val;
   };
-  var handleCallback = function handleCallback(val) {
+  const handleCallback = val => {
     scrollCallback(currentPageRef.current + 1);
     currentPageRef.current = val;
   };
-  var renderCards = function renderCards() {
-    return cards.map(function (card, i) {
+  const renderCards = () => {
+    return cards.map((card, i) => {
       return /*#__PURE__*/React.createElement("div", {
         key: i,
         className: "gallery-card-item"
@@ -914,7 +891,7 @@ var ScrollComponent = function ScrollComponent(_ref) {
       }));
     });
   };
-  useDeepEffect(function () {
+  useDeepEffect(() => {
     if (nfts.length > 0) {
       setCards(nfts);
     } else if (nfts.length === 0 && isMarketplace) {
@@ -924,7 +901,7 @@ var ScrollComponent = function ScrollComponent(_ref) {
       setCards([]);
     }
   }, [nfts]);
-  useEffect(function () {
+  useEffect(() => {
     //need to set currentPageRef.current 1 when we select a filter
     if (currentPage === 1) {
       currentPageRef.current = 1;
@@ -943,7 +920,7 @@ var ScrollComponent = function ScrollComponent(_ref) {
   return /*#__PURE__*/React.createElement(InfiniteScroll, {
     className: "gallery-infinite-scroll",
     dataLength: cards.length,
-    next: function next() {
+    next: () => {
       scrollCallback ? handleCallback(currentPageRef.current + 1) : setCurrentPage(currentPageRef.current + 1);
     },
     pullDownToRefreshThreshold: 300,
@@ -1060,10 +1037,12 @@ styleInject(css_248z);
 
 var img = "data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M24 3.35998L20.64 0L12 8.63999L3.35998 0L0 3.35998L8.63999 12L0 20.64L3.35998 24L12 15.36L20.64 24L24 20.64L15.36 12L24 3.35998Z' fill='%23FE2C85'/%3e%3c/svg%3e";
 
-var SelectedFilterItem = function SelectedFilterItem(_ref) {
-  var filterKeyName = _ref.filterKeyName,
-    filterName = _ref.filterName,
-    handleClearOne = _ref.handleClearOne;
+const SelectedFilterItem = _ref => {
+  let {
+    filterKeyName,
+    filterName,
+    handleClearOne
+  } = _ref;
   return /*#__PURE__*/React.createElement("div", {
     className: "gallery-selected-filters-content-box"
   }, /*#__PURE__*/React.createElement("span", {
@@ -1072,9 +1051,7 @@ var SelectedFilterItem = function SelectedFilterItem(_ref) {
     className: "gallery-selected-filters-filter-name"
   }, filterName), /*#__PURE__*/React.createElement("div", {
     className: "gallery-selected-filters-clear-button",
-    onClick: function onClick() {
-      return handleClearOne(filterKeyName, filterName);
-    }
+    onClick: () => handleClearOne(filterKeyName, filterName)
   }, /*#__PURE__*/React.createElement("img", {
     src: img,
     alt: "clear",
