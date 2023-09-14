@@ -820,9 +820,9 @@ const Card = _ref => {
     }
   }, ownerLabel || owner.slice(0, 6) + "...")) : "", /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-content-id-box "
-  }, /*#__PURE__*/React__default["default"].createElement("span", null, "Token ID"), /*#__PURE__*/React__default["default"].createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React__default["default"].createElement("div", null, Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("span", null, "Token ID"), /*#__PURE__*/React__default["default"].createElement("p", null, "#", card.tokenId))), isMarketplace && card.marketplace && /*#__PURE__*/React__default["default"].createElement("div", null, /*#__PURE__*/React__default["default"].createElement("span", null, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
-  }, /*#__PURE__*/React__default["default"].createElement("span", null, "Price"), /*#__PURE__*/React__default["default"].createElement("p", null, card.marketplace.sale_native), /*#__PURE__*/React__default["default"].createElement("p", null, chainDefaultToken)), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("p", null, card.marketplace.sale_native), /*#__PURE__*/React__default["default"].createElement("p", null, chainDefaultToken)), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
   }, /*#__PURE__*/React__default["default"].createElement("p", null, card.marketplace.sale_erc777), /*#__PURE__*/React__default["default"].createElement("p", null, erc777Symbol)))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-social-trait-box"

@@ -73,9 +73,9 @@ const Card = ({
           </div>
           {isMarketplace && card.marketplace && (
             <div>
+              <span>Price</span>
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className="gallery-card-content-id-box gallery-price-box">
-                  <span>Price</span>
                   <p>{card.marketplace.sale_native}</p>
                   <p>{chainDefaultToken}</p>
                 </div>
