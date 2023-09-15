@@ -5,8 +5,12 @@ import './Card.css';
 
 import opensea from '../../../assets/images/opensea.svg';
 import etherscan from '../../../assets/images/etherscan.svg';
+import ethIcon from '../../../assets/images/curencies/eth.svg'
+import dust from '../../../assets/images/curencies/dust.svg'
+import matic from '../../../assets/images/curencies/matic.svg'
 
-const DEFAULT_PRICE = '0.00';
+
+
 const Card = ({
   card,
   openseaUrl,
@@ -21,7 +25,6 @@ const Card = ({
   chainDefaultToken = '',
 }) => {
   const [loading, setLoading] = useState(true);
-
   const handleCardImageClick = (tokenId) => {
     handleCardClick && handleCardClick(tokenId);
   };
@@ -37,11 +40,12 @@ const Card = ({
   const handleOwnerBoxClick = (owner) => {
     handleOwnerClick(owner);
   };
-
+  console.log(owner)
   return (
     <div className='gallery-card-root-box'>
+      <div className='gallery-card-image-holder'>
       <LazyImage
-        style={{ cursor: handleCardClick ? 'pointer' : 'unset' }}
+        style={{ cursor: handleCardClick ? 'pointer' : 'unset', width: '100%'}}
         src={card.image}
         imageOnLoad={() => setLoading(false)}
         alt='Card'
@@ -49,48 +53,50 @@ const Card = ({
           handleCardImageClick(card.tokenId);
         }}
       />
+      </div>
       <div className='gallery-card-content'>
-        <div className='gallery-card-content-general'>
-          <div className='gallery-card-general-informations'>
-            <p className='gallery-card-content-name '>{card.name}</p>
-            {owner || ownerLabel ? (
-              <div className='gallery-card-content-id-box gallery-owner-box'>
-                <span>Owner</span>
-                <p
-                  onClick={() => handleOwnerBoxClick(owner)}
-                  style={{ cursor: handleOwnerBoxClick ? 'pointer' : 'unset' }}
-                >
-                  {ownerLabel || owner.slice(0, 6) + '...'}
-                </p>
-              </div>
-            ) : (
-              ''
-            )}
-            <div className='gallery-card-content-id-box '>
-              <span>Token ID</span>
-              <p>#{card.tokenId}</p>
+        <p className='gallery-card-content-name '>{card.collection_name}
+          <br />
+          #{card.tokenId}
+        </p>
+
+        <div className='gallery-card-flex-box'>
+          {owner || ownerLabel ? (
+            <div className='gallery-owner-box'>
+              <span className='gallery-card-label-title'>Owner</span>
+              <p
+                onClick={() => handleOwnerBoxClick(owner)}
+                style={{ cursor: handleOwnerBoxClick ? 'pointer' : 'unset' }}
+              >
+                {ownerLabel || owner.slice(0, 6) + '...'}
+              </p>
             </div>
-          </div>
+          ) : (
+            ''
+          )}
+
           {isMarketplace && card.marketplace && (
-            <div className='price-container'>
+            <div className='gallery-card-price-holder'>
               {(card.marketplace.sale_native ||
-                card.marketplace.sale_erc777) && <span>Price</span>}
+                card.marketplace.sale_erc777) && <span className='gallery-card-label-title'>Price</span>}
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>{card.marketplace.sale_native}</p>
-                  <p>{chainDefaultToken}</p>
+                  {chainDefaultToken.toLowerCase().includes('eth') ? <img src={ethIcon} alt='ETH' className='gallery-card-token-symbol' /> : <img src={matic} alt='MATIC' className='gallery-card-token-symbol' />}
                 </div>
               )}
 
               {Number(card.marketplace.sale_erc777) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>{card.marketplace.sale_erc777}</p>
-                  <p>{erc777Symbol}</p>
+                  <img src={dust} alt='ETH' className='gallery-card-token-symbol' />
                 </div>
               )}
             </div>
           )}
         </div>
+
+
         <div className='gallery-social-trait-box'>
           {etherscanUrl || openseaUrl ? (
             <div className='gallery-social-items-box'>
@@ -119,21 +125,24 @@ const Card = ({
             </div>
           ) : null}
           {card.traits && displayTraits && (
-            <div className='gallery-trait-container'>
-              {card.traits.map((item, index) =>
-                item.status ? (
-                  item.status === '1' && (
+            <>
+              <span className='gallery-card-label-title'>Utility Traits:</span>
+              <div className='gallery-trait-container'>
+                {card.traits.map((item, index) =>
+                  item.status ? (
+                    item.status === '1' && (
+                      <div className='gallery-trait-holder-box' key={index}>
+                        <img src={item.icon_url} alt='trait' />
+                      </div>
+                    )
+                  ) : (
                     <div className='gallery-trait-holder-box' key={index}>
                       <img src={item.icon_url} alt='trait' />
                     </div>
                   )
-                ) : (
-                  <div className='gallery-trait-holder-box' key={index}>
-                    <img src={item.icon_url} alt='trait' />
-                  </div>
-                )
-              )}
-            </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
