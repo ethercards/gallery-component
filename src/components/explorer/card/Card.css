@@ -62,7 +62,7 @@
 .gallery-card-flex-box {
   display: flex;
   justify-content: space-between;
-  min-height: 66px;
+  min-height: 72px;
 }
 
 .gallery-card-content-id-box p {
