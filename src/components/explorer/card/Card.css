@@ -17,10 +17,12 @@
   margin-block-start: 0em !important;
   margin-block-end: 0em !important;
 }
-.gallery-card-image-holder{
+
+.gallery-card-image-holder {
   width: 100%;
   overflow: hidden;
 }
+
 .gallery-card-content {
   padding: 15px 22px;
   display: flex;
@@ -36,13 +38,13 @@
 }
 
 .gallery-card-content-name {
-  font-size:22px;
+  font-size: 22px;
   line-height: 26px;
   color: #000;
   font-family: Poppins, 'poppins-semibold';
   font-weight: 500;
   text-align: left;
-  min-height: 85px;
+  /* min-height: 85px; */
 }
 
 .dark .gallery-card-content-name {
@@ -82,10 +84,12 @@
 .dark .gallery-card-content-id-box p {
   color: #F5F6FC;
 }
-.gallery-owner-box{
+
+.gallery-owner-box {
   display: flex;
   flex-direction: column;
 }
+
 .gallery-owner-box p {
   color: #F5F6FC;
   font-family: Bau, 'bau';
@@ -94,10 +98,12 @@
 .gallery-owner-box p:hover {
   color: #FE2C85;
 }
-.gallery-card-price-holder{
+
+.gallery-card-price-holder {
   display: flex;
   flex-direction: column;
 }
+
 .gallery-price-box {
   display: flex;
   gap: 5px;
@@ -112,13 +118,14 @@
   font-family: Bau, 'bau';
   font-weight: 600;
 }
+
 .dark .gallery-price-box p {
   color: #F5F6FC;
 }
 
 .gallery-card-token-symbol {
-  width: 11px;
-  height: auto;
+  height: 17px;
+  width: auto;
 }
 
 .gallery-social-trait-box {
