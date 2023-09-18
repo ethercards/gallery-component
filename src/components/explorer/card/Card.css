@@ -10,7 +10,7 @@
 }
 
 .dark .gallery-card-root-box {
-  background-color: #151E2A;
+  background-color: #101428;
 }
 
 .gallery-card-root-box p {
@@ -91,8 +91,12 @@
 }
 
 .gallery-owner-box p {
-  color: #F5F6FC;
+  color: #000;
   font-family: Bau, 'bau';
+}
+
+.dark .gallery-owner-box p {
+  color: #F5F6FC;
 }
 
 .gallery-owner-box p:hover {
