@@ -65,7 +65,6 @@ const Explorer = ({
       style={{
         width: '100%',
         height: 'auto',
-        paddingTop: '50px',
       }}
       className='gallery-scroll-component-holder'
     >

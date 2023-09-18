@@ -3,14 +3,13 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  padding: 10px;
 }
 
 .gallery-card-item {
-  flex-basis: 23%;
+  flex-basis: 23.5%;
   -webkit-box-flex: 0;
   flex-grow: 0;
-  max-width: 23%;
+  max-width: 23.5%;
 }
 
 .dark .gallery-error-message {
@@ -28,6 +27,14 @@
 .gallery-no-item-message {
   color: #000
 }
+
+@media screen and (max-width: 1100px) {
+  .gallery-card-item {
+    flex-basis: 31.5%;
+    max-width: 31.5%;
+  }
+}
+
 
 @media screen and (max-width: 900px) {
   .gallery-card-item {

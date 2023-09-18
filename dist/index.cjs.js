@@ -862,7 +862,7 @@ const Card = _ref => {
   }))))))));
 };
 
-var css_248z$1 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n  padding: 10px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";
+var css_248z$1 = ".gallery-grid-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: center;\r\n  gap: 24px;\r\n}\r\n\r\n.gallery-card-item {\r\n  flex-basis: 23.5%;\r\n  -webkit-box-flex: 0;\r\n  flex-grow: 0;\r\n  max-width: 23.5%;\r\n}\r\n\r\n.dark .gallery-error-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-error-message {\r\n  color: #000\r\n}\r\n\r\n.dark .gallery-no-item-message {\r\n  color: #FFF;\r\n}\r\n\r\n.gallery-no-item-message {\r\n  color: #000\r\n}\r\n\r\n@media screen and (max-width: 1100px) {\r\n  .gallery-card-item {\r\n    flex-basis: 31.5%;\r\n    max-width: 31.5%;\r\n  }\r\n}\r\n\r\n\r\n@media screen and (max-width: 900px) {\r\n  .gallery-card-item {\r\n    flex-basis: 45%;\r\n    max-width: 45%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n  .gallery-card-item {\r\n    flex-basis: 100%;\r\n    max-width: 100%;\r\n  }\r\n}";
 styleInject(css_248z$1);
 
 function useDeepCompareMemoize(value) {
@@ -1050,8 +1050,7 @@ var Explorer = function Explorer(_ref) {
     ref: explorerRef,
     style: {
       width: '100%',
-      height: 'auto',
-      paddingTop: '50px'
+      height: 'auto'
     },
     className: "gallery-scroll-component-holder"
   }, loading ? /*#__PURE__*/React__default["default"].createElement("p", null, "Fetching data ....") : /*#__PURE__*/React__default["default"].createElement(ScrollComponent, {
