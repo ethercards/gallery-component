@@ -79,8 +79,8 @@ const Card = ({
 
           {isMarketplace && card.marketplace && (
             <div className='gallery-card-price-holder'>
-              {(card.marketplace.sale_native ||
-                card.marketplace.sale_erc777) && (
+              {((card.marketplace.sale_native && card.marketplace.sale_native > 0)||
+                (card.marketplace.sale_erc777 && card.marketplace.sale_erc777 > 0)) && (
                 <span className='gallery-card-label-title'>Price</span>
               )}
               {Number(card.marketplace.sale_native) > 0 && (

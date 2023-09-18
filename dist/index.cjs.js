@@ -807,7 +807,7 @@ const Card = _ref => {
     }
   }, ownerLabel || owner.slice(0, 6) + '...')) : '', isMarketplace && card.marketplace && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-price-holder"
-  }, (card.marketplace.sale_native || card.marketplace.sale_erc777) && /*#__PURE__*/React__default["default"].createElement("span", {
+  }, (card.marketplace.sale_native && card.marketplace.sale_native > 0 || card.marketplace.sale_erc777 && card.marketplace.sale_erc777 > 0) && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "gallery-card-label-title"
   }, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
