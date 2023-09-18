@@ -113,6 +113,7 @@
   display: flex;
   gap: 5px;
   margin-bottom: 5px;
+  align-items: center;
 }
 
 .gallery-price-box p {
@@ -129,7 +130,7 @@
 }
 
 .gallery-card-token-symbol {
-  height: 17px;
+  height: 15px;
   width: auto;
 }
 

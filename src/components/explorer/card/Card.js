@@ -5,11 +5,10 @@ import './Card.css';
 
 import opensea from '../../../assets/images/opensea.svg';
 import etherscan from '../../../assets/images/etherscan.svg';
-import ethIcon from '../../../assets/images/curencies/eth.svg'
-import dust from '../../../assets/images/curencies/dust.svg'
-import matic from '../../../assets/images/curencies/matic.svg'
-
-
+import ethIcon from '../../../assets/images/curencies/ether.svg';
+import matic from '../../../assets/images/curencies/matic.svg';
+import dust from '../../../assets/images/curencies/dust.svg';
+import glx from '../../../assets/images/curencies/glx.svg';
 
 const Card = ({
   card,
@@ -40,24 +39,27 @@ const Card = ({
   const handleOwnerBoxClick = (owner) => {
     handleOwnerClick(owner);
   };
-  console.log(owner)
+  console.log(owner);
   return (
     <div className='gallery-card-root-box'>
       <div className='gallery-card-image-holder'>
-      <LazyImage
-        style={{ cursor: handleCardClick ? 'pointer' : 'unset', width: '100%'}}
-        src={card.image}
-        imageOnLoad={() => setLoading(false)}
-        alt='Card'
-        onClick={() => {
-          handleCardImageClick(card.tokenId);
-        }}
-      />
+        <LazyImage
+          style={{
+            cursor: handleCardClick ? 'pointer' : 'unset',
+            width: '100%',
+          }}
+          src={card.image}
+          imageOnLoad={() => setLoading(false)}
+          alt='Card'
+          onClick={() => {
+            handleCardImageClick(card.tokenId);
+          }}
+        />
       </div>
       <div className='gallery-card-content'>
-        <p className='gallery-card-content-name '>{card.collection_name}
-          <br />
-          #{card.tokenId}
+        <p className='gallery-card-content-name '>
+          {card.collection_name}
+          <br />#{card.tokenId}
         </p>
 
         <div className='gallery-card-flex-box'>
@@ -78,24 +80,49 @@ const Card = ({
           {isMarketplace && card.marketplace && (
             <div className='gallery-card-price-holder'>
               {(card.marketplace.sale_native ||
-                card.marketplace.sale_erc777) && <span className='gallery-card-label-title'>Price</span>}
+                card.marketplace.sale_erc777) && (
+                <span className='gallery-card-label-title'>Price</span>
+              )}
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>{card.marketplace.sale_native}</p>
-                  {chainDefaultToken.toLowerCase().includes('eth') ? <img src={ethIcon} alt='ETH' className='gallery-card-token-symbol' /> : <img src={matic} alt='MATIC' className='gallery-card-token-symbol' />}
+                  {chainDefaultToken.toLowerCase().includes('eth') ? (
+                    <img
+                      src={ethIcon}
+                      alt='ETH'
+                      className='gallery-card-token-symbol'
+                    />
+                  ) : (
+                    <img
+                      src={matic}
+                      alt='MATIC'
+                      className='gallery-card-token-symbol'
+                    />
+                  )}
                 </div>
               )}
 
               {Number(card.marketplace.sale_erc777) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>{card.marketplace.sale_erc777}</p>
-                  <img src={dust} alt='ETH' className='gallery-card-token-symbol' />
+                  {erc777Symbol.toLowerCase().includes('dust') ? (
+                    <img
+                      src={dust}
+                      alt='DUST'
+                      className='gallery-card-token-symbol'
+                    />
+                  ) : (
+                    <img
+                      src={glx}
+                      alt='DUST'
+                      className='gallery-card-token-symbol'
+                    />
+                  )}
                 </div>
               )}
             </div>
           )}
         </div>
-
 
         <div className='gallery-social-trait-box'>
           {etherscanUrl || openseaUrl ? (
