@@ -922,10 +922,8 @@ const ScrollComponent = _ref => {
         openseaUrl: openseaUrl,
         etherscanUrl: etherscanUrl,
         handleCardClick: handleCardClick,
-        displayTraits: displayTraits
-        // owner={card.owner || null}
-        ,
-        owner: '0x133E437110782d27DEFD4586fFc93652E21Da57b',
+        displayTraits: displayTraits,
+        owner: card.owner || null,
         ownerLabel: card.ownerLabel || null,
         erc777Symbol: erc777Symbol,
         chainDefaultToken: chainDefaultToken,
