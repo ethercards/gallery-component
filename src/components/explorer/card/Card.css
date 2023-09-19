@@ -130,7 +130,7 @@
 }
 
 .gallery-card-token-symbol {
-  height: 15px;
+  height: 13px;
   width: auto;
 }
 
@@ -173,4 +173,23 @@
   /* min-height: 28px; */
   width: 100%;
   height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .gallery-card-content-name {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .gallery-card-label-title {
+    font-size: 18px;
+  }
+
+  .gallery-price-box p {
+    font-size: 18px;
+  }
+
+  .gallery-owner-box p {
+    font-size: 18px;
+  }
 }
