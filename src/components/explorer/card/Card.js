@@ -39,7 +39,6 @@ const Card = ({
   const handleOwnerBoxClick = (owner) => {
     handleOwnerClick(owner);
   };
-  console.log(owner);
   return (
     <div className='gallery-card-root-box'>
       <div className='gallery-card-image-holder'>
@@ -58,7 +57,7 @@ const Card = ({
       </div>
       <div className='gallery-card-content'>
         <p className='gallery-card-content-name '>
-          {card.collection_name}
+          {card.collection_name ? card.collection_name : card.name}
           <br />#{card.tokenId}
         </p>
 

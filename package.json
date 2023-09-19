@@ -1,6 +1,6 @@
 {
   "name": "gallery-component",
-  "version": "0.1.60",
+  "version": "0.1.61",
   "private": true,
   "source": "src/index.js",
   "main": "dist/index.cjs.js",

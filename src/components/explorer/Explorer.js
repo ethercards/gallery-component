@@ -56,9 +56,6 @@ const Explorer = ({
     }
   }, [nftsCardList]);
 
-  console.log(nftsCardList, 'nft cardlist');
-  console.log(nfts, 'nfts')
-
   return (
     <div
       ref={explorerRef}

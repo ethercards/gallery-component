@@ -774,7 +774,6 @@ const Card = _ref => {
   const handleOwnerBoxClick = owner => {
     handleOwnerClick(owner);
   };
-  console.log(owner);
   return /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-root-box"
   }, /*#__PURE__*/React__default["default"].createElement("div", {
@@ -794,7 +793,7 @@ const Card = _ref => {
     className: "gallery-card-content"
   }, /*#__PURE__*/React__default["default"].createElement("p", {
     className: "gallery-card-content-name "
-  }, card.collection_name, /*#__PURE__*/React__default["default"].createElement("br", null), "#", card.tokenId), /*#__PURE__*/React__default["default"].createElement("div", {
+  }, card.collection_name ? card.collection_name : card.name, /*#__PURE__*/React__default["default"].createElement("br", null), "#", card.tokenId), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-flex-box"
   }, owner || ownerLabel ? /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-owner-box"
@@ -1048,8 +1047,6 @@ var Explorer = function Explorer(_ref) {
       setNfts(nftsCardList);
     }
   }, [nftsCardList]);
-  console.log(nftsCardList, 'nft cardlist');
-  console.log(nfts, 'nfts');
   return /*#__PURE__*/React__default["default"].createElement("div", {
     ref: explorerRef,
     style: {
