@@ -793,7 +793,7 @@ const Card = _ref => {
     className: "gallery-card-content"
   }, /*#__PURE__*/React__default["default"].createElement("p", {
     className: "gallery-card-content-name "
-  }, card.collection_name ? card.collection_name : card.name, /*#__PURE__*/React__default["default"].createElement("br", null), "#", card.tokenId), /*#__PURE__*/React__default["default"].createElement("div", {
+  }, card.name), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-flex-box"
   }, owner || ownerLabel ? /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-owner-box"
@@ -804,7 +804,7 @@ const Card = _ref => {
     style: {
       cursor: handleOwnerBoxClick ? 'pointer' : 'unset'
     }
-  }, ownerLabel || owner.slice(0, 6) + '...')) : '', isMarketplace && card.marketplace && /*#__PURE__*/React__default["default"].createElement("div", {
+  }, ownerLabel || owner.slice(0, 5) + '...' + owner.slice(owner.length - 4, owner.length))) : '', isMarketplace && card.marketplace && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-card-price-holder"
   }, (card.marketplace.sale_native && card.marketplace.sale_native > 0 || card.marketplace.sale_erc777 && card.marketplace.sale_erc777 > 0) && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "gallery-card-label-title"

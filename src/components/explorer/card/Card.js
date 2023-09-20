@@ -57,8 +57,7 @@ const Card = ({
       </div>
       <div className='gallery-card-content'>
         <p className='gallery-card-content-name '>
-          {card.collection_name ? card.collection_name : card.name}
-          <br />#{card.tokenId}
+          {card.name}
         </p>
 
         <div className='gallery-card-flex-box'>
@@ -69,7 +68,7 @@ const Card = ({
                 onClick={() => handleOwnerBoxClick(owner)}
                 style={{ cursor: handleOwnerBoxClick ? 'pointer' : 'unset' }}
               >
-                {ownerLabel || owner.slice(0, 6) + '...'}
+                {ownerLabel || owner.slice(0, 5) + '...' + owner.slice(owner.length - 4, owner.length)}
               </p>
             </div>
           ) : (
