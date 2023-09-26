@@ -799,7 +799,7 @@ const Card = _ref => {
     className: "gallery-card-label-title"
   }, "Price"), Number(card.marketplace.sale_native) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
-  }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native), chainDefaultToken.toLowerCase().includes('eth') ? /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_native.length > 9 ? card.marketplace.sale_native.slice(0, 7) + '...' : card.marketplace.sale_native), chainDefaultToken.toLowerCase().includes('eth') ? /*#__PURE__*/React.createElement("img", {
     src: img$4,
     alt: "ETH",
     className: "gallery-card-token-symbol"
@@ -809,7 +809,7 @@ const Card = _ref => {
     className: "gallery-card-token-symbol"
   })), Number(card.marketplace.sale_erc777) > 0 && /*#__PURE__*/React.createElement("div", {
     className: "gallery-card-content-id-box gallery-price-box"
-  }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_erc777), erc777Symbol.toLowerCase().includes('dust') ? /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/React.createElement("p", null, card.marketplace.sale_erc777.length > 9 ? card.marketplace.sale_erc777.slice(0, 7) + '...' : card.marketplace.sale_erc777), erc777Symbol.toLowerCase().includes('dust') ? /*#__PURE__*/React.createElement("img", {
     src: img$2,
     alt: "DUST",
     className: "gallery-card-token-symbol"

@@ -56,9 +56,7 @@ const Card = ({
         />
       </div>
       <div className='gallery-card-content'>
-        <p className='gallery-card-content-name '>
-          {card.name}
-        </p>
+        <p className='gallery-card-content-name '>{card.name}</p>
 
         <div className='gallery-card-flex-box'>
           {owner || ownerLabel ? (
@@ -68,7 +66,10 @@ const Card = ({
                 onClick={() => handleOwnerBoxClick(owner)}
                 style={{ cursor: handleOwnerBoxClick ? 'pointer' : 'unset' }}
               >
-                {ownerLabel || owner.slice(0, 5) + '...' + owner.slice(owner.length - 4, owner.length)}
+                {ownerLabel ||
+                  owner.slice(0, 5) +
+                    '...' +
+                    owner.slice(owner.length - 4, owner.length)}
               </p>
             </div>
           ) : (
@@ -77,13 +78,19 @@ const Card = ({
 
           {isMarketplace && card.marketplace && (
             <div className='gallery-card-price-holder'>
-              {((card.marketplace.sale_native && card.marketplace.sale_native > 0)||
-                (card.marketplace.sale_erc777 && card.marketplace.sale_erc777 > 0)) && (
+              {((card.marketplace.sale_native &&
+                card.marketplace.sale_native > 0) ||
+                (card.marketplace.sale_erc777 &&
+                  card.marketplace.sale_erc777 > 0)) && (
                 <span className='gallery-card-label-title'>Price</span>
               )}
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
-                  <p>{card.marketplace.sale_native}</p>
+                  <p>
+                    {card.marketplace.sale_native.length > 9
+                      ? card.marketplace.sale_native.slice(0, 7) + '...'
+                      : card.marketplace.sale_native}
+                  </p>
                   {chainDefaultToken.toLowerCase().includes('eth') ? (
                     <img
                       src={ethIcon}
@@ -102,7 +109,11 @@ const Card = ({
 
               {Number(card.marketplace.sale_erc777) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
-                  <p>{card.marketplace.sale_erc777}</p>
+                  <p>
+                    {card.marketplace.sale_erc777.length > 9
+                      ? card.marketplace.sale_erc777.slice(0, 7) + '...'
+                      : card.marketplace.sale_erc777}
+                  </p>
                   {erc777Symbol.toLowerCase().includes('dust') ? (
                     <img
                       src={dust}
