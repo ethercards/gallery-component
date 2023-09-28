@@ -848,7 +848,7 @@ const Card = _ref => {
       cursor: etherscanUrl ? 'pointer' : 'unset'
     },
     onClick: () => handleEtherscanClick()
-  })) : null, card.traits && displayTraits && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement("span", {
+  })) : null, card.traits && displayTraits && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, card.traits.findIndex(e => e.status === "1") > -1 && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "gallery-card-label-title"
   }, "Utility Traits:"), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "gallery-trait-container"

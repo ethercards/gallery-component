@@ -68,8 +68,8 @@ const Card = ({
               >
                 {ownerLabel ||
                   owner.slice(0, 5) +
-                    '...' +
-                    owner.slice(owner.length - 4, owner.length)}
+                  '...' +
+                  owner.slice(owner.length - 4, owner.length)}
               </p>
             </div>
           ) : (
@@ -82,8 +82,8 @@ const Card = ({
                 card.marketplace.sale_native > 0) ||
                 (card.marketplace.sale_erc777 &&
                   card.marketplace.sale_erc777 > 0)) && (
-                <span className='gallery-card-label-title'>Price</span>
-              )}
+                  <span className='gallery-card-label-title'>Price</span>
+                )}
               {Number(card.marketplace.sale_native) > 0 && (
                 <div className='gallery-card-content-id-box gallery-price-box'>
                   <p>
@@ -162,7 +162,7 @@ const Card = ({
           ) : null}
           {card.traits && displayTraits && (
             <>
-              <span className='gallery-card-label-title'>Utility Traits:</span>
+              {card.traits.findIndex(e => e.status === "1") > -1 && <span className='gallery-card-label-title'>Utility Traits:</span>}
               <div className='gallery-trait-container'>
                 {card.traits.map((item, index) =>
                   item.status ? (
